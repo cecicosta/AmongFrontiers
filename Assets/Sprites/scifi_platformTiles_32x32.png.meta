@@ -1,0 +1,526 @@
+fileFormatVersion: 2
+guid: dcc1a0c2fa128994e90b7536cc438824
+TextureImporter:
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 1024
+  textureSettings:
+    filterMode: -1
+    aniso: 1
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings:
+  - buildTarget: iPhone
+    maxTextureSize: 1024
+    textureFormat: -2
+    compressionQuality: 50
+  spriteSheet:
+    sprites:
+    - name: scifi_platformTiles_32x32_1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 609
+        width: 65
+        height: 64
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: scifi_platformTiles_32x32_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 544
+        width: 64
+        height: 65
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: scifi_platformTiles_32x32_2
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 576
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: scifi_platformTiles_32x32_3
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 544
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: scifi_platformTiles_32x32_4
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 544
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: scifi_platformTiles_32x32_5
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 544
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: scifi_platformTiles_32x32_6
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 671
+        width: 95
+        height: 65
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: scifi_platformTiles_32x32_7
+      rect:
+        serializedVersion: 2
+        x: 575
+        y: 671
+        width: 97
+        height: 65
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: scifi_platformTiles_32x32_8
+      rect:
+        serializedVersion: 2
+        x: 672
+        y: 608
+        width: 64
+        height: 63
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: scifi_platformTiles_32x32_9
+      rect:
+        serializedVersion: 2
+        x: 608
+        y: 608
+        width: 64
+        height: 63
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: scifi_platformTiles_32x32_10
+      rect:
+        serializedVersion: 2
+        x: 544
+        y: 608
+        width: 64
+        height: 63
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: scifi_platformTiles_32x32_11
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 608
+        width: 64
+        height: 63
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: scifi_platformTiles_32x32_12
+      rect:
+        serializedVersion: 2
+        x: 672
+        y: 671
+        width: 96
+        height: 65
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: scifi_platformTiles_32x32_13
+      rect:
+        serializedVersion: 2
+        x: 736
+        y: 640
+        width: 96
+        height: 31
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: scifi_platformTiles_32x32_14
+      rect:
+        serializedVersion: 2
+        x: 832
+        y: 640
+        width: 96
+        height: 31
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: scifi_platformTiles_32x32_15
+      rect:
+        serializedVersion: 2
+        x: 928
+        y: 640
+        width: 95
+        height: 31
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: scifi_platformTiles_32x32_16
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 671
+        width: 96
+        height: 65
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: scifi_platformTiles_32x32_17
+      rect:
+        serializedVersion: 2
+        x: 736
+        y: 575
+        width: 96
+        height: 33
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: scifi_platformTiles_32x32_18
+      rect:
+        serializedVersion: 2
+        x: 832
+        y: 575
+        width: 96
+        height: 33
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: scifi_platformTiles_32x32_19
+      rect:
+        serializedVersion: 2
+        x: 928
+        y: 575
+        width: 95
+        height: 33
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: scifi_platformTiles_32x32_20
+      rect:
+        serializedVersion: 2
+        x: 1023
+        y: 575
+        width: 97
+        height: 33
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: scifi_platformTiles_32x32_21
+      rect:
+        serializedVersion: 2
+        x: 736
+        y: 608
+        width: 96
+        height: 32
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: scifi_platformTiles_32x32_22
+      rect:
+        serializedVersion: 2
+        x: 832
+        y: 608
+        width: 96
+        height: 32
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: scifi_platformTiles_32x32_23
+      rect:
+        serializedVersion: 2
+        x: 928
+        y: 608
+        width: 95
+        height: 32
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: scifi_platformTiles_32x32_24
+      rect:
+        serializedVersion: 2
+        x: 1023
+        y: 608
+        width: 97
+        height: 32
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: scifi_platformTiles_32x32_25
+      rect:
+        serializedVersion: 2
+        x: 1023
+        y: 640
+        width: 97
+        height: 31
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: scifi_platformTiles_32x32_26
+      rect:
+        serializedVersion: 2
+        x: 1056
+        y: 704
+        width: 64
+        height: 32
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: scifi_platformTiles_32x32_27
+      rect:
+        serializedVersion: 2
+        x: 1056
+        y: 671
+        width: 32
+        height: 33
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: scifi_platformTiles_32x32_28
+      rect:
+        serializedVersion: 2
+        x: 992
+        y: 671
+        width: 32
+        height: 33
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: scifi_platformTiles_32x32_29
+      rect:
+        serializedVersion: 2
+        x: 928
+        y: 671
+        width: 32
+        height: 33
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: scifi_platformTiles_32x32_30
+      rect:
+        serializedVersion: 2
+        x: 864
+        y: 671
+        width: 32
+        height: 33
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: scifi_platformTiles_32x32_31
+      rect:
+        serializedVersion: 2
+        x: 736
+        y: 480
+        width: 96
+        height: 95
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: scifi_platformTiles_32x32_32
+      rect:
+        serializedVersion: 2
+        x: 832
+        y: 480
+        width: 96
+        height: 95
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: scifi_platformTiles_32x32_33
+      rect:
+        serializedVersion: 2
+        x: 928
+        y: 480
+        width: 95
+        height: 95
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: scifi_platformTiles_32x32_34
+      rect:
+        serializedVersion: 2
+        x: 1023
+        y: 480
+        width: 97
+        height: 95
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: scifi_platformTiles_32x32_35
+      rect:
+        serializedVersion: 2
+        x: 1023
+        y: 385
+        width: 97
+        height: 95
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: scifi_platformTiles_32x32_36
+      rect:
+        serializedVersion: 2
+        x: 928
+        y: 385
+        width: 95
+        height: 95
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: scifi_platformTiles_32x32_37
+      rect:
+        serializedVersion: 2
+        x: 832
+        y: 385
+        width: 96
+        height: 95
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: scifi_platformTiles_32x32_38
+      rect:
+        serializedVersion: 2
+        x: 736
+        y: 385
+        width: 96
+        height: 95
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: scifi_platformTiles_32x32_39
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 384
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: scifi_platformTiles_32x32_40
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 480
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: scifi_platformTiles_32x32_41
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 480
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: scifi_platformTiles_32x32_42
+      rect:
+        serializedVersion: 2
+        x: 385
+        y: 480
+        width: 95
+        height: 96
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: scifi_platformTiles_32x32_43
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 128
+        width: 94
+        height: 94
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: scifi_platformTiles_32x32_44
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 128
+        width: 95
+        height: 92
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: scifi_platformTiles_32x32_45
+      rect:
+        serializedVersion: 2
+        x: 287
+        y: 33
+        width: 100
+        height: 95
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: scifi_platformTiles_32x32_46
+      rect:
+        serializedVersion: 2
+        x: 94
+        y: 33
+        width: 98
+        height: 95
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: scifi_platformTiles_32x32_47
+      rect:
+        serializedVersion: 2
+        x: 450
+        y: 160
+        width: 125
+        height: 128
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: scifi_platformTiles_32x32_48
+      rect:
+        serializedVersion: 2
+        x: 928
+        y: 128
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: scifi_platformTiles_32x32_49
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 193
+        width: 63
+        height: 61
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: scifi_platformTiles_32x32_50
+      rect:
+        serializedVersion: 2
+        x: 383
+        y: 0
+        width: 129
+        height: 32
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: scifi_platformTiles_32x32_51
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 288
+        width: 159
+        height: 31
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: scifi_platformTiles_32x32_52
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 288
+        width: 96
+        height: 32
+      alignment: 0
+      pivot: {x: .5, y: .5}
+  spritePackingTag: 
+  userData: 
