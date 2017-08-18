@@ -96,6 +96,7 @@ public class DialogController : MonoBehaviour {
 	
 	//Controller Method: Trigger on direct interactions
 	public bool TriggerDialog(){
+		Debug.Log ("Trigged!");
 		foreach( DialogSet d in dialogShelf.layers ){
 			int conditionCounter = 0;
 			for( int i=0; i<d.conditions.Count; i++ ){
@@ -124,6 +125,7 @@ public class DialogController : MonoBehaviour {
 				return true;
 			}
 		}
+		Debug.Log ("TriggerDialog - Object does not have the specified Dialog");
 		return false;
 	}
 	/*
@@ -156,7 +158,7 @@ public class DialogController : MonoBehaviour {
 				speecher = register[current.characterIdentifier];
 				dialogbox.GetComponent<Renderer>().enabled = false;
 				dialogbox.text.text = "";
-				speecher.face.GetComponent<Renderer>().enabled = false;
+				//speecher.face.renderer.enabled = false;
 				controllerState = State.INACTIVE;
 
 			break;
@@ -165,7 +167,7 @@ public class DialogController : MonoBehaviour {
 				timer = Time.time;
 				//Diaplay faceset and dialogbox
 				speecher = register[current.characterIdentifier];
-				speecher.face.GetComponent<Renderer>().enabled = true;
+				//speecher.face.renderer.enabled = true;
 				//Display Dialogbox
 				dialogbox.GetComponent<Renderer>().enabled = true;
 				dialogbox.text.text = current.text;	
@@ -175,6 +177,7 @@ public class DialogController : MonoBehaviour {
 				try{
 					onDialogStartEvent(current.tag);
 				}catch( System.Exception e ){
+					Debug.Log(e);
 				}	
 
 				controllerState = State.WAIT;
@@ -211,12 +214,13 @@ public class DialogController : MonoBehaviour {
 						b.text.text = "";
 					}
 					speecher = register[current.characterIdentifier];
-					speecher.face.GetComponent<Renderer>().enabled = false;
+					//speecher.face.renderer.enabled = false;
 
 					speecher.OnDialogEndNotify(current.tag);
 					try{
 						onDialogEndEvent(tag);
 					}catch(System.Exception e){
+						Debug.Log(e);
 					}
 
 					currentDialogSet.MoveNext(selected);
@@ -226,12 +230,13 @@ public class DialogController : MonoBehaviour {
 					controllerState = State.PLAY;
 				}else if( current.query.Count == 1 ){
 					speecher = register[current.characterIdentifier];
-					speecher.face.GetComponent<Renderer>().enabled = false;
+					//speecher.face.renderer.enabled = false;
 
 					speecher.OnDialogEndNotify(current.tag);
 					try{
 						onDialogEndEvent(tag);
 					}catch(System.Exception e){
+						Debug.Log(e);
 					}
 
 					currentDialogSet.MoveNext();
@@ -241,12 +246,13 @@ public class DialogController : MonoBehaviour {
 					controllerState = State.PLAY;
 				}else{
 					speecher = register[current.characterIdentifier];
-					speecher.face.GetComponent<Renderer>().enabled = false;
+					//speecher.face.renderer.enabled = false;
 
 					speecher.OnDialogEndNotify(current.tag);
 					try{
 						onDialogEndEvent(tag);
 					}catch(System.Exception e){
+						Debug.Log(e);
 					}
 					
 					controllerState = State.STOP;

@@ -1,12 +1,66 @@
 fileFormatVersion: 2
 guid: dcc1a0c2fa128994e90b7536cc438824
 TextureImporter:
-  serializedVersion: 2
+  fileIDToRecycleName:
+    21300000: scifi_platformTiles_32x32_1
+    21300002: scifi_platformTiles_32x32_2
+    21300004: scifi_platformTiles_32x32_2
+    21300006: scifi_platformTiles_32x32_3
+    21300008: scifi_platformTiles_32x32_4
+    21300010: scifi_platformTiles_32x32_5
+    21300012: scifi_platformTiles_32x32_6
+    21300014: scifi_platformTiles_32x32_7
+    21300016: scifi_platformTiles_32x32_8
+    21300018: scifi_platformTiles_32x32_9
+    21300020: scifi_platformTiles_32x32_10
+    21300022: scifi_platformTiles_32x32_11
+    21300024: scifi_platformTiles_32x32_12
+    21300026: scifi_platformTiles_32x32_13
+    21300028: scifi_platformTiles_32x32_14
+    21300030: scifi_platformTiles_32x32_15
+    21300032: scifi_platformTiles_32x32_16
+    21300034: scifi_platformTiles_32x32_17
+    21300036: scifi_platformTiles_32x32_18
+    21300038: scifi_platformTiles_32x32_19
+    21300040: scifi_platformTiles_32x32_20
+    21300042: scifi_platformTiles_32x32_21
+    21300044: scifi_platformTiles_32x32_22
+    21300046: scifi_platformTiles_32x32_23
+    21300048: scifi_platformTiles_32x32_24
+    21300050: scifi_platformTiles_32x32_25
+    21300052: scifi_platformTiles_32x32_26
+    21300054: scifi_platformTiles_32x32_27
+    21300056: scifi_platformTiles_32x32_28
+    21300058: scifi_platformTiles_32x32_29
+    21300060: scifi_platformTiles_32x32_30
+    21300062: scifi_platformTiles_32x32_31
+    21300064: scifi_platformTiles_32x32_32
+    21300066: scifi_platformTiles_32x32_33
+    21300068: scifi_platformTiles_32x32_34
+    21300070: scifi_platformTiles_32x32_35
+    21300072: scifi_platformTiles_32x32_36
+    21300074: scifi_platformTiles_32x32_37
+    21300076: scifi_platformTiles_32x32_38
+    21300078: scifi_platformTiles_32x32_39
+    21300080: scifi_platformTiles_32x32_40
+    21300082: scifi_platformTiles_32x32_41
+    21300084: scifi_platformTiles_32x32_42
+    21300086: scifi_platformTiles_32x32_43
+    21300088: scifi_platformTiles_32x32_44
+    21300090: scifi_platformTiles_32x32_45
+    21300092: scifi_platformTiles_32x32_46
+    21300094: scifi_platformTiles_32x32_47
+    21300096: scifi_platformTiles_32x32_48
+    21300098: scifi_platformTiles_32x32_49
+    21300100: scifi_platformTiles_32x32_50
+    21300102: scifi_platformTiles_32x32_51
+    21300104: scifi_platformTiles_32x32_52
+  serializedVersion: 4
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
+    sRGBTexture: 1
     linearTexture: 0
-    correctGamma: 0
     fadeOut: 0
     borderMipMap: 0
     mipMapFadeDistanceStart: 1
@@ -14,11 +68,12 @@ TextureImporter:
   bumpmap:
     convertToNormalMap: 0
     externalNormalMap: 0
-    heightScale: .25
+    heightScale: 0.25
     normalMapFilter: 0
   isReadable: 0
   grayScaleToAlpha: 0
-  generateCubemap: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
   seamlessCubemap: 0
   textureFormat: -1
   maxTextureSize: 1024
@@ -34,18 +89,39 @@ TextureImporter:
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
-  spritePivot: {x: .5, y: .5}
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spritePixelsToUnits: 100
+  alphaUsage: 1
   alphaIsTransparency: 1
+  spriteTessellationDetail: -1
   textureType: 8
-  buildTargetSettings:
+  textureShape: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - buildTarget: DefaultTexturePlatform
+    maxTextureSize: 1024
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
   - buildTarget: iPhone
     maxTextureSize: 1024
-    textureFormat: -2
+    textureFormat: 2
+    textureCompression: 1
     compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 1
   spriteSheet:
+    serializedVersion: 2
     sprites:
-    - name: scifi_platformTiles_32x32_1
+    - serializedVersion: 2
+      name: scifi_platformTiles_32x32_1
       rect:
         serializedVersion: 2
         x: 0
@@ -53,8 +129,12 @@ TextureImporter:
         width: 65
         height: 64
       alignment: 0
-      pivot: {x: .5, y: .5}
-    - name: scifi_platformTiles_32x32_2
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: scifi_platformTiles_32x32_2
       rect:
         serializedVersion: 2
         x: 0
@@ -62,8 +142,12 @@ TextureImporter:
         width: 64
         height: 65
       alignment: 0
-      pivot: {x: .5, y: .5}
-    - name: scifi_platformTiles_32x32_2
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: scifi_platformTiles_32x32_2
       rect:
         serializedVersion: 2
         x: 64
@@ -71,8 +155,12 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: .5, y: .5}
-    - name: scifi_platformTiles_32x32_3
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: scifi_platformTiles_32x32_3
       rect:
         serializedVersion: 2
         x: 96
@@ -80,8 +168,12 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: .5, y: .5}
-    - name: scifi_platformTiles_32x32_4
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: scifi_platformTiles_32x32_4
       rect:
         serializedVersion: 2
         x: 64
@@ -89,8 +181,12 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: .5, y: .5}
-    - name: scifi_platformTiles_32x32_5
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: scifi_platformTiles_32x32_5
       rect:
         serializedVersion: 2
         x: 160
@@ -98,8 +194,12 @@ TextureImporter:
         width: 64
         height: 64
       alignment: 0
-      pivot: {x: .5, y: .5}
-    - name: scifi_platformTiles_32x32_6
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: scifi_platformTiles_32x32_6
       rect:
         serializedVersion: 2
         x: 480
@@ -107,8 +207,12 @@ TextureImporter:
         width: 95
         height: 65
       alignment: 0
-      pivot: {x: .5, y: .5}
-    - name: scifi_platformTiles_32x32_7
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: scifi_platformTiles_32x32_7
       rect:
         serializedVersion: 2
         x: 575
@@ -116,8 +220,12 @@ TextureImporter:
         width: 97
         height: 65
       alignment: 0
-      pivot: {x: .5, y: .5}
-    - name: scifi_platformTiles_32x32_8
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: scifi_platformTiles_32x32_8
       rect:
         serializedVersion: 2
         x: 672
@@ -125,8 +233,12 @@ TextureImporter:
         width: 64
         height: 63
       alignment: 0
-      pivot: {x: .5, y: .5}
-    - name: scifi_platformTiles_32x32_9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: scifi_platformTiles_32x32_9
       rect:
         serializedVersion: 2
         x: 608
@@ -134,8 +246,12 @@ TextureImporter:
         width: 64
         height: 63
       alignment: 0
-      pivot: {x: .5, y: .5}
-    - name: scifi_platformTiles_32x32_10
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: scifi_platformTiles_32x32_10
       rect:
         serializedVersion: 2
         x: 544
@@ -143,8 +259,12 @@ TextureImporter:
         width: 64
         height: 63
       alignment: 0
-      pivot: {x: .5, y: .5}
-    - name: scifi_platformTiles_32x32_11
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: scifi_platformTiles_32x32_11
       rect:
         serializedVersion: 2
         x: 480
@@ -152,8 +272,12 @@ TextureImporter:
         width: 64
         height: 63
       alignment: 0
-      pivot: {x: .5, y: .5}
-    - name: scifi_platformTiles_32x32_12
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: scifi_platformTiles_32x32_12
       rect:
         serializedVersion: 2
         x: 672
@@ -161,8 +285,12 @@ TextureImporter:
         width: 96
         height: 65
       alignment: 0
-      pivot: {x: .5, y: .5}
-    - name: scifi_platformTiles_32x32_13
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: scifi_platformTiles_32x32_13
       rect:
         serializedVersion: 2
         x: 736
@@ -170,8 +298,12 @@ TextureImporter:
         width: 96
         height: 31
       alignment: 0
-      pivot: {x: .5, y: .5}
-    - name: scifi_platformTiles_32x32_14
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: scifi_platformTiles_32x32_14
       rect:
         serializedVersion: 2
         x: 832
@@ -179,8 +311,12 @@ TextureImporter:
         width: 96
         height: 31
       alignment: 0
-      pivot: {x: .5, y: .5}
-    - name: scifi_platformTiles_32x32_15
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: scifi_platformTiles_32x32_15
       rect:
         serializedVersion: 2
         x: 928
@@ -188,8 +324,12 @@ TextureImporter:
         width: 95
         height: 31
       alignment: 0
-      pivot: {x: .5, y: .5}
-    - name: scifi_platformTiles_32x32_16
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: scifi_platformTiles_32x32_16
       rect:
         serializedVersion: 2
         x: 768
@@ -197,8 +337,12 @@ TextureImporter:
         width: 96
         height: 65
       alignment: 0
-      pivot: {x: .5, y: .5}
-    - name: scifi_platformTiles_32x32_17
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: scifi_platformTiles_32x32_17
       rect:
         serializedVersion: 2
         x: 736
@@ -206,8 +350,12 @@ TextureImporter:
         width: 96
         height: 33
       alignment: 0
-      pivot: {x: .5, y: .5}
-    - name: scifi_platformTiles_32x32_18
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: scifi_platformTiles_32x32_18
       rect:
         serializedVersion: 2
         x: 832
@@ -215,8 +363,12 @@ TextureImporter:
         width: 96
         height: 33
       alignment: 0
-      pivot: {x: .5, y: .5}
-    - name: scifi_platformTiles_32x32_19
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: scifi_platformTiles_32x32_19
       rect:
         serializedVersion: 2
         x: 928
@@ -224,8 +376,12 @@ TextureImporter:
         width: 95
         height: 33
       alignment: 0
-      pivot: {x: .5, y: .5}
-    - name: scifi_platformTiles_32x32_20
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: scifi_platformTiles_32x32_20
       rect:
         serializedVersion: 2
         x: 1023
@@ -233,8 +389,12 @@ TextureImporter:
         width: 97
         height: 33
       alignment: 0
-      pivot: {x: .5, y: .5}
-    - name: scifi_platformTiles_32x32_21
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: scifi_platformTiles_32x32_21
       rect:
         serializedVersion: 2
         x: 736
@@ -242,8 +402,12 @@ TextureImporter:
         width: 96
         height: 32
       alignment: 0
-      pivot: {x: .5, y: .5}
-    - name: scifi_platformTiles_32x32_22
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: scifi_platformTiles_32x32_22
       rect:
         serializedVersion: 2
         x: 832
@@ -251,8 +415,12 @@ TextureImporter:
         width: 96
         height: 32
       alignment: 0
-      pivot: {x: .5, y: .5}
-    - name: scifi_platformTiles_32x32_23
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: scifi_platformTiles_32x32_23
       rect:
         serializedVersion: 2
         x: 928
@@ -260,8 +428,12 @@ TextureImporter:
         width: 95
         height: 32
       alignment: 0
-      pivot: {x: .5, y: .5}
-    - name: scifi_platformTiles_32x32_24
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: scifi_platformTiles_32x32_24
       rect:
         serializedVersion: 2
         x: 1023
@@ -269,8 +441,12 @@ TextureImporter:
         width: 97
         height: 32
       alignment: 0
-      pivot: {x: .5, y: .5}
-    - name: scifi_platformTiles_32x32_25
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: scifi_platformTiles_32x32_25
       rect:
         serializedVersion: 2
         x: 1023
@@ -278,8 +454,12 @@ TextureImporter:
         width: 97
         height: 31
       alignment: 0
-      pivot: {x: .5, y: .5}
-    - name: scifi_platformTiles_32x32_26
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: scifi_platformTiles_32x32_26
       rect:
         serializedVersion: 2
         x: 1056
@@ -287,8 +467,12 @@ TextureImporter:
         width: 64
         height: 32
       alignment: 0
-      pivot: {x: .5, y: .5}
-    - name: scifi_platformTiles_32x32_27
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: scifi_platformTiles_32x32_27
       rect:
         serializedVersion: 2
         x: 1056
@@ -296,8 +480,12 @@ TextureImporter:
         width: 32
         height: 33
       alignment: 0
-      pivot: {x: .5, y: .5}
-    - name: scifi_platformTiles_32x32_28
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: scifi_platformTiles_32x32_28
       rect:
         serializedVersion: 2
         x: 992
@@ -305,8 +493,12 @@ TextureImporter:
         width: 32
         height: 33
       alignment: 0
-      pivot: {x: .5, y: .5}
-    - name: scifi_platformTiles_32x32_29
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: scifi_platformTiles_32x32_29
       rect:
         serializedVersion: 2
         x: 928
@@ -314,8 +506,12 @@ TextureImporter:
         width: 32
         height: 33
       alignment: 0
-      pivot: {x: .5, y: .5}
-    - name: scifi_platformTiles_32x32_30
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: scifi_platformTiles_32x32_30
       rect:
         serializedVersion: 2
         x: 864
@@ -323,8 +519,12 @@ TextureImporter:
         width: 32
         height: 33
       alignment: 0
-      pivot: {x: .5, y: .5}
-    - name: scifi_platformTiles_32x32_31
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: scifi_platformTiles_32x32_31
       rect:
         serializedVersion: 2
         x: 736
@@ -332,8 +532,12 @@ TextureImporter:
         width: 96
         height: 95
       alignment: 0
-      pivot: {x: .5, y: .5}
-    - name: scifi_platformTiles_32x32_32
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: scifi_platformTiles_32x32_32
       rect:
         serializedVersion: 2
         x: 832
@@ -341,8 +545,12 @@ TextureImporter:
         width: 96
         height: 95
       alignment: 0
-      pivot: {x: .5, y: .5}
-    - name: scifi_platformTiles_32x32_33
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: scifi_platformTiles_32x32_33
       rect:
         serializedVersion: 2
         x: 928
@@ -350,8 +558,12 @@ TextureImporter:
         width: 95
         height: 95
       alignment: 0
-      pivot: {x: .5, y: .5}
-    - name: scifi_platformTiles_32x32_34
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: scifi_platformTiles_32x32_34
       rect:
         serializedVersion: 2
         x: 1023
@@ -359,8 +571,12 @@ TextureImporter:
         width: 97
         height: 95
       alignment: 0
-      pivot: {x: .5, y: .5}
-    - name: scifi_platformTiles_32x32_35
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: scifi_platformTiles_32x32_35
       rect:
         serializedVersion: 2
         x: 1023
@@ -368,8 +584,12 @@ TextureImporter:
         width: 97
         height: 95
       alignment: 0
-      pivot: {x: .5, y: .5}
-    - name: scifi_platformTiles_32x32_36
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: scifi_platformTiles_32x32_36
       rect:
         serializedVersion: 2
         x: 928
@@ -377,8 +597,12 @@ TextureImporter:
         width: 95
         height: 95
       alignment: 0
-      pivot: {x: .5, y: .5}
-    - name: scifi_platformTiles_32x32_37
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: scifi_platformTiles_32x32_37
       rect:
         serializedVersion: 2
         x: 832
@@ -386,8 +610,12 @@ TextureImporter:
         width: 96
         height: 95
       alignment: 0
-      pivot: {x: .5, y: .5}
-    - name: scifi_platformTiles_32x32_38
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: scifi_platformTiles_32x32_38
       rect:
         serializedVersion: 2
         x: 736
@@ -395,8 +623,12 @@ TextureImporter:
         width: 96
         height: 95
       alignment: 0
-      pivot: {x: .5, y: .5}
-    - name: scifi_platformTiles_32x32_39
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: scifi_platformTiles_32x32_39
       rect:
         serializedVersion: 2
         x: 576
@@ -404,8 +636,12 @@ TextureImporter:
         width: 96
         height: 96
       alignment: 0
-      pivot: {x: .5, y: .5}
-    - name: scifi_platformTiles_32x32_40
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: scifi_platformTiles_32x32_40
       rect:
         serializedVersion: 2
         x: 576
@@ -413,8 +649,12 @@ TextureImporter:
         width: 96
         height: 96
       alignment: 0
-      pivot: {x: .5, y: .5}
-    - name: scifi_platformTiles_32x32_41
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: scifi_platformTiles_32x32_41
       rect:
         serializedVersion: 2
         x: 480
@@ -422,8 +662,12 @@ TextureImporter:
         width: 96
         height: 96
       alignment: 0
-      pivot: {x: .5, y: .5}
-    - name: scifi_platformTiles_32x32_42
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: scifi_platformTiles_32x32_42
       rect:
         serializedVersion: 2
         x: 385
@@ -431,8 +675,12 @@ TextureImporter:
         width: 95
         height: 96
       alignment: 0
-      pivot: {x: .5, y: .5}
-    - name: scifi_platformTiles_32x32_43
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: scifi_platformTiles_32x32_43
       rect:
         serializedVersion: 2
         x: 0
@@ -440,8 +688,12 @@ TextureImporter:
         width: 94
         height: 94
       alignment: 0
-      pivot: {x: .5, y: .5}
-    - name: scifi_platformTiles_32x32_44
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: scifi_platformTiles_32x32_44
       rect:
         serializedVersion: 2
         x: 192
@@ -449,8 +701,12 @@ TextureImporter:
         width: 95
         height: 92
       alignment: 0
-      pivot: {x: .5, y: .5}
-    - name: scifi_platformTiles_32x32_45
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: scifi_platformTiles_32x32_45
       rect:
         serializedVersion: 2
         x: 287
@@ -458,8 +714,12 @@ TextureImporter:
         width: 100
         height: 95
       alignment: 0
-      pivot: {x: .5, y: .5}
-    - name: scifi_platformTiles_32x32_46
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: scifi_platformTiles_32x32_46
       rect:
         serializedVersion: 2
         x: 94
@@ -467,8 +727,12 @@ TextureImporter:
         width: 98
         height: 95
       alignment: 0
-      pivot: {x: .5, y: .5}
-    - name: scifi_platformTiles_32x32_47
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: scifi_platformTiles_32x32_47
       rect:
         serializedVersion: 2
         x: 450
@@ -476,8 +740,12 @@ TextureImporter:
         width: 125
         height: 128
       alignment: 0
-      pivot: {x: .5, y: .5}
-    - name: scifi_platformTiles_32x32_48
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: scifi_platformTiles_32x32_48
       rect:
         serializedVersion: 2
         x: 928
@@ -485,8 +753,12 @@ TextureImporter:
         width: 96
         height: 96
       alignment: 0
-      pivot: {x: .5, y: .5}
-    - name: scifi_platformTiles_32x32_49
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: scifi_platformTiles_32x32_49
       rect:
         serializedVersion: 2
         x: 1024
@@ -494,8 +766,12 @@ TextureImporter:
         width: 63
         height: 61
       alignment: 0
-      pivot: {x: .5, y: .5}
-    - name: scifi_platformTiles_32x32_50
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: scifi_platformTiles_32x32_50
       rect:
         serializedVersion: 2
         x: 383
@@ -503,8 +779,12 @@ TextureImporter:
         width: 129
         height: 32
       alignment: 0
-      pivot: {x: .5, y: .5}
-    - name: scifi_platformTiles_32x32_51
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: scifi_platformTiles_32x32_51
       rect:
         serializedVersion: 2
         x: 320
@@ -512,8 +792,12 @@ TextureImporter:
         width: 159
         height: 31
       alignment: 0
-      pivot: {x: .5, y: .5}
-    - name: scifi_platformTiles_32x32_52
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: scifi_platformTiles_32x32_52
       rect:
         serializedVersion: 2
         x: 64
@@ -521,6 +805,12 @@ TextureImporter:
         width: 96
         height: 32
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    outline: []
   spritePackingTag: 
   userData: 
+  assetBundleName: 
+  assetBundleVariant: 

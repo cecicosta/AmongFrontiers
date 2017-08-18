@@ -1,4 +1,5 @@
 ﻿using UnityEditor;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -38,6 +39,65 @@ public class InteractionContainerCustomInspector : Editor {
 				}
 
 
+
+		List<Condition> variables = GameVariablesManager.Instance.getAllVariables();
+		List<string> variable_names = new List<string>();
+		foreach (Condition v in variables) {
+			variable_names.Add(v.identifier);	
+		}
+		
+		
+		foreach (Condition c in interaction.conditions) {
+			EditorGUILayout.LabelField("Condition");
+			//List all variable names on a popup and do overriding if the selected variable changes
+			index = variable_names.FindIndex( x => x.Equals(c.identifier) );
+			index = EditorGUILayout.Popup(index, variable_names.ToArray());
+			if( index < 0 )
+				continue ;
+			
+			if( !c.identifier.Equals( variables[index] ) ){
+				c.identifier = variables[index].identifier;
+				c.type = variables[index].type;
+			}
+			
+			EditorGUILayout.BeginHorizontal();
+			EditorGUILayout.EnumPopup ( c.type);
+			
+			switch(c.type){
+			case Condition.VariableType.BOOL:{
+				int selected = 0;
+				selected = c.BoolValue ?  1 : 0;
+				selected = EditorGUILayout.Popup(selected,(new string[] { "false", "true" } ));
+				c.BoolValue = selected == 1 ? true: false;
+			}break;
+			case Condition.VariableType.FLOAT:{
+				int selected = 0;
+				selected = c.variableCondition == Condition.VariableCondition.GREATER ?  0 : c.variableCondition == Condition.VariableCondition.LOWER ? 1 : 2;
+				selected = EditorGUILayout.Popup(selected,(new string[] { "greater", "less", "equal" } ));
+				c.variableCondition = selected == 0 ? Condition.VariableCondition.GREATER : selected == 1? Condition.VariableCondition.LOWER : Condition.VariableCondition.EQUAL;
+				c.FloatValue = EditorGUILayout.FloatField(c.FloatValue) ;
+			}break;
+			case Condition.VariableType.INT:{
+				int selected = 0;
+				selected = c.variableCondition == Condition.VariableCondition.GREATER ?  0 : c.variableCondition == Condition.VariableCondition.LOWER ? 1 : 2;
+				selected = EditorGUILayout.Popup(selected,(new string[] { "greater", "less", "equal" } ));
+				c.variableCondition = selected == 0 ? Condition.VariableCondition.GREATER : selected == 1? Condition.VariableCondition.LOWER : Condition.VariableCondition.EQUAL;
+				c.IntValue = EditorGUILayout.IntField(c.IntValue) ;
+			}break;
+			case Condition.VariableType.TRIGGER:
+				break;
+			case Condition.VariableType.INPUT:
+				c.InputValue = (KeyCode)EditorGUILayout.EnumPopup (c.InputValue);
+				break;
+			default :
+				break;
+			}
+			EditorGUILayout.EndHorizontal();
+		}
+		
+		if (GUILayout.Button ("Add Condition")) {
+			interaction.conditions.Add(new Condition());
+		}
 
 	}
 

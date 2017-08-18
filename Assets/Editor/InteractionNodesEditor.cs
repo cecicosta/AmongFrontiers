@@ -1,11 +1,11 @@
-﻿using UnityEditor;
+using UnityEditor;
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 
 public class InteractionNodesEditor : EditorWindow {
-
+	
 	private Dictionary<int, Interaction> interactions;
 	private InteractionController primaryController;
 	//window styles
@@ -40,12 +40,12 @@ public class InteractionNodesEditor : EditorWindow {
 	//
 	private Event eventHandle;
 	private Transition selected;
-
+	
 	public static void ShowWindow(InteractionController interactionController)
 	{
 		//Show existing window instance. If one doesn't exist, make one.
 		InteractionNodesEditor window = 
-		(InteractionNodesEditor)EditorWindow.GetWindow (typeof(InteractionNodesEditor));
+			(InteractionNodesEditor)EditorWindow.GetWindow (typeof(InteractionNodesEditor));
 		window.primaryController = interactionController;
 		window.FindAllControllers ();
 		window.SelectController (interactionController);
@@ -54,13 +54,13 @@ public class InteractionNodesEditor : EditorWindow {
 	}
 	Vector2 scrollPos;
 	void OnGUI(){
-
+		
 		//GUILayout.BeginArea (new Rect (drag_offset_x, drag_offset_y, position.width, position.height) );
 		scrollPos = GUI.BeginScrollView(new Rect(0,0,position.width*2, position.height*2 ), 
 		                                new Vector2(drag_offset_x, drag_offset_y),
 		                                new Rect(drag_offset_x,drag_offset_y,position.width*3, position.height*3 ));
 		//GUI.ScrollTo (new Rect (drag_offset_x, drag_offset_y, position.width, position.height) );
-
+		
 		DrawGrid ();
 		eventHandle = Event.current;
 		if( interactions != null ){
@@ -95,19 +95,19 @@ public class InteractionNodesEditor : EditorWindow {
 				Debug.LogException(e);
 			}
 		}
-
+		
 		GUI.EndScrollView ();
-
+		
 		if (Event.current.button == 2 && eventHandle.type == EventType.mouseDrag) {
 			//drag_offset_x -= eventHandle.delta.x;
 			//drag_offset_y -= eventHandle.delta.y;	
 			Repaint();
 		}
-
-
-
-
-
+		
+		
+		
+		
+		
 		//Draw and handle the InteractionController selection area
 		GUILayout.BeginArea (new Rect(0, 
 		                              this.position.height - interac_ctrl_selector_height, 
@@ -117,7 +117,7 @@ public class InteractionNodesEditor : EditorWindow {
 		GUILayout.BeginVertical(GUI.skin.box);
 		scrollPosition = GUILayout.BeginScrollView(scrollPosition, false, true); 
 		GUILayout.Label("Interaction Controllers", GUI.skin.label, GUILayout.ExpandWidth(true));
-
+		
 		foreach (ControllerSelect item in selector)
 		{
 			GUILayout.BeginHorizontal ();
@@ -129,27 +129,69 @@ public class InteractionNodesEditor : EditorWindow {
 					AddInteractionsToDictionary(item.interactionController);
 				else
 					LoadAllSelectedControllers();
-
+				
 			}
 			GUILayout.EndHorizontal();			
 		}
 		
-
+		
 		GUILayout.EndScrollView();
 		GUILayout.EndVertical();
 		GUILayout.EndArea ();
-
-	}
-
-	void WindowNodeFunction(int windowId){
-
 		
-		try{
-			Event eventHandle = Event.current;
+	}
+	
+	void WindowNodeFunction(int windowId){
+		//GUILayout.BeginArea ();
 
+
+		try{
+
+			if( interactions.ContainsKey( windowId ) ){
+				EditorGUI.BeginChangeCheck();
+
+				if( interactions[windowId].tkAction != null )
+					EditorGUILayout.LabelField ( "Action: " + interactions[windowId].tkAction.name );
+				else
+					EditorGUILayout.LabelField ( "Action:" );
+				Interaction inter = interactions [windowId];
+				List<string> interCtrl = new List<string> ();
+				foreach( ControllerSelect c in selector ){
+					interCtrl.Add(c.interactionController.name);
+				}
+				int selected = selector.FindIndex (x => x.interactionController == inter.interactionController);
+				
+				selected = EditorGUILayout.Popup(selected, interCtrl.ToArray());
+
+				if( EditorGUI.EndChangeCheck() ){
+					if( !inter.interactionController.Interactions.Remove(inter) ){
+						Debug.Log("Porraessa?");
+					}
+
+					foreach( Transition child in inter.children ){
+						Transition t = child.To.parents.Find(x => x.toId == inter.interactionId);
+						t.interactionController = selector [selected].interactionController;
+					}
+					//Delete connections from parents
+					foreach( Transition parent in inter.parents ){
+						Transition t = parent.To.children.Find(x => x.toId == inter.interactionId);
+						t.interactionController = selector [selected].interactionController;
+					}
+
+					Debug.Log(inter.interactionController.name);
+					inter.interactionController = selector [selected].interactionController;
+					Debug.Log(inter.interactionController.name);
+					inter.interactionController.Interactions.Add(inter);
+					selector [selected].active = true;
+
+					LoadAllSelectedControllers();
+				}
+			}
+			Event eventHandle = Event.current;
+			
 			if (eventHandle.type == EventType.mouseDown && IsLinking())
 				CreateLink(selectedNodeId, windowId);
-
+			
 			if ((Event.current.button == 0) && (Event.current.type == EventType.MouseDown)) {
 				selectedNodeId = windowId;
 				InteractionContainer interCont = ScriptableObject.CreateInstance<InteractionContainer>();
@@ -173,9 +215,13 @@ public class InteractionNodesEditor : EditorWindow {
 		}
 		GUI.DragWindow();
 	}
-
+	
 	void CreateInteraction(){
 		if( interactions == null ) return;
+		if (primaryController == null) {
+				Debug.Log ("Cannot create interaction - No selected InteractionController");
+				return;
+		}
 
 		Interaction interaction = new Interaction();
 		primaryController.Interactions.Add( interaction );
@@ -184,17 +230,17 @@ public class InteractionNodesEditor : EditorWindow {
 		interaction.interactionId = InteractionController.newId();
 		interactions.Add( interaction.interactionId, interaction );
 	}
-
+	
 	bool IsLinking(){
 		return isLinking;
 	}
-
+	
 	void MakeLink(){
 		isLinking = true;
 	}
-
+	
 	void CreateLink(int parentWindowId, int childWindowId){
-				//Create a parent->child link to this Dialog Window
+		//Create a parent->child link to this Dialog Window
 		if (parentWindowId == childWindowId){
 			isLinking = false;
 			return;
@@ -203,25 +249,25 @@ public class InteractionNodesEditor : EditorWindow {
 		Interaction child = interactions[childWindowId];
 		parent.ConnectTo(child);
 		isLinking = false;
-
+		
 	}
-
+	
 	void CancelLinking(){
 		isLinking = false;
 	}
 	
 	void DeleteLink(){
-
+		
 		Interaction parent = selected.From;
 		Interaction child = selected.To;
-
+		
 		parent.children.Remove (selected);
 		child.parents.Remove ( child.parents.Find(x => x.toId == parent.interactionId) );
 	}
-
+	
 	void DeleteInteraction(){
 		if (interactions == null) return;
-
+		
 		Interaction interaction = interactions[selectedNodeId];
 		interactions.Remove (selectedNodeId);
 		InteractionController interCtrl = interaction.interactionController;
@@ -237,10 +283,10 @@ public class InteractionNodesEditor : EditorWindow {
 		}
 		interCtrl.Interactions.Remove (interaction);
 	}
-
+	
 	void DrawWindowsAndArrows(){
 		Event eventHandle = Event.current;
-
+		
 		BeginWindows();
 		//Create the window nodes for the dialogs
 		foreach ( KeyValuePair<int, Interaction> pair in interactions ){
@@ -248,7 +294,7 @@ public class InteractionNodesEditor : EditorWindow {
 			Interaction interaction = pair.Value;
 			
 			//Draw nodes
-			interaction.EditorWindowRect = GUI.Window (interaction.interactionId, interaction.EditorWindowRect, WindowNodeFunction, interaction.ToString(), windowsStyleGeneral);
+			interaction.EditorWindowRect = GUI.Window (interaction.interactionId, interaction.EditorWindowRect, WindowNodeFunction, "", windowsStyleGeneral);
 			
 			Vector3 mousePos = Event.current.mousePosition;
 			
@@ -259,7 +305,7 @@ public class InteractionNodesEditor : EditorWindow {
 				//Draw conections between parent and child
 				Handles.BeginGUI();
 				Handles.DrawLine(interaction.EditorWindowRect.center, child.EditorWindowRect.center );
-
+				
 				//Create an arrow pointing to the child
 				Vector2 vertex1 = (interaction.EditorWindowRect.center + child.EditorWindowRect.center )/2;
 				Vector2 currentConectionShift = (vertex1 - child.EditorWindowRect.center ).normalized*25*interaction.children[i].numberOfConnections;
@@ -287,32 +333,32 @@ public class InteractionNodesEditor : EditorWindow {
 						eventHandle.Use();
 						
 					}
-
+					
 				}
 				
 				Handles.EndGUI();						
 			}
 		}
 		EndWindows();
-
+		
 	}
 	
 	void DrawGrid(){
 		Vector3 offset = new Vector3 (drag_offset_x,drag_offset_y,0);
 		Vector3[] vert ={new Vector3(0,0,0)+offset ,
-						 new Vector3(maxSize.x, 0,0)+offset+new Vector3(200,0,0),  
-						 new Vector3(maxSize.x, maxSize.y,0)+offset+new Vector3(200,0,0), 
-						 new Vector3(0, this.maxSize.y,0)+offset} ;
+			new Vector3(maxSize.x, 0,0)+offset+new Vector3(200,0,0),  
+			new Vector3(maxSize.x, maxSize.y,0)+offset+new Vector3(200,0,0), 
+			new Vector3(0, this.maxSize.y,0)+offset} ;
 		Handles.DrawSolidRectangleWithOutline(vert,new Color(0,0,0,0.3f), new Color(1,1,1,0) );
-
-
+		
+		
 		
 		float w = 1;
 		for(float i=drag_offset_x; i< maxSize.x+drag_offset_x; i+=1){
 			Vector3[] vertex = {new Vector3(i, drag_offset_y), 
-								new Vector3(i, maxSize.y+drag_offset_y), 
-								new Vector3(i+w, drag_offset_y) , 
-								new Vector3(i+w, maxSize.y+drag_offset_y)  };
+				new Vector3(i, maxSize.y+drag_offset_y), 
+				new Vector3(i+w, drag_offset_y) , 
+				new Vector3(i+w, maxSize.y+drag_offset_y)  };
 			if( Mathf.Abs( ((int)i )) %120 == 0 )
 				Handles.DrawSolidRectangleWithOutline(vertex,new Color(0,0,0,0.07f), new Color(0,0,0,0f) );
 			else if( Mathf.Abs( ((int)i )) %12 == 0 )
@@ -320,38 +366,38 @@ public class InteractionNodesEditor : EditorWindow {
 		}
 		for(float i=drag_offset_y; i<maxSize.y+drag_offset_y; i+=1){
 			Vector3[] vertex = {new Vector3(drag_offset_x, i), 
-								new Vector3(maxSize.x+drag_offset_x, i), 
-								new Vector3(drag_offset_x, i+w) , 
-								new Vector3(maxSize.x+drag_offset_x, i+w) };
+				new Vector3(maxSize.x+drag_offset_x, i), 
+				new Vector3(drag_offset_x, i+w) , 
+				new Vector3(maxSize.x+drag_offset_x, i+w) };
 			if( Mathf.Abs( ((int)i))%120 == 0 )
 				Handles.DrawSolidRectangleWithOutline(vertex,new Color(0,0,0,0.07f), new Color(0,0,0,0f) );
 			else if( Mathf.Abs( ((int)i )) %12 == 0 )
 				Handles.DrawSolidRectangleWithOutline(vertex,new Color(0,0,0,0.02f), new Color(0,0,0,0f) );
 		}
 	}
-
+	
 	void LoadInteractionsToDictionary(){
 		if( primaryController == null )	return;
-
+		
 		interactions = new Dictionary<int ,Interaction >();
 		Stack<Interaction> stack = new Stack<Interaction>();
 		
 		//Do search by deeph on the tree
 		foreach (Interaction i in primaryController.Interactions) {
-						if( !interactions.ContainsKey(i.interactionId) )
-							stack.Push (i);
-						while (stack.Count > 0) {
-								Interaction next = stack.Pop ();
-								interactions.Add (next.interactionId, next);
-								foreach (Transition t in next.children) {
-										
-										if( !interactions.ContainsKey(t.To.interactionId) )
-											stack.Push (t.To);
-								}
-						}
+			if( !interactions.ContainsKey(i.interactionId) )
+				stack.Push (i);
+			while (stack.Count > 0) {
+				Interaction next = stack.Pop ();
+				interactions.Add (next.interactionId, next);
+				foreach (Transition t in next.children) {
+					
+					if( !interactions.ContainsKey(t.To.interactionId) )
+						stack.Push (t.To);
 				}
+			}
+		}
 	}
-
+	
 	void LoadInteractionsToDictionary(InteractionController interactionController){
 		if( interactionController == null )	return;
 		
@@ -372,12 +418,12 @@ public class InteractionNodesEditor : EditorWindow {
 			}
 		}
 	}
-
+	
 	void AddInteractionsToDictionary(InteractionController interactionController){
 		if( interactionController == null )	return;
 		if( interactions == null )
 			interactions = new Dictionary<int ,Interaction >();
-
+		
 		Stack<Interaction> stack = new Stack<Interaction>();
 		
 		//Do search by deeph on the tree
@@ -388,7 +434,7 @@ public class InteractionNodesEditor : EditorWindow {
 				Interaction next = stack.Pop ();
 				interactions.Add (next.interactionId, next);
 				foreach (Transition t in next.children) {
-
+					
 					if( !interactions.ContainsKey(t.To.interactionId) )
 						stack.Push (t.To);
 				}
@@ -397,10 +443,10 @@ public class InteractionNodesEditor : EditorWindow {
 		Debug.Log ("Change primary");
 		primaryController = interactionController;
 	}
-
+	
 	private void FindAllControllers(){
 		if (selector == null)
-						selector = new List<ControllerSelect> ();
+			selector = new List<ControllerSelect> ();
 		//Use to keep active the previous selected Controllers before an update
 		List<ControllerSelect> selector_backup = new List<ControllerSelect>(selector);
 		selector.Clear();
@@ -412,22 +458,22 @@ public class InteractionNodesEditor : EditorWindow {
 				selector.Add (new ControllerSelect (i,	false));
 		}
 	}
-
+	
 	private void LoadAllSelectedControllers(){
 		interactions = new Dictionary<int, Interaction> ();
 		foreach (ControllerSelect cs in selector)
 			if( cs.active )
-					AddInteractionsToDictionary (cs.interactionController);    
-
+				AddInteractionsToDictionary (cs.interactionController);    
+		
 		this.primaryController = selector.Find(x => x.active == true) != null ? selector.Find(x => x.active == true).interactionController: null; 
 	}
-
+	
 	public void SelectController( InteractionController interactionController ){
 		ControllerSelect cs = selector.Find (x => x.interactionController == interactionController);
 		cs.active = true;
-
+		
 	}
-
+	
 	private bool isInsideTriangle( Vector3 v1, Vector3 v2, Vector3 v3, Vector3 intersection )
 	{
 		double area = Vector3.Cross(v2-v1, v3-v1 ).magnitude*0.5f;;
@@ -443,7 +489,7 @@ public class InteractionNodesEditor : EditorWindow {
 		vet2 = v2 - v3;
 		double area3 = Vector3.Cross(vet1, vet2).magnitude*0.5/area;
 		
-		//Condição para que o ponto esteja contido no triangulo
+		//Condi??o para que o ponto esteja contido no triangulo
 		if( area1 + area2 + area3 <= 1.00001 )
 			return true;
 		
@@ -461,8 +507,9 @@ public class InteractionNodesEditor : EditorWindow {
 		windowsStyleRoot.fixedWidth = 200;
 		windowsStyleRoot.fixedHeight = 72;
 		windowsStyleGeneral.normal.background = general;
-		windowsStyleGeneral.padding.left = 67;
-		windowsStyleGeneral.padding.top = 24;
+		windowsStyleGeneral.padding.left = 10;
+		windowsStyleGeneral.padding.right = 20;
+		windowsStyleGeneral.padding.top = 16;
 		windowsStyleGeneral.fixedWidth = 200;
 		windowsStyleGeneral.fixedHeight = 72;
 		windowsStyleSubMachine.normal.background = subMachine;
@@ -471,10 +518,10 @@ public class InteractionNodesEditor : EditorWindow {
 		windowsStyleSubMachine.fixedWidth = 200;
 		windowsStyleSubMachine.fixedHeight = 72;
 	}
-
+	
 	void OnProjectChange(){
 		FindAllControllers ();
 		LoadAllSelectedControllers ();
 	}
-
+	
 }

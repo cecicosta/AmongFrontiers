@@ -2,7 +2,9 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+#if UNITY_EDITOR
 using UnityEditor;
+#endif
 
 [ExecuteInEditMode]
 public class ActionManager : Singleton<ActionManager> {
@@ -60,10 +62,12 @@ public class ActionManager : Singleton<ActionManager> {
 		return action;
 	}
 	public void SaveActionAsset(ToolKitAction action){
+#if UNITY_EDITOR
 		string path = Application.dataPath + ProjectPaths.ACTION_DATA + "/" + action.action + ProjectPaths.ACTION_EXTENSION;
 		path = path.Substring( Application.dataPath.Length - 6 );
 		AssetDatabase.CreateAsset(action, path);
 		actions.Add (action);
 		AssetDatabase.SaveAssets();
+#endif
 	}
 }

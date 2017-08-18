@@ -3,9 +3,11 @@ using System.Collections;
 
 public class ButtonTrigger : Trigger {
 
-	public string activateFlag = "";
+	public ToolKitEvent trigger;
+	public ToolKitEventTrigger eventTrigger;
 	// Use this for initialization
 	void Start () {
+		eventTrigger = new ToolKitEventTrigger ();
 		GetComponent<Button> ().OnClickEvent += Execute;
 	}
 	
@@ -15,6 +17,7 @@ public class ButtonTrigger : Trigger {
 	}
 
 	void Execute(string identifier){
-		TriggerFlag (activateFlag, true);
+
+		eventTrigger.TriggerEvent (trigger);
 	}
 }

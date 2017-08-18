@@ -12,7 +12,7 @@ public class TransitionContainerCustomInspector : Editor {
 	public override void OnInspectorGUI () {
 		DrawDefaultInspector ();
 		Transition transition = ((TransitionContainer)target).transition;
-	
+		/*
 		List<Variable> variables = GameVariablesManager.Instance.getAllVariables();
 		List<string> variable_names = new List<string>();
 		foreach (Variable v in variables) {
@@ -77,7 +77,7 @@ public class TransitionContainerCustomInspector : Editor {
 			transition.conditions.Add(new Condition());
 		}
 
-
+		*/
 
 
 	}

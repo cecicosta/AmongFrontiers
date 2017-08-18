@@ -12,8 +12,9 @@ public class DialogEditor : EditorWindow {
 
 	private Dictionary<int, Dialog> dialogs;
 	private DialogShelf dialogShelf;
+    private DialogController diagControl;
 
-	private Dictionary<string, Speecher>  register = new Dictionary<string, Speecher>();
+    private Dictionary<string, Speecher>  register = new Dictionary<string, Speecher>();
 	
 	//Flags
 	private bool linking = false;
@@ -30,8 +31,11 @@ public class DialogEditor : EditorWindow {
 
 	public Dialog active;
 
-	// Add menu item named "My Window" to the Window menu
-	[MenuItem("Window/Dialog Editor")]
+    bool showPosition = false;
+    
+
+    // Add menu item named "My Window" to the Window menu
+    [MenuItem("Window/Dialog Editor")]
 	public static void ShowWindow()
 	{
 		//Show existing window instance. If one doesn't exist, make one.
@@ -80,9 +84,16 @@ public class DialogEditor : EditorWindow {
 				Handles.DrawSolidRectangleWithOutline(vertex,new Color(0,0,0,0.02f), new Color(0,0,0,0f) );
 		}
 
-		//Create new DialogShelf File
-		if (GUI.Button (new Rect(0,0, 150, 20), GUIContent.none))
-			SaveNewFile();
+        //GameObject selected = Selection.activeGameObject;
+        if (diagControl == null) {
+            return;  
+        }
+      
+        //Create new DialogShelf File
+        if (GUI.Button(new Rect(0, 0, 150, 20), GUIContent.none)) {
+            SaveNewFile();
+            diagControl.dialogShelf = dialogShelf;
+        }
 		GUILayout.Label ("Create New Dialog");
 
 		//Dialog Shelf Layers Controller
@@ -246,18 +257,19 @@ public class DialogEditor : EditorWindow {
 
 	}
 
-	bool showPosition = false;
-	/*int flags = 0;
-	string[] options  = {"Create New Dialog"};
-	public Object source;
-	string tagStr = "";
-	void SetTags() {
-		foreach(   GameObject go in Selection.gameObjects)
-			go.tag = tagStr;
-	}
-	*/
 
-	void SaveNewFile () {
+
+    /*int flags = 0;
+string[] options  = {"Create New Dialog"};
+public Object source;
+string tagStr = "";
+void SetTags() {
+foreach(   GameObject go in Selection.gameObjects)
+go.tag = tagStr;
+}
+*/
+
+    void SaveNewFile () {
 		string path = "";
 		path = EditorUtility.SaveFilePanel( "Save Dialog", "Assets", "New Dialog", "asset" );
 
@@ -486,7 +498,7 @@ public class DialogEditor : EditorWindow {
 		EditorUtility.SetDirty(dialogShelf);
 		AssetDatabase.SaveAssets();
 		//Set the new dialog as the active object
-		Selection.activeObject = dialogShelf;
+		this.dialogShelf = dialogShelf;
 	}
 
 	Dialog CreateDialog()
@@ -546,10 +558,22 @@ public class DialogEditor : EditorWindow {
 	}
 
 	DialogShelf GetSelectedShelf(){
-		if( Selection.activeObject == null || Selection.activeObject.GetType() != typeof(DialogShelf) )
+        
+        if ( Selection.activeGameObject == null )
 			return null;
-		
-		DialogShelf dialogShelf = (DialogShelf) Selection.activeObject;
+
+        GameObject selected = Selection.activeGameObject;
+        DialogController diagControlTmp = selected.GetComponent<DialogController>();
+
+        if (diagControlTmp != null) {
+            diagControl = diagControlTmp;
+        }
+
+        if(diagControl == null) {
+            return null;
+        }
+
+        DialogShelf dialogShelf = diagControl.dialogShelf;
 		return dialogShelf;
 	}
 
@@ -582,8 +606,9 @@ public class DialogEditor : EditorWindow {
 	//Load Dialogs From File
 	public void LoadDialogs( ){
 
-		//Get The selected Dialog Shelf
-		if(  GetSelectedShelf() != null )
+
+        //Get The selected Dialog Shelf
+        if (  GetSelectedShelf() != null )
 			dialogShelf = GetSelectedShelf(); 
 
 		dialogs = new Dictionary<int ,Dialog >();

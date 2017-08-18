@@ -1,43 +1,88 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
+using UnityEditor;
 
 [System.Serializable]
-public class Variable{
-	public enum VariableType{INT, BOOL, FLOAT, TIME, TRIGGER, INPUT};
-	public string variable = "";
-	public VariableType type;
-}
+public class Condition{
 
-[System.Serializable]
-public class Condition: Variable{
-	public int intValue;
-	public int timeValue;
-	public bool boolValue;
-	public float floatValue;
-	public KeyCode key;
+    public enum VariableType { INT, BOOL, FLOAT, TRIGGER, INPUT };
+    public string identifier = "";
+    public VariableType type;
 
-	public bool greater;
+    public int IntValue;
+    public bool BoolValue;
+    public float FloatValue;
+    public KeyCode InputValue;
 
-	public void setIntValue( int value ){}
-	public void setTimeValue( int value ){}
-	public void setBoolValue( bool value ){}
-	public void setFloatValue( float value ){}
+    public enum VariableCondition{ GREATER, LOWER, EQUAL };
+
+	public VariableCondition variableCondition = VariableCondition.EQUAL;
 
 	public Condition(){
-		variable = "";
+		identifier = "";
 	}
 
+    public void setIntValue( int value ){ IntValue = value; }
+	public void setBoolValue( bool value ){ BoolValue = value; }
+	public void setFloatValue( float value ){ FloatValue = value; }
+
 	public int getIntValue( ){
-		return intValue;
-	}
-	public int getTimeValue( ){
-		return timeValue;
+		return IntValue;
 	}
 	public bool getBoolValue( ){
-		return boolValue;
+		return BoolValue;
 	}
 	public float getFloatValue( ){
-		return floatValue;
+		return FloatValue;
 	}
+
+	public bool checkConditionVariable( ){
+		bool isSatisfied = false;
+        Condition condition = GameVariablesManager.Instance.GetVariable(identifier);
+		if (condition.identifier.CompareTo (identifier) == 0) {
+			switch (condition.type) {
+				case VariableType.INT:
+						if (variableCondition == VariableCondition.GREATER)
+					isSatisfied = this.IntValue < condition.IntValue ;
+						else if (variableCondition == VariableCondition.LOWER)
+					isSatisfied = this.IntValue > condition.IntValue;
+						else
+					isSatisfied = this.IntValue == condition.IntValue;
+						break;
+				case VariableType.FLOAT:
+
+						if (variableCondition == VariableCondition.GREATER)
+					isSatisfied = this.FloatValue < condition.FloatValue;
+						else if (variableCondition == VariableCondition.LOWER)
+					isSatisfied = this.FloatValue > condition.FloatValue;
+						else
+					isSatisfied = this.FloatValue == condition.FloatValue;
+						break;
+				case VariableType.BOOL:
+					isSatisfied = this.BoolValue == condition.BoolValue;
+						break;
+				}
+		}
+
+		return isSatisfied;
+	}
+
+	public bool checkConditionTrigger(string name){
+		bool isSatisfied = false;
+		if( type == VariableType.TRIGGER && identifier.CompareTo(name) == 0 )
+			isSatisfied = true;
+		return isSatisfied;
+	}
+
+	public bool checkConditionKey(Condition condition ){
+		bool isSatisfied = false;
+		if (type == VariableType.INPUT && condition.identifier.CompareTo (identifier) == 0) {
+			KeyCode value = condition.InputValue;
+			isSatisfied = this.InputValue == value ;
+		}
+		return isSatisfied;
+	}
+
 }
 

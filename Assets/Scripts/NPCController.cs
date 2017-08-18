@@ -42,7 +42,9 @@ public class NPCController : MonoBehaviour {
 
 		try{
 		//	animator.SetFloat("speed", rigidbody2D.velocity.x );
-		}catch(System.Exception e){}
+		}catch(System.Exception e){
+			Debug.Log(e);
+		}
 	}
 
 	public void Flip ()

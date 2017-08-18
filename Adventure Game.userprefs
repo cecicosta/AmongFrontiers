@@ -1,28 +1,54 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\System\Event\ToolKitEventTrigger.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Managers\ActionManager.cs">
     <Files>
-      <File FileName="Assets\Scripts\System\InteractionController.cs" Line="36" Column="3" />
+      <File FileName="Assets\Editor\InteractionNodesEditor.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\System\Interaction.cs" Line="11" Column="20" />
+      <File FileName="Assets\Scripts\System\InteractionController.cs" Line="76" Column="41" />
+      <File FileName="Assets\Scripts\System\Dialog\DialogController.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Actions\AnimAction.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Actions\DialogAction.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Actions\AnimChangeStateAction.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\ButtonTrigger.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Button.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Trigger.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\System\Event\ToolKitevent.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\System\Event\ToolKitEventHandle.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\System\Event\ToolKitEventTrigger.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\System\Event\ToolKitEventListener.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Managers\GameVariablesManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\System\Condition.cs" Line="74" Column="68" />
+      <File FileName="Assets\Scripts\InterfaceManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Singleton.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\System\Dialog\Dialog.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\System\Dialog\DialogSet.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\System\Dialog\Speecher.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\CharacterPlatformerController.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\FollowingScript.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\InteractionMonitor.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\ItemAction.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\LookAction.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\NPCController.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\SceneNode.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\StateMachine.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\TalkAction.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\FadeInOut.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\GrabAction.cs" Line="1" Column="1" />
+      <File FileName="Assets\Editor\ActionManagerCustomInspector.cs" Line="1" Column="1" />
+      <File FileName="Assets\Editor\ActionWindowEditor.cs" Line="1" Column="1" />
       <File FileName="Assets\Editor\DialogEditor.cs" Line="1" Column="1" />
-      <File FileName="Assets\Editor\InteractionNodesEditor.cs" Line="126" Column="57" />
-      <File FileName="Assets\Editor\TransitionContainerCustomInspector.cs" Line="1" Column="1" />
+      <File FileName="Assets\Editor\DialogInspector.cs" Line="1" Column="1" />
       <File FileName="Assets\Editor\InteractionContainerCustomInspector.cs" Line="1" Column="1" />
       <File FileName="Assets\Editor\InteractionControllerInspector.cs" Line="1" Column="1" />
-      <File FileName="Assets\Editor\ActionWindowEditor.cs" Line="1" Column="1" />
-      <File FileName="Assets\Editor\ActionManagerCustomInspector.cs" Line="1" Column="1" />
-      <File FileName="Assets\Editor\DialogInspector.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\System\Interaction.cs" Line="41" Column="30" />
-      <File FileName="Assets\Scripts\Singleton.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\System\Condition.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\System\Event\ToolKitEventTrigger.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\System\Event\ToolKitEventHandle.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\System\Event\ToolKitEventListener.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\System\Event\ToolKitevent.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\InteractionAreaEventTrigger.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Actions\ChangeVariableAction.cs" Line="11" Column="42" />
+      <File FileName="Assets\Scripts\Managers\ActionManager.cs" Line="71" Column="7" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
+    <BreakpointStore>
+      <Breakpoint file="D:\Adventure Game\Assets\Scripts\System\InteractionController.cs" line="70" />
+    </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>

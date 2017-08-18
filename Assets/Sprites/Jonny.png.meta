@@ -1,12 +1,78 @@
 fileFormatVersion: 2
 guid: f91c71a5e3617d4489c0841e8747a08a
 TextureImporter:
-  serializedVersion: 2
+  fileIDToRecycleName:
+    21300000: Jonny_0
+    21300002: Jonny_1
+    21300004: Jonny_2
+    21300006: Jonny_3
+    21300008: Jonny_4
+    21300010: Jonny_5
+    21300012: Jonny_6
+    21300014: Jonny_7
+    21300016: Jonny_8
+    21300018: Jonny_9
+    21300020: Jonny_10
+    21300022: Jonny_11
+    21300024: Jonny_12
+    21300026: Jonny_13
+    21300028: Jonny_14
+    21300030: Jonny_15
+    21300032: Jonny_16
+    21300034: Jonny_17
+    21300036: Jonny_18
+    21300038: Jonny_19
+    21300040: Jonny_20
+    21300042: Jonny_21
+    21300044: Jonny_22
+    21300046: Jonny_23
+    21300048: Jonny_24
+    21300050: Jonny_25
+    21300052: Jonny_26
+    21300054: Jonny_27
+    21300056: Jonny_28
+    21300058: Jonny_29
+    21300060: Jonny_30
+    21300062: Jonny_31
+    21300064: Jonny_32
+    21300066: Jonny_33
+    21300068: Jonny_34
+    21300070: Jonny_35
+    21300072: Jonny_36
+    21300074: Jonny_37
+    21300076: Jonny_38
+    21300078: Jonny_39
+    21300080: Jonny_40
+    21300082: Jonny_41
+    21300084: Jonny_42
+    21300086: Jonny_43
+    21300088: Jonny_44
+    21300090: Jonny_45
+    21300092: Jonny_46
+    21300094: Jonny_47
+    21300096: Jonny_48
+    21300098: Jonny_49
+    21300100: Jonny_50
+    21300102: Jonny_51
+    21300104: Jonny_52
+    21300106: Jonny_53
+    21300108: Jonny_54
+    21300110: Jonny_55
+    21300112: Jonny_56
+    21300114: Jonny_57
+    21300116: Jonny_58
+    21300118: Jonny_59
+    21300120: Jonny_60
+    21300122: Jonny_61
+    21300124: Jonny_62
+    21300126: Jonny_63
+    21300128: Jonny_64
+  serializedVersion: 4
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
+    sRGBTexture: 1
     linearTexture: 0
-    correctGamma: 0
     fadeOut: 0
     borderMipMap: 0
     mipMapFadeDistanceStart: 1
@@ -14,11 +80,12 @@ TextureImporter:
   bumpmap:
     convertToNormalMap: 0
     externalNormalMap: 0
-    heightScale: .25
+    heightScale: 0.25
     normalMapFilter: 0
   isReadable: 0
   grayScaleToAlpha: 0
-  generateCubemap: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
   seamlessCubemap: 0
   textureFormat: -1
   maxTextureSize: 1024
@@ -34,19 +101,39 @@ TextureImporter:
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
-  spritePivot: {x: .5, y: .5}
+  spritePivot: {x: 0.5, y: 0.5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spritePixelsToUnits: 100
+  alphaUsage: 1
   alphaIsTransparency: 1
+  spriteTessellationDetail: -1
   textureType: 8
-  buildTargetSettings:
+  textureShape: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - buildTarget: DefaultTexturePlatform
+    maxTextureSize: 1024
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
   - buildTarget: iPhone
     maxTextureSize: 1024
-    textureFormat: -2
+    textureFormat: 2
+    textureCompression: 1
     compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 1
   spriteSheet:
+    serializedVersion: 2
     sprites:
-    - name: Jonny_0
+    - serializedVersion: 2
+      name: Jonny_0
       rect:
         serializedVersion: 2
         x: 11
@@ -54,9 +141,12 @@ TextureImporter:
         width: 39
         height: 54
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Jonny_1
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Jonny_1
       rect:
         serializedVersion: 2
         x: 75
@@ -64,9 +154,12 @@ TextureImporter:
         width: 39
         height: 54
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Jonny_2
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Jonny_2
       rect:
         serializedVersion: 2
         x: 139
@@ -74,9 +167,12 @@ TextureImporter:
         width: 39
         height: 54
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Jonny_3
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Jonny_3
       rect:
         serializedVersion: 2
         x: 203
@@ -84,9 +180,12 @@ TextureImporter:
         width: 39
         height: 53
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Jonny_4
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Jonny_4
       rect:
         serializedVersion: 2
         x: 265
@@ -94,9 +193,12 @@ TextureImporter:
         width: 32
         height: 60
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Jonny_5
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Jonny_5
       rect:
         serializedVersion: 2
         x: 326
@@ -104,9 +206,12 @@ TextureImporter:
         width: 38
         height: 58
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Jonny_6
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Jonny_6
       rect:
         serializedVersion: 2
         x: 385
@@ -114,9 +219,12 @@ TextureImporter:
         width: 48
         height: 57
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Jonny_7
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Jonny_7
       rect:
         serializedVersion: 2
         x: 452
@@ -124,9 +232,12 @@ TextureImporter:
         width: 42
         height: 59
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Jonny_8
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Jonny_8
       rect:
         serializedVersion: 2
         x: 11
@@ -134,9 +245,12 @@ TextureImporter:
         width: 30
         height: 60
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Jonny_9
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Jonny_9
       rect:
         serializedVersion: 2
         x: 69
@@ -144,9 +258,12 @@ TextureImporter:
         width: 36
         height: 59
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Jonny_10
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Jonny_10
       rect:
         serializedVersion: 2
         x: 128
@@ -154,9 +271,12 @@ TextureImporter:
         width: 49
         height: 57
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Jonny_11
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Jonny_11
       rect:
         serializedVersion: 2
         x: 195
@@ -164,9 +284,12 @@ TextureImporter:
         width: 38
         height: 59
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Jonny_12
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Jonny_12
       rect:
         serializedVersion: 2
         x: 266
@@ -174,9 +297,12 @@ TextureImporter:
         width: 39
         height: 59
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Jonny_13
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Jonny_13
       rect:
         serializedVersion: 2
         x: 331
@@ -184,9 +310,12 @@ TextureImporter:
         width: 40
         height: 59
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Jonny_14
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Jonny_14
       rect:
         serializedVersion: 2
         x: 393
@@ -194,9 +323,12 @@ TextureImporter:
         width: 51
         height: 59
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Jonny_15
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Jonny_15
       rect:
         serializedVersion: 2
         x: 455
@@ -204,9 +336,12 @@ TextureImporter:
         width: 49
         height: 59
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Jonny_16
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Jonny_16
       rect:
         serializedVersion: 2
         x: 10
@@ -214,9 +349,12 @@ TextureImporter:
         width: 39
         height: 54
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Jonny_17
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Jonny_17
       rect:
         serializedVersion: 2
         x: 74
@@ -224,9 +362,12 @@ TextureImporter:
         width: 39
         height: 55
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Jonny_18
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Jonny_18
       rect:
         serializedVersion: 2
         x: 137
@@ -234,9 +375,12 @@ TextureImporter:
         width: 40
         height: 55
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Jonny_19
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Jonny_19
       rect:
         serializedVersion: 2
         x: 202
@@ -244,9 +388,12 @@ TextureImporter:
         width: 40
         height: 54
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Jonny_20
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Jonny_20
       rect:
         serializedVersion: 2
         x: 260
@@ -254,9 +401,12 @@ TextureImporter:
         width: 41
         height: 54
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Jonny_21
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Jonny_21
       rect:
         serializedVersion: 2
         x: 324
@@ -264,9 +414,12 @@ TextureImporter:
         width: 40
         height: 54
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Jonny_22
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Jonny_22
       rect:
         serializedVersion: 2
         x: 387
@@ -274,9 +427,12 @@ TextureImporter:
         width: 46
         height: 54
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Jonny_23
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Jonny_23
       rect:
         serializedVersion: 2
         x: 450
@@ -284,9 +440,12 @@ TextureImporter:
         width: 50
         height: 54
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Jonny_24
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Jonny_24
       rect:
         serializedVersion: 2
         x: 13
@@ -294,9 +453,12 @@ TextureImporter:
         width: 42
         height: 57
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Jonny_25
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Jonny_25
       rect:
         serializedVersion: 2
         x: 78
@@ -304,9 +466,12 @@ TextureImporter:
         width: 42
         height: 58
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Jonny_26
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Jonny_26
       rect:
         serializedVersion: 2
         x: 141
@@ -314,9 +479,12 @@ TextureImporter:
         width: 38
         height: 59
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Jonny_27
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Jonny_27
       rect:
         serializedVersion: 2
         x: 205
@@ -324,9 +492,12 @@ TextureImporter:
         width: 38
         height: 58
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Jonny_28
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Jonny_28
       rect:
         serializedVersion: 2
         x: 268
@@ -334,9 +505,12 @@ TextureImporter:
         width: 39
         height: 56
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Jonny_29
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Jonny_29
       rect:
         serializedVersion: 2
         x: 332
@@ -344,9 +518,12 @@ TextureImporter:
         width: 44
         height: 58
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Jonny_30
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Jonny_30
       rect:
         serializedVersion: 2
         x: 396
@@ -354,9 +531,12 @@ TextureImporter:
         width: 45
         height: 58
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Jonny_31
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Jonny_31
       rect:
         serializedVersion: 2
         x: 460
@@ -364,9 +544,12 @@ TextureImporter:
         width: 36
         height: 57
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Jonny_32
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Jonny_32
       rect:
         serializedVersion: 2
         x: 11
@@ -374,9 +557,12 @@ TextureImporter:
         width: 38
         height: 59
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Jonny_33
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Jonny_33
       rect:
         serializedVersion: 2
         x: 78
@@ -384,9 +570,12 @@ TextureImporter:
         width: 32
         height: 60
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Jonny_34
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Jonny_34
       rect:
         serializedVersion: 2
         x: 147
@@ -394,9 +583,12 @@ TextureImporter:
         width: 20
         height: 60
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Jonny_35
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Jonny_35
       rect:
         serializedVersion: 2
         x: 211
@@ -404,9 +596,12 @@ TextureImporter:
         width: 24
         height: 60
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Jonny_36
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Jonny_36
       rect:
         serializedVersion: 2
         x: 268
@@ -414,9 +609,12 @@ TextureImporter:
         width: 36
         height: 59
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Jonny_37
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Jonny_37
       rect:
         serializedVersion: 2
         x: 335
@@ -424,9 +622,12 @@ TextureImporter:
         width: 31
         height: 60
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Jonny_38
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Jonny_38
       rect:
         serializedVersion: 2
         x: 405
@@ -434,9 +635,12 @@ TextureImporter:
         width: 18
         height: 60
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Jonny_39
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Jonny_39
       rect:
         serializedVersion: 2
         x: 464
@@ -444,9 +648,12 @@ TextureImporter:
         width: 25
         height: 60
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Jonny_40
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Jonny_40
       rect:
         serializedVersion: 2
         x: 9
@@ -454,9 +661,12 @@ TextureImporter:
         width: 44
         height: 45
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Jonny_41
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Jonny_41
       rect:
         serializedVersion: 2
         x: 74
@@ -464,9 +674,12 @@ TextureImporter:
         width: 43
         height: 39
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Jonny_42
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Jonny_42
       rect:
         serializedVersion: 2
         x: 138
@@ -474,9 +687,12 @@ TextureImporter:
         width: 36
         height: 50
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Jonny_43
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Jonny_43
       rect:
         serializedVersion: 2
         x: 206
@@ -484,9 +700,12 @@ TextureImporter:
         width: 31
         height: 57
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Jonny_44
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Jonny_44
       rect:
         serializedVersion: 2
         x: 273
@@ -494,9 +713,12 @@ TextureImporter:
         width: 27
         height: 60
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Jonny_45
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Jonny_45
       rect:
         serializedVersion: 2
         x: 329
@@ -504,9 +726,12 @@ TextureImporter:
         width: 41
         height: 62
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Jonny_46
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Jonny_46
       rect:
         serializedVersion: 2
         x: 391
@@ -514,9 +739,12 @@ TextureImporter:
         width: 44
         height: 61
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Jonny_47
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Jonny_47
       rect:
         serializedVersion: 2
         x: 455
@@ -524,9 +752,12 @@ TextureImporter:
         width: 43
         height: 62
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Jonny_48
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Jonny_48
       rect:
         serializedVersion: 2
         x: 14
@@ -534,9 +765,12 @@ TextureImporter:
         width: 34
         height: 57
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Jonny_49
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Jonny_49
       rect:
         serializedVersion: 2
         x: 78
@@ -544,9 +778,12 @@ TextureImporter:
         width: 34
         height: 55
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Jonny_50
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Jonny_50
       rect:
         serializedVersion: 2
         x: 146
@@ -554,9 +791,12 @@ TextureImporter:
         width: 30
         height: 57
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Jonny_51
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Jonny_51
       rect:
         serializedVersion: 2
         x: 210
@@ -564,9 +804,12 @@ TextureImporter:
         width: 31
         height: 58
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Jonny_52
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Jonny_52
       rect:
         serializedVersion: 2
         x: 272
@@ -574,9 +817,12 @@ TextureImporter:
         width: 34
         height: 58
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Jonny_53
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Jonny_53
       rect:
         serializedVersion: 2
         x: 337
@@ -584,9 +830,12 @@ TextureImporter:
         width: 32
         height: 56
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Jonny_54
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Jonny_54
       rect:
         serializedVersion: 2
         x: 403
@@ -594,9 +843,12 @@ TextureImporter:
         width: 28
         height: 58
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Jonny_55
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Jonny_55
       rect:
         serializedVersion: 2
         x: 467
@@ -604,9 +856,12 @@ TextureImporter:
         width: 28
         height: 57
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Jonny_56
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Jonny_56
       rect:
         serializedVersion: 2
         x: 17
@@ -614,9 +869,12 @@ TextureImporter:
         width: 31
         height: 59
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Jonny_57
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Jonny_57
       rect:
         serializedVersion: 2
         x: 81
@@ -624,9 +882,12 @@ TextureImporter:
         width: 29
         height: 60
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Jonny_58
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Jonny_58
       rect:
         serializedVersion: 2
         x: 144
@@ -634,9 +895,12 @@ TextureImporter:
         width: 31
         height: 60
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Jonny_59
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Jonny_59
       rect:
         serializedVersion: 2
         x: 208
@@ -644,9 +908,12 @@ TextureImporter:
         width: 32
         height: 60
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Jonny_60
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Jonny_60
       rect:
         serializedVersion: 2
         x: 272
@@ -654,9 +921,12 @@ TextureImporter:
         width: 33
         height: 60
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Jonny_61
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Jonny_61
       rect:
         serializedVersion: 2
         x: 336
@@ -664,9 +934,12 @@ TextureImporter:
         width: 32
         height: 60
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Jonny_62
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Jonny_62
       rect:
         serializedVersion: 2
         x: 401
@@ -674,9 +947,12 @@ TextureImporter:
         width: 30
         height: 60
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Jonny_63
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Jonny_63
       rect:
         serializedVersion: 2
         x: 466
@@ -684,9 +960,12 @@ TextureImporter:
         width: 28
         height: 59
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Jonny_64
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Jonny_64
       rect:
         serializedVersion: 2
         x: 26
@@ -694,7 +973,12 @@ TextureImporter:
         width: 14
         height: 60
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    outline: []
   spritePackingTag: 
   userData: 
+  assetBundleName: 
+  assetBundleVariant: 

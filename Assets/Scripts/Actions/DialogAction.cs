@@ -3,7 +3,17 @@ using System.Collections;
 
 public class DialogAction : ToolKitAction {
 
-	public override void Execute( GameObject speecher ){}public override bool isStarted(){
+	public string dialogFlag = "";
+	public override void Execute( GameObject dialogController ){
+		Debug.Log ( "DialogAction::Execute - START" );
+		DialogController dc = dialogController.GetComponent<DialogController> ();
+		if (dc != null) {
+			dc.TriggerDialog (dialogFlag);
+			Debug.Log ( "DialogAction::Execute - Object does not have a DialogController component." );
+		}
+		Debug.Log ( "DialogAction::Execute - STOP" );
+	}
+	public override bool isStarted(){
 		return false;
 	}
 	public override bool isFinished(){

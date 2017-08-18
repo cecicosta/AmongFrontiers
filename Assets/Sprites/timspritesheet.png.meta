@@ -1,12 +1,62 @@
 fileFormatVersion: 2
 guid: 45a4a8855f89e524e9471ff425d0a613
 TextureImporter:
-  serializedVersion: 2
+  fileIDToRecycleName:
+    21300000: timspritesheet_0
+    21300002: timspritesheet_1
+    21300004: timspritesheet_2
+    21300006: timspritesheet_3
+    21300008: timspritesheet_4
+    21300010: timspritesheet_5
+    21300012: timspritesheet_6
+    21300014: timspritesheet_7
+    21300016: timspritesheet_8
+    21300018: timspritesheet_9
+    21300020: timspritesheet_10
+    21300022: timspritesheet_11
+    21300024: timspritesheet_12
+    21300026: timspritesheet_13
+    21300028: timspritesheet_14
+    21300030: timspritesheet_15
+    21300032: timspritesheet_16
+    21300034: timspritesheet_17
+    21300036: timspritesheet_18
+    21300038: timspritesheet_19
+    21300040: timspritesheet_20
+    21300042: timspritesheet_21
+    21300044: timspritesheet_22
+    21300046: timspritesheet_23
+    21300048: timspritesheet_24
+    21300050: timspritesheet_25
+    21300052: timspritesheet_26
+    21300054: timspritesheet_27
+    21300056: timspritesheet_28
+    21300058: timspritesheet_29
+    21300060: timspritesheet_30
+    21300062: timspritesheet_31
+    21300064: timspritesheet_32
+    21300066: timspritesheet_33
+    21300068: timspritesheet_34
+    21300070: timspritesheet_35
+    21300072: timspritesheet_36
+    21300074: timspritesheet_37
+    21300076: timspritesheet_38
+    21300078: timspritesheet_39
+    21300080: timspritesheet_40
+    21300082: timspritesheet_41
+    21300084: timspritesheet_42
+    21300086: timspritesheet_43
+    21300088: timspritesheet_44
+    21300090: timspritesheet_45
+    21300092: timspritesheet_46
+    21300094: timspritesheet_47
+    21300096: timspritesheet_48
+  serializedVersion: 4
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
+    sRGBTexture: 1
     linearTexture: 0
-    correctGamma: 0
     fadeOut: 0
     borderMipMap: 0
     mipMapFadeDistanceStart: 1
@@ -14,11 +64,12 @@ TextureImporter:
   bumpmap:
     convertToNormalMap: 0
     externalNormalMap: 0
-    heightScale: .25
+    heightScale: 0.25
     normalMapFilter: 0
   isReadable: 0
   grayScaleToAlpha: 0
-  generateCubemap: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
   seamlessCubemap: 0
   textureFormat: -1
   maxTextureSize: 1024
@@ -34,18 +85,39 @@ TextureImporter:
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
-  spritePivot: {x: .5, y: .5}
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spritePixelsToUnits: 100
+  alphaUsage: 1
   alphaIsTransparency: 1
+  spriteTessellationDetail: -1
   textureType: 8
-  buildTargetSettings:
+  textureShape: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - buildTarget: DefaultTexturePlatform
+    maxTextureSize: 1024
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
   - buildTarget: iPhone
     maxTextureSize: 1024
-    textureFormat: -2
+    textureFormat: 2
+    textureCompression: 1
     compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 1
   spriteSheet:
+    serializedVersion: 2
     sprites:
-    - name: timspritesheet_0
+    - serializedVersion: 2
+      name: timspritesheet_0
       rect:
         serializedVersion: 2
         x: 0
@@ -53,8 +125,12 @@ TextureImporter:
         width: 83
         height: 140
       alignment: 0
-      pivot: {x: .5, y: .5}
-    - name: timspritesheet_1
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: timspritesheet_1
       rect:
         serializedVersion: 2
         x: 168
@@ -62,8 +138,12 @@ TextureImporter:
         width: 81
         height: 140
       alignment: 0
-      pivot: {x: .5, y: .5}
-    - name: timspritesheet_2
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: timspritesheet_2
       rect:
         serializedVersion: 2
         x: 251
@@ -71,8 +151,12 @@ TextureImporter:
         width: 81
         height: 140
       alignment: 0
-      pivot: {x: .5, y: .5}
-    - name: timspritesheet_3
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: timspritesheet_3
       rect:
         serializedVersion: 2
         x: 332
@@ -80,8 +164,12 @@ TextureImporter:
         width: 84
         height: 140
       alignment: 0
-      pivot: {x: .5, y: .5}
-    - name: timspritesheet_4
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: timspritesheet_4
       rect:
         serializedVersion: 2
         x: 417
@@ -89,8 +177,12 @@ TextureImporter:
         width: 82
         height: 140
       alignment: 0
-      pivot: {x: .5, y: .5}
-    - name: timspritesheet_5
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: timspritesheet_5
       rect:
         serializedVersion: 2
         x: 583
@@ -98,8 +190,12 @@ TextureImporter:
         width: 81
         height: 140
       alignment: 0
-      pivot: {x: .5, y: .5}
-    - name: timspritesheet_6
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: timspritesheet_6
       rect:
         serializedVersion: 2
         x: 832
@@ -107,8 +203,12 @@ TextureImporter:
         width: 81
         height: 138
       alignment: 0
-      pivot: {x: .5, y: .5}
-    - name: timspritesheet_7
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: timspritesheet_7
       rect:
         serializedVersion: 2
         x: 915
@@ -116,8 +216,12 @@ TextureImporter:
         width: 81
         height: 138
       alignment: 0
-      pivot: {x: .5, y: .5}
-    - name: timspritesheet_8
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: timspritesheet_8
       rect:
         serializedVersion: 2
         x: 0
@@ -125,8 +229,12 @@ TextureImporter:
         width: 83
         height: 141
       alignment: 0
-      pivot: {x: .5, y: .5}
-    - name: timspritesheet_9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: timspritesheet_9
       rect:
         serializedVersion: 2
         x: 85
@@ -134,8 +242,12 @@ TextureImporter:
         width: 81
         height: 138
       alignment: 0
-      pivot: {x: .5, y: .5}
-    - name: timspritesheet_10
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: timspritesheet_10
       rect:
         serializedVersion: 2
         x: 251
@@ -143,8 +255,12 @@ TextureImporter:
         width: 81
         height: 138
       alignment: 0
-      pivot: {x: .5, y: .5}
-    - name: timspritesheet_11
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: timspritesheet_11
       rect:
         serializedVersion: 2
         x: 332
@@ -152,8 +268,12 @@ TextureImporter:
         width: 84
         height: 138
       alignment: 0
-      pivot: {x: .5, y: .5}
-    - name: timspritesheet_12
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: timspritesheet_12
       rect:
         serializedVersion: 2
         x: 832
@@ -161,8 +281,12 @@ TextureImporter:
         width: 119
         height: 129
       alignment: 0
-      pivot: {x: .5, y: .5}
-    - name: timspritesheet_13
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: timspritesheet_13
       rect:
         serializedVersion: 2
         x: 2
@@ -170,8 +294,12 @@ TextureImporter:
         width: 118
         height: 132
       alignment: 0
-      pivot: {x: .5, y: .5}
-    - name: timspritesheet_14
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: timspritesheet_14
       rect:
         serializedVersion: 2
         x: 122
@@ -179,8 +307,12 @@ TextureImporter:
         width: 118
         height: 133
       alignment: 0
-      pivot: {x: .5, y: .5}
-    - name: timspritesheet_15
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: timspritesheet_15
       rect:
         serializedVersion: 2
         x: 356
@@ -188,8 +320,12 @@ TextureImporter:
         width: 107
         height: 134
       alignment: 0
-      pivot: {x: .5, y: .5}
-    - name: timspritesheet_16
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: timspritesheet_16
       rect:
         serializedVersion: 2
         x: 464
@@ -197,8 +333,12 @@ TextureImporter:
         width: 104
         height: 133
       alignment: 0
-      pivot: {x: .5, y: .5}
-    - name: timspritesheet_17
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: timspritesheet_17
       rect:
         serializedVersion: 2
         x: 568
@@ -206,8 +346,12 @@ TextureImporter:
         width: 104
         height: 132
       alignment: 0
-      pivot: {x: .5, y: .5}
-    - name: timspritesheet_18
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: timspritesheet_18
       rect:
         serializedVersion: 2
         x: 674
@@ -215,8 +359,12 @@ TextureImporter:
         width: 100
         height: 134
       alignment: 0
-      pivot: {x: .5, y: .5}
-    - name: timspritesheet_19
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: timspritesheet_19
       rect:
         serializedVersion: 2
         x: 776
@@ -224,8 +372,12 @@ TextureImporter:
         width: 96
         height: 134
       alignment: 0
-      pivot: {x: .5, y: .5}
-    - name: timspritesheet_20
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: timspritesheet_20
       rect:
         serializedVersion: 2
         x: 872
@@ -233,8 +385,12 @@ TextureImporter:
         width: 97
         height: 136
       alignment: 0
-      pivot: {x: .5, y: .5}
-    - name: timspritesheet_21
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: timspritesheet_21
       rect:
         serializedVersion: 2
         x: 0
@@ -242,8 +398,12 @@ TextureImporter:
         width: 97
         height: 136
       alignment: 0
-      pivot: {x: .5, y: .5}
-    - name: timspritesheet_22
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: timspritesheet_22
       rect:
         serializedVersion: 2
         x: 99
@@ -251,8 +411,12 @@ TextureImporter:
         width: 99
         height: 134
       alignment: 0
-      pivot: {x: .5, y: .5}
-    - name: timspritesheet_23
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: timspritesheet_23
       rect:
         serializedVersion: 2
         x: 200
@@ -260,8 +424,12 @@ TextureImporter:
         width: 104
         height: 136
       alignment: 0
-      pivot: {x: .5, y: .5}
-    - name: timspritesheet_24
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: timspritesheet_24
       rect:
         serializedVersion: 2
         x: 304
@@ -269,8 +437,12 @@ TextureImporter:
         width: 107
         height: 132
       alignment: 0
-      pivot: {x: .5, y: .5}
-    - name: timspritesheet_25
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: timspritesheet_25
       rect:
         serializedVersion: 2
         x: 414
@@ -278,8 +450,12 @@ TextureImporter:
         width: 116
         height: 128
       alignment: 0
-      pivot: {x: .5, y: .5}
-    - name: timspritesheet_26
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: timspritesheet_26
       rect:
         serializedVersion: 2
         x: 532
@@ -287,8 +463,12 @@ TextureImporter:
         width: 120
         height: 128
       alignment: 0
-      pivot: {x: .5, y: .5}
-    - name: timspritesheet_27
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: timspritesheet_27
       rect:
         serializedVersion: 2
         x: 652
@@ -296,8 +476,12 @@ TextureImporter:
         width: 112
         height: 129
       alignment: 0
-      pivot: {x: .5, y: .5}
-    - name: timspritesheet_28
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: timspritesheet_28
       rect:
         serializedVersion: 2
         x: 764
@@ -305,8 +489,12 @@ TextureImporter:
         width: 102
         height: 130
       alignment: 0
-      pivot: {x: .5, y: .5}
-    - name: timspritesheet_29
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: timspritesheet_29
       rect:
         serializedVersion: 2
         x: 868
@@ -314,8 +502,12 @@ TextureImporter:
         width: 103
         height: 132
       alignment: 0
-      pivot: {x: .5, y: .5}
-    - name: timspritesheet_30
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: timspritesheet_30
       rect:
         serializedVersion: 2
         x: 0
@@ -323,8 +515,12 @@ TextureImporter:
         width: 106
         height: 132
       alignment: 0
-      pivot: {x: .5, y: .5}
-    - name: timspritesheet_31
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: timspritesheet_31
       rect:
         serializedVersion: 2
         x: 108
@@ -332,8 +528,12 @@ TextureImporter:
         width: 98
         height: 133
       alignment: 0
-      pivot: {x: .5, y: .5}
-    - name: timspritesheet_32
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: timspritesheet_32
       rect:
         serializedVersion: 2
         x: 208
@@ -341,8 +541,12 @@ TextureImporter:
         width: 94
         height: 136
       alignment: 0
-      pivot: {x: .5, y: .5}
-    - name: timspritesheet_33
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: timspritesheet_33
       rect:
         serializedVersion: 2
         x: 304
@@ -350,8 +554,12 @@ TextureImporter:
         width: 98
         height: 136
       alignment: 0
-      pivot: {x: .5, y: .5}
-    - name: timspritesheet_34
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: timspritesheet_34
       rect:
         serializedVersion: 2
         x: 404
@@ -359,8 +567,12 @@ TextureImporter:
         width: 104
         height: 136
       alignment: 0
-      pivot: {x: .5, y: .5}
-    - name: timspritesheet_35
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: timspritesheet_35
       rect:
         serializedVersion: 2
         x: 508
@@ -368,8 +580,12 @@ TextureImporter:
         width: 108
         height: 136
       alignment: 0
-      pivot: {x: .5, y: .5}
-    - name: timspritesheet_36
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: timspritesheet_36
       rect:
         serializedVersion: 2
         x: 616
@@ -377,8 +593,12 @@ TextureImporter:
         width: 111
         height: 136
       alignment: 0
-      pivot: {x: .5, y: .5}
-    - name: timspritesheet_37
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: timspritesheet_37
       rect:
         serializedVersion: 2
         x: 729
@@ -386,8 +606,12 @@ TextureImporter:
         width: 112
         height: 136
       alignment: 0
-      pivot: {x: .5, y: .5}
-    - name: timspritesheet_38
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: timspritesheet_38
       rect:
         serializedVersion: 2
         x: 85
@@ -395,8 +619,12 @@ TextureImporter:
         width: 81
         height: 140
       alignment: 0
-      pivot: {x: .5, y: .5}
-    - name: timspritesheet_39
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: timspritesheet_39
       rect:
         serializedVersion: 2
         x: 168
@@ -404,8 +632,12 @@ TextureImporter:
         width: 81
         height: 138
       alignment: 0
-      pivot: {x: .5, y: .5}
-    - name: timspritesheet_40
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: timspritesheet_40
       rect:
         serializedVersion: 2
         x: 242
@@ -413,8 +645,12 @@ TextureImporter:
         width: 112
         height: 134
       alignment: 0
-      pivot: {x: .5, y: .5}
-    - name: timspritesheet_41
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: timspritesheet_41
       rect:
         serializedVersion: 2
         x: 501
@@ -422,8 +658,12 @@ TextureImporter:
         width: 80
         height: 140
       alignment: 0
-      pivot: {x: .5, y: .5}
-    - name: timspritesheet_42
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: timspritesheet_42
       rect:
         serializedVersion: 2
         x: 417
@@ -431,8 +671,12 @@ TextureImporter:
         width: 82
         height: 138
       alignment: 0
-      pivot: {x: .5, y: .5}
-    - name: timspritesheet_43
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: timspritesheet_43
       rect:
         serializedVersion: 2
         x: 501
@@ -440,8 +684,12 @@ TextureImporter:
         width: 80
         height: 138
       alignment: 0
-      pivot: {x: .5, y: .5}
-    - name: timspritesheet_44
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: timspritesheet_44
       rect:
         serializedVersion: 2
         x: 583
@@ -449,8 +697,12 @@ TextureImporter:
         width: 82
         height: 138
       alignment: 0
-      pivot: {x: .5, y: .5}
-    - name: timspritesheet_45
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: timspritesheet_45
       rect:
         serializedVersion: 2
         x: 667
@@ -458,8 +710,12 @@ TextureImporter:
         width: 81
         height: 138
       alignment: 0
-      pivot: {x: .5, y: .5}
-    - name: timspritesheet_46
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: timspritesheet_46
       rect:
         serializedVersion: 2
         x: 749
@@ -467,8 +723,12 @@ TextureImporter:
         width: 81
         height: 138
       alignment: 0
-      pivot: {x: .5, y: .5}
-    - name: timspritesheet_47
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: timspritesheet_47
       rect:
         serializedVersion: 2
         x: 749
@@ -476,8 +736,12 @@ TextureImporter:
         width: 81
         height: 139
       alignment: 0
-      pivot: {x: .5, y: .5}
-    - name: timspritesheet_48
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: timspritesheet_48
       rect:
         serializedVersion: 2
         x: 666
@@ -485,6 +749,12 @@ TextureImporter:
         width: 81
         height: 139
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    outline: []
   spritePackingTag: 
   userData: 
+  assetBundleName: 
+  assetBundleVariant: 
