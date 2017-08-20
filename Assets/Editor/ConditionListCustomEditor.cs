@@ -15,7 +15,7 @@ public class ConditionListCustomEditor : Editor {
     }
 
     public override void OnInspectorGUI() {
-        EditorGUILayout.HelpBox("Editor to insert new game conditions to trigger events and guide alternative choices.\nPress Enter to apply field changes.\nTODO: Implement \"remove\" and editing Condition's details", MessageType.Info);
+        EditorGUILayout.HelpBox("Editor to insert new game conditions to trigger events and guide alternative choices.\nPress Enter to apply field changes.", MessageType.Info);
         List<Condition> editedValues = new List<Condition>();
         Condition newValue = new Condition();
 
@@ -60,9 +60,59 @@ public class ConditionListCustomEditor : Editor {
         EditorGUILayout.Space();
         EditorGUILayout.Space();
         EditorGUILayout.Space();
+
+        newValue = editedValues.Find(x => x.identifier == GUI.GetNameOfFocusedControl());
+        if (newValue != null){
+            ShowConditionEditing(newValue);
+        }
+
+
         values.Clear();
         values.AddRange(editedValues);
 
+    }
+
+
+    void ShowConditionEditing(Condition c) {
+        EditorGUILayout.LabelField("Condition");
+        
+        EditorGUILayout.BeginHorizontal();
+        c.type = (Condition.VariableType) EditorGUILayout.EnumPopup(c.type);
+
+        switch (c.type) {
+            case Condition.VariableType.BOOL: {
+                    int selected = 0;
+                    selected = c.BoolValue ? 1 : 0;
+                    selected = EditorGUILayout.Popup(selected, (new string[] { "false", "true" }));
+                    c.BoolValue = selected == 1 ? true : false;
+                }
+                break;
+            case Condition.VariableType.FLOAT: {
+                    int selected = 0;
+                    selected = c.variableCondition == Condition.VariableCondition.GREATER ? 0 : c.variableCondition == Condition.VariableCondition.LOWER ? 1 : 2;
+                    selected = EditorGUILayout.Popup(selected, (new string[] { "greater", "less", "equal" }));
+                    c.variableCondition = selected == 0 ? Condition.VariableCondition.GREATER : selected == 1 ? Condition.VariableCondition.LOWER : Condition.VariableCondition.EQUAL;
+                    c.FloatValue = EditorGUILayout.FloatField(c.FloatValue);
+                }
+                break;
+            case Condition.VariableType.INT: {
+                    int selected = 0;
+                    selected = c.variableCondition == Condition.VariableCondition.GREATER ? 0 : c.variableCondition == Condition.VariableCondition.LOWER ? 1 : 2;
+                    selected = EditorGUILayout.Popup(selected, (new string[] { "greater", "less", "equal" }));
+                    c.variableCondition = selected == 0 ? Condition.VariableCondition.GREATER : selected == 1 ? Condition.VariableCondition.LOWER : Condition.VariableCondition.EQUAL;
+                    c.IntValue = EditorGUILayout.IntField(c.IntValue);
+                }
+                break;
+            case Condition.VariableType.TRIGGER:
+                break;
+            case Condition.VariableType.INPUT:
+                c.InputValue = (KeyCode)EditorGUILayout.EnumPopup(c.InputValue);
+                break;
+            default:
+                break;
+        }
+        EditorGUILayout.EndHorizontal();
+        GUI.FocusControl(c.identifier);
     }
 
 
