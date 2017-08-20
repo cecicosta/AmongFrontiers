@@ -21,6 +21,7 @@ public class Condition{
 
 	public Condition(){
 		identifier = "";
+        type = VariableType.TRIGGER;
 	}
 
     public void setIntValue( int value ){ IntValue = value; }

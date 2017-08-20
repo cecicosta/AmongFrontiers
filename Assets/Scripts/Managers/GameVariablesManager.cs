@@ -36,6 +36,10 @@ public class GameVariablesManager : Singleton<GameVariablesManager> {
 		return variables [variable];
 	}
 
+    public List<Condition> GetSceneConditions() {
+        return sceneVariables;
+    }
+
 	public List<Condition> getAllVariables(){
 		List<Condition> variables = new List<Condition> (GameVariablesManager.Instance.gameVariables.ToArray());
 		variables.AddRange (GameVariablesManager.Instance.sceneVariables.ToArray());

@@ -144,6 +144,7 @@
   <ItemGroup>
     <Compile Include="Assets\Editor\ActionManagerCustomInspector.cs" />
     <Compile Include="Assets\Editor\ActionWindowEditor.cs" />
+    <Compile Include="Assets\Editor\ConditionListCustomEditor.cs" />
     <Compile Include="Assets\Editor\DialogEditor.cs" />
     <Compile Include="Assets\Editor\DialogInspector.cs" />
     <Compile Include="Assets\Editor\GenericMenuExample.cs" />
@@ -151,7 +152,6 @@
     <Compile Include="Assets\Editor\InteractionContainerCustomInspector.cs" />
     <Compile Include="Assets\Editor\InteractionControllerInspector.cs" />
     <Compile Include="Assets\Editor\InteractionNodesEditor.cs" />
-    <Compile Include="Assets\Editor\ListEditor.cs" />
     <Compile Include="Assets\Editor\TransitionContainerCustomInspector.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
