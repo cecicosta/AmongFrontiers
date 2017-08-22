@@ -20,8 +20,8 @@ public class Condition{
 	public VariableCondition variableCondition = VariableCondition.EQUAL;
 
 	public Condition(){
-		identifier = "";
-        type = VariableType.TRIGGER;
+		//identifier = "";
+        //type = VariableType.TRIGGER;
 	}
 
     public void setIntValue( int value ){ IntValue = value; }

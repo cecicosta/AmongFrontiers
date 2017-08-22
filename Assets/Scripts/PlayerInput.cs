@@ -4,8 +4,8 @@ using System.Collections;
 [RequireComponent (typeof (Player))]
 public class PlayerInput : MonoBehaviour {
 
-    public string moveAnimationTrigger = "";
-    public string standAnimationTrigger = "";
+    public Condition moveAnimationTrigger;
+    public Condition standAnimationTrigger;
 
     private ToolKitEventTrigger eventTrigger;
 
@@ -83,7 +83,7 @@ public class PlayerInput : MonoBehaviour {
             ToolKitEvent tkevent = new ToolKitEvent();
             Condition condition = new Condition();
             condition.type = Condition.VariableType.TRIGGER;
-            condition.identifier = moveAnimationTrigger;
+            condition.identifier = moveAnimationTrigger.identifier;
             tkevent.condition = condition;
             tkevent.type = ToolKitEvent.EventType.VARIABLE_CHANGE;
             eventTrigger.TriggerEvent(tkevent);
@@ -91,7 +91,7 @@ public class PlayerInput : MonoBehaviour {
             ToolKitEvent tkevent = new ToolKitEvent();
             Condition condition = new Condition();
             condition.type = Condition.VariableType.TRIGGER;
-            condition.identifier = standAnimationTrigger;
+            condition.identifier = standAnimationTrigger.identifier;
             tkevent.condition = condition;
             tkevent.type = ToolKitEvent.EventType.VARIABLE_CHANGE;
             eventTrigger.TriggerEvent(tkevent);

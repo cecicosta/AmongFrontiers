@@ -21,9 +21,13 @@ public class InteractionAreaCustomInspector : PropertyDrawer {
         // prefab override logic works on the entire property.
 
         //TODO: Try an more directly access to the fields
-        
+
+        //EditorGUI.BeginProperty(position, label, property);
+        //DrawEnumProperty(new Rect(position.x, position.y, position.width, 15), "type", property);
+        //EditorGUI.EndProperty();
         EditorGUI.BeginProperty(position, label, property);
-        DrawEnumProperty(new Rect(position.x, position.y, position.width, 15), "type", property);
+        EditorGUI.indentLevel = 0;
+        EditorGUI.LabelField(new Rect(position.x, position.y, position.width, 15), new GUIContent("Condition"));
         EditorGUI.EndProperty();
 
         int inc = 15;        
@@ -33,7 +37,7 @@ public class InteractionAreaCustomInspector : PropertyDrawer {
     }
 
     public override float GetPropertyHeight(SerializedProperty prop, GUIContent label) {
-        float extraHeight = 20.0f;
+        float extraHeight = 15.0f;
         return base.GetPropertyHeight(prop, label) + extraHeight;
     }
 
@@ -51,7 +55,7 @@ public class InteractionAreaCustomInspector : PropertyDrawer {
 
         //Get Title Case Lable
         string title = new System.Globalization.CultureInfo("en-US", false).TextInfo.ToTitleCase(label.ToLower());
-        EditorGUI.indentLevel = 1;
+        EditorGUI.indentLevel = 2;
         //Create label and update the available space for the dropdown menu
         position = EditorGUI.PrefixLabel(position, new GUIContent(title));
 
