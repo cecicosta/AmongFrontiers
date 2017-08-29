@@ -34,10 +34,16 @@ public class InteractionAreaCustomInspector : PropertyDrawer {
         EditorGUI.BeginProperty(position, label, property);
         DrawConditionIdentifierProperty(new Rect(position.x, position.y + inc, position.width, 15), "identifier", property);
         EditorGUI.EndProperty();
+
+        inc += 15;
+        EditorGUI.BeginProperty(position, label, property);
+        ShowConditionEditing(new Rect(position.x, position.y + inc, position.width, 15), property);
+        EditorGUI.EndProperty();
+
     }
 
     public override float GetPropertyHeight(SerializedProperty prop, GUIContent label) {
-        float extraHeight = 15.0f;
+        float extraHeight = 60.0f;
         return base.GetPropertyHeight(prop, label) + extraHeight;
     }
 
@@ -98,6 +104,44 @@ public class InteractionAreaCustomInspector : PropertyDrawer {
 
     void OnAddConditionSelected(object identifier) {
         Selection.activeGameObject = GameVariablesManager.Instance.gameObject;
+    }
+
+
+    void ShowConditionEditing(Rect position, SerializedProperty p) {
+        //EditorGUI.LabelField(position, "Condition");
+        Rect space = new Rect();
+
+        //c.type = (Condition.VariableType)EditorGUI.EnumPopup(position, c.type);
+        EditorGUI.PropertyField(position, p.FindPropertyRelative("type"));
+
+        position.y += 15;
+        int type = p.FindPropertyRelative("type").intValue;
+        switch ((Condition.VariableType)type) {
+            case Condition.VariableType.Bool: {
+                    EditorGUI.PropertyField(position, p.FindPropertyRelative("BoolValue"));
+                }
+                break;
+            case Condition.VariableType.Float: {
+                    EditorGUI.PropertyField(position, p.FindPropertyRelative("comparison"));
+                    position.y += 15;
+                    EditorGUI.PropertyField(position, p.FindPropertyRelative("IntValue"));
+                }
+                break;
+            case Condition.VariableType.Int: {
+                    EditorGUI.PropertyField(position, p.FindPropertyRelative("comparison"));
+                    position.y += 15;
+                    EditorGUI.PropertyField(position, p.FindPropertyRelative("IntValue"));
+                }
+                break;
+            case Condition.VariableType.Trigger:
+                break;
+            case Condition.VariableType.Input:
+                EditorGUI.PropertyField(position, p.FindPropertyRelative("InputValue"));
+                break;
+            default:
+                break;
+        }
+        //GUI.FocusControl(c.identifier);
     }
 
 }

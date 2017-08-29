@@ -18,12 +18,12 @@ public class GameVariablesManager : Singleton<GameVariablesManager> {
 	}
 
     public Condition CreateSceneCondition(string identifier, 
-    Condition.VariableType type = Condition.VariableType.TRIGGER, 
-    Condition.VariableCondition condition = Condition.VariableCondition.EQUAL) {
+    Condition.VariableType type = Condition.VariableType.Trigger, 
+    Condition.VariableCondition condition = Condition.VariableCondition.Equal) {
         Condition c = new Condition();
         c.identifier = identifier;
         c.type = type;
-        c.variableCondition = condition;
+        c.comparison = condition;
         return c;
     }
 	
@@ -33,7 +33,7 @@ public class GameVariablesManager : Singleton<GameVariablesManager> {
 	}
 
 	public Condition GetVariable(string variable){
-		return variables [variable];
+		return variables.ContainsKey(variable)? variables [variable] : null;
 	}
 
     public List<Condition> GetSceneConditions() {
@@ -48,7 +48,7 @@ public class GameVariablesManager : Singleton<GameVariablesManager> {
 
 	public void onTKEvent(ToolKitEvent tkEvent){
 
-		if (tkEvent.type == ToolKitEvent.EventType.VARIABLE_CHANGE) {
+		if (tkEvent.type == ToolKitEvent.EventType.ConditionUpdate) {
 			if( variables.ContainsKey( tkEvent.condition.identifier ) && variables[tkEvent.condition.identifier].type == tkEvent.condition.type  ){
 				variables[tkEvent.condition.identifier] = tkEvent.condition;
 			}

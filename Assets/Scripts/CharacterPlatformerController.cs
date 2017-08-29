@@ -89,18 +89,18 @@ public class CharacterPlatformerController : MonoBehaviour {
 		if ( speed != 0) {
 			ToolKitEvent tkevent = new ToolKitEvent ();
 			Condition condition = new Condition ();
-            condition.type = Condition.VariableType.TRIGGER;
+            condition.type = Condition.VariableType.Trigger;
 			condition.identifier = moveAnimationTrigger;
 			tkevent.condition = condition;
-			tkevent.type = ToolKitEvent.EventType.VARIABLE_CHANGE;
+			tkevent.type = ToolKitEvent.EventType.ConditionUpdate;
 			eventTrigger.TriggerEvent (tkevent);
 		} else {
 			ToolKitEvent tkevent = new ToolKitEvent();
 			Condition condition = new Condition();
-			condition.type = Condition.VariableType.TRIGGER;
+			condition.type = Condition.VariableType.Trigger;
 			condition.identifier = standAnimationTrigger;
 			tkevent.condition = condition;
-			tkevent.type = ToolKitEvent.EventType.VARIABLE_CHANGE;
+			tkevent.type = ToolKitEvent.EventType.ConditionUpdate;
 			eventTrigger.TriggerEvent (tkevent);
 		}
 

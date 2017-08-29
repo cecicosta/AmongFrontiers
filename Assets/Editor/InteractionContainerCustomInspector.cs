@@ -142,32 +142,32 @@ public class InteractionContainerCustomInspector : Editor {
         c.type = (Condition.VariableType)EditorGUILayout.EnumPopup(c.type);
 
         switch (c.type) {
-            case Condition.VariableType.BOOL: {
+            case Condition.VariableType.Bool: {
                     int selected = 0;
                     selected = c.BoolValue ? 1 : 0;
                     selected = EditorGUILayout.Popup(selected, (new string[] { "false", "true" }));
                     c.BoolValue = selected == 1 ? true : false;
                 }
                 break;
-            case Condition.VariableType.FLOAT: {
+            case Condition.VariableType.Float: {
                     int selected = 0;
-                    selected = c.variableCondition == Condition.VariableCondition.GREATER ? 0 : c.variableCondition == Condition.VariableCondition.LOWER ? 1 : 2;
+                    selected = c.comparison == Condition.VariableCondition.Greater ? 0 : c.comparison == Condition.VariableCondition.Lower ? 1 : 2;
                     selected = EditorGUILayout.Popup(selected, (new string[] { "greater", "less", "equal" }));
-                    c.variableCondition = selected == 0 ? Condition.VariableCondition.GREATER : selected == 1 ? Condition.VariableCondition.LOWER : Condition.VariableCondition.EQUAL;
+                    c.comparison = selected == 0 ? Condition.VariableCondition.Greater : selected == 1 ? Condition.VariableCondition.Lower : Condition.VariableCondition.Equal;
                     c.FloatValue = EditorGUILayout.FloatField(c.FloatValue);
                 }
                 break;
-            case Condition.VariableType.INT: {
+            case Condition.VariableType.Int: {
                     int selected = 0;
-                    selected = c.variableCondition == Condition.VariableCondition.GREATER ? 0 : c.variableCondition == Condition.VariableCondition.LOWER ? 1 : 2;
+                    selected = c.comparison == Condition.VariableCondition.Greater ? 0 : c.comparison == Condition.VariableCondition.Lower ? 1 : 2;
                     selected = EditorGUILayout.Popup(selected, (new string[] { "greater", "less", "equal" }));
-                    c.variableCondition = selected == 0 ? Condition.VariableCondition.GREATER : selected == 1 ? Condition.VariableCondition.LOWER : Condition.VariableCondition.EQUAL;
+                    c.comparison = selected == 0 ? Condition.VariableCondition.Greater : selected == 1 ? Condition.VariableCondition.Lower : Condition.VariableCondition.Equal;
                     c.IntValue = EditorGUILayout.IntField(c.IntValue);
                 }
                 break;
-            case Condition.VariableType.TRIGGER:
+            case Condition.VariableType.Trigger:
                 break;
-            case Condition.VariableType.INPUT:
+            case Condition.VariableType.Input:
                 c.InputValue = (KeyCode)EditorGUILayout.EnumPopup(c.InputValue);
                 break;
             default:

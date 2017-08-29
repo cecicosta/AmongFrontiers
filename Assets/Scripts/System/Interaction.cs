@@ -41,7 +41,6 @@ public class Interaction {
 
 	public int interactionId;
 	public ToolKitAction tkAction;
-	public ToolKitEvent tkEvent;
 	public InteractionController interactionController;
 	public List<Transition> parents = new List<Transition>();
 	public List<Transition> children = new List<Transition>();

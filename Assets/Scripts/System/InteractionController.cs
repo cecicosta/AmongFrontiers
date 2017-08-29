@@ -68,17 +68,22 @@ public class InteractionController : ToolKitEventListener {
 
 	public override void onTKEvent(ToolKitEvent tkEvent){
 
-		if (tkEvent.type == ToolKitEvent.EventType.VARIABLE_CHANGE) {
+		if (tkEvent.type == ToolKitEvent.EventType.ConditionUpdate) {
 
 			foreach( Interaction i in interactionsTrees ){
 				//Is root
 				if( i.parents.Count == 0 ){
 					bool allConditionsSatisfied = true;
+
+
+
 					foreach(Condition c in  i.conditions ){
 						if( !c.checkConditionVariable( ) && !c.checkConditionTrigger( tkEvent.condition.identifier ) ){
 							allConditionsSatisfied = false;
 						}
 					}
+
+
 					if(allConditionsSatisfied)
 					{
 						i.SetAsActive();	
@@ -87,7 +92,7 @@ public class InteractionController : ToolKitEventListener {
 				}
 			}
 		}
-		else if (tkEvent.type == ToolKitEvent.EventType.INPUT) {
+		else if (tkEvent.type == ToolKitEvent.EventType.Input) {
 			foreach( Interaction i in interactionsTrees ){
 				//Is root
 				if( i.parents.Count == 0 ){

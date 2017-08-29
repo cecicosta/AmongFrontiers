@@ -7,7 +7,7 @@ public class ChangeVariableAction : ToolKitAction {
 	public override void Execute( GameObject gameobjct ){
 		ToolKitEventTrigger trigger = new ToolKitEventTrigger ();
 		ToolKitEvent tkevent = new ToolKitEvent ();
-		tkevent.type = ToolKitEvent.EventType.VARIABLE_CHANGE;
+		tkevent.type = ToolKitEvent.EventType.ConditionUpdate;
 		tkevent.condition = (Condition)variable;
 		trigger.TriggerEvent (tkevent);
 	}
