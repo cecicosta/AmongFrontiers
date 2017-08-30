@@ -65,7 +65,6 @@ public class InteractionAreaCustomInspector : PropertyDrawer {
         //Create label and update the available space for the dropdown menu
         position = EditorGUI.PrefixLabel(position, new GUIContent(title));
 
-        //Current selected identifier
         selectedIdentifier = newIdentifierSelected? selectedIdentifier: p.FindPropertyRelative(label).stringValue;
 
         //Add the identifiers to the menu
@@ -81,6 +80,16 @@ public class InteractionAreaCustomInspector : PropertyDrawer {
             menu.DropDown(position);
         }
 
+        //Current selected identifier
+        if (p.FindPropertyRelative(label).stringValue != selectedIdentifier) {
+            Condition c = GameVariablesManager.Instance.getAllVariables().Find(x => x.identifier == selectedIdentifier);
+            p.FindPropertyRelative("type").intValue = (int)c.type;
+            p.FindPropertyRelative("comparison").intValue = (int)c.comparison;
+            p.FindPropertyRelative("IntValue").intValue = c.IntValue;
+            p.FindPropertyRelative("FloatValue").floatValue = c.FloatValue;
+            p.FindPropertyRelative("BoolValue").boolValue = c.BoolValue;
+            p.FindPropertyRelative("InputValue").intValue = (int)c.InputValue;
+        }
         p.FindPropertyRelative(label).stringValue = selectedIdentifier;
     }
 

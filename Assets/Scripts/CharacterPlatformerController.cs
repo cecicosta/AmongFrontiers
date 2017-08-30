@@ -92,7 +92,6 @@ public class CharacterPlatformerController : MonoBehaviour {
             condition.type = Condition.VariableType.Trigger;
 			condition.identifier = moveAnimationTrigger;
 			tkevent.condition = condition;
-			tkevent.type = ToolKitEvent.EventType.ConditionUpdate;
 			eventTrigger.TriggerEvent (tkevent);
 		} else {
 			ToolKitEvent tkevent = new ToolKitEvent();
@@ -100,7 +99,6 @@ public class CharacterPlatformerController : MonoBehaviour {
 			condition.type = Condition.VariableType.Trigger;
 			condition.identifier = standAnimationTrigger;
 			tkevent.condition = condition;
-			tkevent.type = ToolKitEvent.EventType.ConditionUpdate;
 			eventTrigger.TriggerEvent (tkevent);
 		}
 

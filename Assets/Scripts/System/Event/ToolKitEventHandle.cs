@@ -18,6 +18,7 @@ public class ToolKitEventHandle : Singleton<ToolKitEventHandle> {
 	
 	}
 
+    //If a event is trigged, emmit event (seems only a additional step)
 	public void OnEventTrigger(ToolKitEvent tkEvent){
 		onEvent (tkEvent);
 	}

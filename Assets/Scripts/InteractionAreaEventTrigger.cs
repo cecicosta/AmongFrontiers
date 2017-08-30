@@ -4,8 +4,8 @@ using System.Collections;
 [RequireComponent(typeof(BoxCollider2D))]
 public class InteractionAreaEventTrigger : ToolKitEventListener {
 
-	public ToolKitEvent listenTo;
-	public ToolKitEvent trigger;
+	public Condition listenTo;
+	public Condition trigger;
 	public GameObject interactWith;
 	private ToolKitEventTrigger tkEventTrigger;
 	private bool colliding;
@@ -20,11 +20,10 @@ public class InteractionAreaEventTrigger : ToolKitEventListener {
 	}
 
 	void OnTriggerEnter2D( Collider2D collider ){
-
 		if (collider.gameObject == interactWith) {
-						colliding = true;
-			//	Debug.Log ("collide");
-				}
+            colliding = true;
+            //	Debug.Log ("collide");
+		}
 	}
 	void OnTriggerExit2D( Collider2D collider ){
 		if (collider.gameObject == interactWith)
@@ -33,17 +32,17 @@ public class InteractionAreaEventTrigger : ToolKitEventListener {
 	}
 
 	void CallTrigger(){
-		tkEventTrigger.TriggerEvent (trigger);
+		tkEventTrigger.TriggerEvent (new ToolKitEvent(trigger));
 	}
 
 	public override void onTKEvent(ToolKitEvent tkEvent){
 		if (!colliding)
 			return;
-		if (listenTo.condition.checkConditionVariable ()) 
+		if (listenTo.checkConditionVariable ()) 
 			Invoke ("CallTrigger", 0);
-		if (listenTo.condition.checkConditionTrigger (tkEvent.condition.identifier)) 
+		if (listenTo.checkConditionTrigger (tkEvent.condition.identifier)) 
 			Invoke ("CallTrigger", 0);
-		if (listenTo.condition.checkConditionKey (tkEvent.condition))
+		if (listenTo.checkConditionKey (tkEvent.condition))
 			Invoke ("CallTrigger", 0);
 	}
 

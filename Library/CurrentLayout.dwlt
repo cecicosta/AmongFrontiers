@@ -110,7 +110,7 @@ MonoBehaviour:
   m_MinSize: {x: 711, y: 492}
   m_MaxSize: {x: 18006, y: 14042}
   vertical: 0
-  controlID: 116
+  controlID: 11
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -401,9 +401,9 @@ MonoBehaviour:
   m_isRotationLocked: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 7.260177, y: 1.9108914, z: 0}
+    m_Target: {x: 9.734008, y: 11.326646, z: 0}
     speed: 2
-    m_Value: {x: 7.260177, y: 1.9108914, z: 0}
+    m_Value: {x: 9.734008, y: 11.326646, z: 0}
   m_RenderMode: 31
   m_ValidateTrueMetals: 0
   m_SceneViewState:
@@ -430,9 +430,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 20.394049
+    m_Target: 33.144527
     speed: 2
-    m_Value: 20.394049
+    m_Value: 33.144527
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -471,9 +471,9 @@ MonoBehaviour:
     height: 470
   m_TreeViewState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: e0fbffff
-    m_LastClickedID: -1056
-    m_ExpandedIDs: 1efcffff00000000
+    m_SelectedIDs: 08fcffff
+    m_LastClickedID: -1016
+    m_ExpandedIDs: 1efcffff0000000078310000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -523,7 +523,7 @@ MonoBehaviour:
     width: 483
     height: 435
   m_SearchFilter:
-    m_NameFilter: list
+    m_NameFilter: 
     m_ClassNames: []
     m_AssetLabels: []
     m_AssetBundleNames: []
@@ -534,19 +534,19 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 0
     m_Folders:
-    - Assets/Scripts/Actions/Data
+    - Assets/Editor
   m_ViewMode: 1
   m_StartGridSize: 16
   m_LastFolders:
-  - Assets/Scripts/Actions/Data
+  - Assets/Editor
   m_LastFoldersGridSize: 16
   m_LastProjectPath: G:\Adventure Game - Release 3-20160831T003221Z\Adventure Game
     - Release 3
   m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 
-    m_LastClickedID: 0
+    m_SelectedIDs: ce2b0000
+    m_LastClickedID: 11214
     m_ExpandedIDs: 00000000ca210000da210000ea2100005a2200006422000078220000c4220000e6220000002300005c230000662300007023000074230000902300000c2400002e240000302400008a2400005e2500008a26000036270000782700009c280000942b0000222c00005a2c0000ae2c0000142d0000202e0000722e0000a42e0000f02e0000b4350000b6350000b8350000ba350000bc350000be350000c0350000c2350000c4350000ffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -602,22 +602,22 @@ MonoBehaviour:
   m_ListAreaState:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
-    m_HadKeyboardFocusLastEvent: 0
+    m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: ca1e0000f0210000522b00001e2c0000ea2c00007a2e00001c020000c4010000d40000008e1c0000705f0000360200003e1c0000e0230000005100004e510000fa500000fe01000006020000020200000a0200003a0100002a0200003c0100002e02000046020000540200009a2600008a260000342800005227000040330000b22d00006e270000122d000000290000582c00003c290000e02b00009a2a00005a2c0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: 
-      m_OriginalName: 
+      m_Name: ConditionListCustomEditor
+      m_OriginalName: ConditionListCustomEditor
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 0
+      m_UserData: 1856
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 11
+      m_OriginalEventType: 0
       m_IsRenamingFilename: 1
       m_ClientGUIView: {fileID: 9}
     m_CreateAssetUtility:
@@ -629,7 +629,7 @@ MonoBehaviour:
     m_NewAssetIndexInList: -1
     m_ScrollPosition: {x: 0, y: 0}
     m_GridSize: 16
-  m_DirectoriesAreaWidth: 363
+  m_DirectoriesAreaWidth: 218
 --- !u!114 &16
 MonoBehaviour:
   m_ObjectHideFlags: 52

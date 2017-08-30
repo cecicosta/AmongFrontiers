@@ -67,50 +67,23 @@ public class InteractionController : ToolKitEventListener {
 	}
 
 	public override void onTKEvent(ToolKitEvent tkEvent){
-
-		if (tkEvent.type == ToolKitEvent.EventType.ConditionUpdate) {
-
-			foreach( Interaction i in interactionsTrees ){
-				//Is root
-				if( i.parents.Count == 0 ){
-					bool allConditionsSatisfied = true;
-
-
-
-					foreach(Condition c in  i.conditions ){
-						if( !c.checkConditionVariable( ) && !c.checkConditionTrigger( tkEvent.condition.identifier ) ){
-							allConditionsSatisfied = false;
-						}
-					}
-
-
-					if(allConditionsSatisfied)
-					{
-						i.SetAsActive();	
-						playInteractionTrees.Add(i);
+		foreach( Interaction i in interactionsTrees ){
+			//Is root
+			if( i.parents.Count == 0 ){
+				bool allConditionsSatisfied = true;
+				foreach(Condition c in  i.conditions ){
+					if( !c.checkConditionVariable( ) && !c.checkConditionTrigger( tkEvent.condition.identifier ) && !c.checkConditionKey(tkEvent.condition)) {
+						allConditionsSatisfied = false;
 					}
 				}
-			}
-		}
-		else if (tkEvent.type == ToolKitEvent.EventType.Input) {
-			foreach( Interaction i in interactionsTrees ){
-				//Is root
-				if( i.parents.Count == 0 ){
-					bool allConditionsSatisfied = true;
-					foreach(Condition c in  i.conditions ){
-						if( !c.checkConditionKey(tkEvent.condition) ){
-							allConditionsSatisfied = false;
-						}
-					}
-					if(allConditionsSatisfied)
-					{
-						i.SetAsActive();	
-						playInteractionTrees.Add(i);
-					}
+
+				if(allConditionsSatisfied)
+				{
+					i.SetAsActive();	
+					playInteractionTrees.Add(i);
 				}
 			}
-
-		}
+		}		
 	}
 
 }

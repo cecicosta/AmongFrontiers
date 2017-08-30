@@ -6,9 +6,7 @@ public class ChangeVariableAction : ToolKitAction {
 	
 	public override void Execute( GameObject gameobjct ){
 		ToolKitEventTrigger trigger = new ToolKitEventTrigger ();
-		ToolKitEvent tkevent = new ToolKitEvent ();
-		tkevent.type = ToolKitEvent.EventType.ConditionUpdate;
-		tkevent.condition = (Condition)variable;
+		ToolKitEvent tkevent = new ToolKitEvent (variable);
 		trigger.TriggerEvent (tkevent);
 	}
 	public override bool isStarted(){

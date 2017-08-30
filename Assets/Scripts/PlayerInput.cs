@@ -80,23 +80,12 @@ public class PlayerInput : MonoBehaviour {
 		}
 
         if (directionX != 0) {
-            ToolKitEvent tkevent = new ToolKitEvent();
-            Condition condition = new Condition();
-            condition.type = Condition.VariableType.Trigger;
-            condition.identifier = moveAnimationTrigger.identifier;
-            tkevent.condition = condition;
-            tkevent.type = ToolKitEvent.EventType.ConditionUpdate;
+            ToolKitEvent tkevent = new ToolKitEvent(moveAnimationTrigger);
             eventTrigger.TriggerEvent(tkevent);
         } else {
-            ToolKitEvent tkevent = new ToolKitEvent();
-            Condition condition = new Condition();
-            condition.type = Condition.VariableType.Trigger;
-            condition.identifier = standAnimationTrigger.identifier;
-            tkevent.condition = condition;
-            tkevent.type = ToolKitEvent.EventType.ConditionUpdate;
+            ToolKitEvent tkevent = new ToolKitEvent(standAnimationTrigger);
             eventTrigger.TriggerEvent(tkevent);
         }
-
     }
 
 

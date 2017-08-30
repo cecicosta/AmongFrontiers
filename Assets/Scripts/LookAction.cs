@@ -12,6 +12,7 @@ public class LookAction : Trigger {
 	void Start () {
 		lookButton = GameObject.FindGameObjectWithTag("LookButtom").GetComponent<Button>();
 		lookButton.OnClickEvent += OnTriggerLook;
+
 	}
 	
 	// Update is called once per frame
