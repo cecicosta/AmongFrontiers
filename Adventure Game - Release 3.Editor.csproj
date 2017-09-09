@@ -145,6 +145,7 @@
     <Compile Include="Assets\Editor\ActionManagerCustomInspector.cs" />
     <Compile Include="Assets\Editor\ActionWindowEditor.cs" />
     <Compile Include="Assets\Editor\ConditionListCustomEditor.cs" />
+    <Compile Include="Assets\Editor\DialogControllerInspector.cs" />
     <Compile Include="Assets\Editor\DialogEditor.cs" />
     <Compile Include="Assets\Editor\DialogInspector.cs" />
     <Compile Include="Assets\Editor\GenericMenuExample.cs" />

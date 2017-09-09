@@ -163,9 +163,11 @@ public class InteractionNodesEditor : EditorWindow {
 				
 				selected = EditorGUILayout.Popup(selected, interCtrl.ToArray());
 
+                
+
 				if( EditorGUI.EndChangeCheck() ){
 					if( !inter.interactionController.Interactions.Remove(inter) ){
-						Debug.Log("Porraessa?");
+						Debug.Log("Error");
 					}
 
 					foreach( Transition child in inter.children ){

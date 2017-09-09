@@ -48,6 +48,9 @@ public class InteractionContainerCustomInspector : Editor {
 						action_names.Add (a.action);
 		index = EditorGUILayout.Popup (index, action_names.ToArray ());
 
+        //SerializedObject serializedObject = new UnityEditor.SerializedObject(actions[index]);
+        //Editor.DrawPropertiesExcluding(serializedObject, new string[1] {"Script"});
+
 		if (interaction.tkAction == null && index > -1) {
 			interaction.tkAction = actions [index];
 		}else if ( interaction.tkAction != null && !interaction.tkAction.action.Equals (action_names [index])) {

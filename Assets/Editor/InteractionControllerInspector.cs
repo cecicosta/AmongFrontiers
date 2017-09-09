@@ -12,8 +12,8 @@ public class InteractionControllerInspector : Editor {
 
 		DrawDefaultInspector ();
 
-		if (GUILayout.Button("Editor"))
-						InteractionNodesEditor.ShowWindow ( (InteractionController)this.target );
+		if (GUILayout.Button("Interaction Editor"))
+            InteractionNodesEditor.ShowWindow ( (InteractionController)this.target );
 
 	}
 	// Update is called once per frame

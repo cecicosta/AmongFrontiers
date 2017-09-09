@@ -2,7 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 
-[RequireComponent(typeof(BoxCollider2D))]
 public class DialogController : MonoBehaviour {
 	enum State {STOP, PLAY, WAIT, QUERY ,SELECT, STANDBY, INACTIVE };
 
