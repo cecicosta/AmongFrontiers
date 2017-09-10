@@ -1,8 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[System.Serializable]
 public class ChangeVariableAction : ToolKitAction {
-	public Condition variable;
+    
+    public Condition variable;
 	
 	public override void Execute( GameObject gameobjct ){
 		ToolKitEventTrigger trigger = new ToolKitEventTrigger ();

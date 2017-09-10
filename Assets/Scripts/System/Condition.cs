@@ -4,7 +4,7 @@ using System;
 using UnityEditor;
 
 [System.Serializable]
-public class Condition{
+public class Condition: PropertyAttribute{
 
     public enum VariableType { Int, Bool, Float, Trigger, Input };
     public string identifier = "";
@@ -42,7 +42,7 @@ public class Condition{
 		bool isSatisfied = false;
         Condition condition = GameVariablesManager.Instance.GetVariable(identifier);
 		if(condition == null) {
-            Debug.LogError("Condition identifier not found: " + identifier);
+            Debug.Log("Condition identifier not found: " + identifier);
             return isSatisfied;
         }
 
@@ -90,5 +90,8 @@ public class Condition{
 		return isSatisfied;
 	}
 
+    internal bool checkConditionKey(object skipDialogCondition) {
+        throw new NotImplementedException();
+    }
 }
 

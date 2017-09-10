@@ -117,7 +117,9 @@
     <Compile Include="Assets\Scripts\Singleton.cs" />
     <Compile Include="Assets\Scripts\StateMachine.cs" />
     <Compile Include="Assets\Scripts\System\Condition.cs" />
+    <Compile Include="Assets\Scripts\System\ConditionContainer.cs" />
     <Compile Include="Assets\Scripts\System\Dialog\Dialog.cs" />
+    <Compile Include="Assets\Scripts\System\Dialog\DialogBox.cs" />
     <Compile Include="Assets\Scripts\System\Dialog\DialogController.cs" />
     <Compile Include="Assets\Scripts\System\Dialog\DialogSet.cs" />
     <Compile Include="Assets\Scripts\System\Dialog\DialogShelf.cs" />

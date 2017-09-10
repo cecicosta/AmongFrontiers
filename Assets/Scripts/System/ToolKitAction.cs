@@ -4,19 +4,21 @@ using System.Collections;
 [System.Serializable]
 public class ToolKitAction: ScriptableObject {
 
-	public string action;
+    private string action = "";
 
-	void OnEnable(){
-		if (action == null)
-						action = "";
-	}
-	public virtual void Execute( GameObject gameObject ){}
-	public virtual bool isStarted(){
-		return false;
-	}
-	public virtual bool isFinished(){
-		return false;
-	}
+    public string Action {
+        get {
+            return action;
+        }
+
+        set {
+            action = value;
+        }
+    }
+
+    public virtual void Execute(GameObject gameObject) { }
+    public virtual bool isStarted() { return false;  }
+    public virtual bool isFinished() { return false; }
 
 
 }

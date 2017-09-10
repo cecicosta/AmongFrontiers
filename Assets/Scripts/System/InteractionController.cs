@@ -13,7 +13,7 @@ public class InteractionController : ToolKitEventListener {
 	 * next node is not satisfied, the tree may be discarded  from the 
 	 * execution list unless it is marked to stay on a wait state. Time 
 	 * out conditions stays on wait state by default.*/
-
+    [HideInInspector]
 	[SerializeField]
 	private List<Interaction> interactionsTrees = new List<Interaction>();
 	private List<Interaction> playInteractionTrees = new List<Interaction> ();

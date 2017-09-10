@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class DialogController : MonoBehaviour {
+public class DialogController : ToolKitEventListener {
 	enum State {STOP, PLAY, WAIT, QUERY ,SELECT, STANDBY, INACTIVE };
 
 	//Controller States: Keep all controllers syncronized
@@ -13,13 +13,9 @@ public class DialogController : MonoBehaviour {
 
 	//Controller atributes
 	public DialogShelf dialogShelf;
-	public float time = 5;
 
 	//Costumizable buttons for dialog options
 	public List<Button> buttons;
-	public Button dialogbox;
-
-	public bool talk = false;
 
 	private List<string> options = new List<string>();
 
@@ -30,7 +26,9 @@ public class DialogController : MonoBehaviour {
 	private Dialog current;
 	private float timer;
 	private bool skipped = false;
-	public  bool Skip{
+    public Condition skipDialogCondition;
+
+    public  bool Skip{
 		set{ skipped = value; }
 	}
 
@@ -93,9 +91,16 @@ public class DialogController : MonoBehaviour {
 		controllerState = State.PLAY;
 	}
 	
+    public void SkipDialog() {
+        Skip = true;
+    }
+
 	//Controller Method: Trigger on direct interactions
 	public bool TriggerDialog(){
-		Debug.Log ("Trigged!");
+        if (controllerState != State.INACTIVE)
+            return false;
+
+        Debug.Log ("Trigged!");
 		foreach( DialogSet d in dialogShelf.layers ){
 			int conditionCounter = 0;
 			for( int i=0; i<d.conditions.Count; i++ ){
@@ -114,7 +119,10 @@ public class DialogController : MonoBehaviour {
 	}
 
 	public bool TriggerDialog( string flag ){
-		foreach( DialogSet d in dialogShelf.layers ){
+        if (controllerState != State.INACTIVE)
+            return false;
+
+        foreach ( DialogSet d in dialogShelf.layers ){
 			if( d.layer.CompareTo(flag) == 0 )
 			{
 				d.Load();
@@ -144,19 +152,16 @@ public class DialogController : MonoBehaviour {
 */
 	//Controller Method
 	void ControllerUpdate(){
-
-		skipped = false;
-		if( Input.GetMouseButtonUp(0) ){
-			Skip = true;
-		}
-
 		Speecher speecher = null;
 		switch( controllerState ){
 			
 			case State.STOP:
 				speecher = register[current.characterIdentifier];
-				dialogbox.GetComponent<Renderer>().enabled = false;
-				dialogbox.text.text = "";
+                DialogBox.Instance.SetVisible(false);
+                DialogBox.Instance.StartRenderText("");
+
+                //dialogbox.GetComponent<Renderer>().enabled = false;
+				//dialogbox.text.text = "";
 				//speecher.face.renderer.enabled = false;
 				controllerState = State.INACTIVE;
 
@@ -166,10 +171,13 @@ public class DialogController : MonoBehaviour {
 				timer = Time.time;
 				//Diaplay faceset and dialogbox
 				speecher = register[current.characterIdentifier];
-				//speecher.face.renderer.enabled = true;
-				//Display Dialogbox
-				dialogbox.GetComponent<Renderer>().enabled = true;
-				dialogbox.text.text = current.text;	
+                //speecher.face.renderer.enabled = true;
+                //Display Dialogbox
+                DialogBox.Instance.SetVisible(true);
+                DialogBox.Instance.StartRenderText(current.text);
+
+				//dialogbox.GetComponent<Renderer>().enabled = true;
+				//dialogbox.text.text = current.text;	
 
 				speecher.OnDialogStartNotify(current.tag);
 
@@ -183,10 +191,17 @@ public class DialogController : MonoBehaviour {
 			break;
 			case State.WAIT:
 				//Waiting for something happens and change the state
-				if( time < Time.time - timer || skipped ){
-					
-					controllerState = State.QUERY;
+				if(!DialogBox.Instance.IsWaitingInput() && skipped){
+                    DialogBox.Instance.RenderTextImmediatelly();
 				}
+
+                if(DialogBox.Instance.IsWaitingInput() && skipped) {
+                    DialogBox.Instance.ContinueRenderText();
+                }
+
+                if(DialogBox.Instance.IsRenderFinished() && skipped) {
+                    controllerState = State.QUERY;
+                }
 			break;
 			case State.STANDBY:
 			break;
@@ -258,6 +273,7 @@ public class DialogController : MonoBehaviour {
 				}
 			break;
 		}
+        skipped = false;
 			
 	}
 
@@ -268,7 +284,11 @@ public class DialogController : MonoBehaviour {
 
 	}
 
-
-
-	
+    public override void onTKEvent(ToolKitEvent tkEvent) {
+        if(skipDialogCondition.checkConditionKey(tkEvent.condition) || 
+        skipDialogCondition.checkConditionTrigger(tkEvent.condition.identifier) || 
+        skipDialogCondition.checkConditionVariable()) {
+            SkipDialog();
+        }
+    }
 }

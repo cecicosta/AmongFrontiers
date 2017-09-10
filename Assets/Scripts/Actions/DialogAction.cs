@@ -1,8 +1,8 @@
 using UnityEngine;
 using System.Collections;
 
+[System.Serializable]
 public class DialogAction : ToolKitAction {
-
 	public string dialogFlag = "";
 	public override void Execute( GameObject dialogController ){
 		Debug.Log ( "DialogAction::Execute - START" );

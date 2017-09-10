@@ -11,7 +11,9 @@ public class AnimChangeStateAction : ToolKitAction {
 	private bool boolValue;
 	private float floatValue;
 
-	public override void Execute( GameObject animator ){}public override bool isStarted(){
+	public override void Execute( GameObject animator ){}
+    
+    public override bool isStarted(){
 		return false;
 	}
 	public override bool isFinished(){

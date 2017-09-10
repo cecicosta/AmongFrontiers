@@ -58,16 +58,20 @@ public class ActionManager : Singleton<ActionManager> {
 	}
 
 	public ToolKitAction CreateActionAsset(string script){
-		ToolKitAction action = (ToolKitAction)ScriptableObject.CreateInstance( script );
+
+        System.Type type = System.Type.GetType(script);
+        ToolKitAction action = (ToolKitAction)System.Activator.CreateInstance(type);
+
+        //ToolKitAction action = (ToolKitAction)ScriptableObject.CreateInstance( script );
 		return action;
 	}
 	public void SaveActionAsset(ToolKitAction action){
 #if UNITY_EDITOR
-		string path = Application.dataPath + ProjectPaths.ACTION_DATA + "/" + action.action + ProjectPaths.ACTION_EXTENSION;
-		path = path.Substring( Application.dataPath.Length - 6 );
-		AssetDatabase.CreateAsset(action, path);
+		//string path = Application.dataPath + ProjectPaths.ACTION_DATA + "/" + action.action + ProjectPaths.ACTION_EXTENSION;
+		//path = path.Substring( Application.dataPath.Length - 6 );
+		//AssetDatabase.CreateAsset(action, path);
 		actions.Add (action);
-		AssetDatabase.SaveAssets();
+		//AssetDatabase.SaveAssets();
 #endif
 	}
 }

@@ -151,7 +151,7 @@ public class InteractionNodesEditor : EditorWindow {
 				EditorGUI.BeginChangeCheck();
 
 				if( interactions[windowId].tkAction != null )
-					EditorGUILayout.LabelField ( "Action: " + interactions[windowId].tkAction.name );
+					EditorGUILayout.LabelField ( "Action: " + interactions[windowId].tkAction.GetType().ToString() );
 				else
 					EditorGUILayout.LabelField ( "Action:" );
 				Interaction inter = interactions [windowId];

@@ -40,6 +40,7 @@ public class Interaction {
 	private State state = State.INACTIVE;
 
 	public int interactionId;
+    [SerializeField]
 	public ToolKitAction tkAction;
 	public InteractionController interactionController;
 	public List<Transition> parents = new List<Transition>();

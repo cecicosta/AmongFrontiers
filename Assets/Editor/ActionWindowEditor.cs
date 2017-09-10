@@ -16,12 +16,11 @@ public class ActionWindowEditor : EditorWindow {
 		
 		if (selected != null)
 		{
-			var editor = Editor.CreateEditor(selected);
-			editor.OnInspectorGUI();     
-			if (GUILayout.Button ("Save")) {
-				ActionManager.Instance.SaveActionAsset(selected);
-			}
-
+			//var editor = Editor.CreateEditor(selected);
+			//editor.OnInspectorGUI();     
+			//if (GUILayout.Button ("Save")) {
+			//	ActionManager.Instance.SaveActionAsset(selected);
+			//}
 		}
 		
 	}

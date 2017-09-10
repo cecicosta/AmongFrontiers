@@ -144,13 +144,13 @@
   <ItemGroup>
     <Compile Include="Assets\Editor\ActionManagerCustomInspector.cs" />
     <Compile Include="Assets\Editor\ActionWindowEditor.cs" />
+    <Compile Include="Assets\Editor\ConditionDrawer.cs" />
     <Compile Include="Assets\Editor\ConditionListCustomEditor.cs" />
     <Compile Include="Assets\Editor\DialogControllerInspector.cs" />
     <Compile Include="Assets\Editor\DialogEditor.cs" />
     <Compile Include="Assets\Editor\DialogInspector.cs" />
     <Compile Include="Assets\Editor\GenericMenuExample.cs" />
-    <Compile Include="Assets\Editor\InteractionAreaCustomInspector.cs" />
-    <Compile Include="Assets\Editor\InteractionContainerCustomInspector.cs" />
+    <Compile Include="Assets\Editor\InteractionContainerInspector.cs" />
     <Compile Include="Assets\Editor\InteractionControllerInspector.cs" />
     <Compile Include="Assets\Editor\InteractionNodesEditor.cs" />
     <Compile Include="Assets\Editor\TransitionContainerCustomInspector.cs" />

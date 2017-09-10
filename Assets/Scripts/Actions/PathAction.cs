@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
+[System.Serializable]
 public class PathAction : ToolKitAction {
 
 	public override void Execute( GameObject transform ){}

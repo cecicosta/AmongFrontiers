@@ -34,7 +34,7 @@ public class GameVariablesManager : Singleton<GameVariablesManager> {
 	// Update is called once per frame
 	void Update () {
         foreach(Condition c in inputConditions) {
-            if(Input.GetKey(c.InputValue)) {
+            if(Input.GetKeyDown(c.InputValue)) {
                 (new ToolKitEventTrigger()).TriggerEvent(new ToolKitEvent(c));
             }
         }
