@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-
+[RequireComponent(typeof(BoxCollider2D))]
 public class Speecher: MonoBehaviour {
 
 	public enum State { ACTIVE, INACTIVE };

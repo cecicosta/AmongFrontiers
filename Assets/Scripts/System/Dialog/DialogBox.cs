@@ -11,18 +11,22 @@ public class DialogBox : Singleton<DialogBox> {
     /// <summary>
     /// Characters per seccond
     /// </summary>
-    public float renderVelocity = 10; 
-
+    public float renderVelocity = 10;
+    public RectTransform anchor;
     public string textToRender;
     private bool renderFinished = true;
     private bool waitingInput;
     private string renderedText;
     public GameObject container;
     private bool speedUpRendering;
+    private RectTransform rectTransform;
+    private RectTransform parentRect;
 
     // Use this for initialization
     void Start () {
-	}
+        rectTransform = GetComponent<RectTransform>();
+        parentRect = transform.parent.GetComponent<RectTransform>();
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -32,7 +36,45 @@ public class DialogBox : Singleton<DialogBox> {
     public void RenderTextImmediatelly() {
         speedUpRendering = true;
     }
-    
+
+    public void StartRenderText(Speecher speecher, string textToRender) {
+        if (renderFinished == false)
+            return;
+        //Conlider is mandatory for speecher
+        BoxCollider2D colider = speecher.GetComponent<BoxCollider2D>();
+
+        Vector2 scrCenter = Camera.main.WorldToScreenPoint(colider.bounds.center);
+        Vector2 scrMin = Camera.main.WorldToScreenPoint(colider.bounds.min);
+        Vector2 scrMax = Camera.main.WorldToScreenPoint(colider.bounds.max);
+
+        if (rectTransform == null) {
+            rectTransform = GetComponent<RectTransform>();
+        }
+        if (parentRect == null) {
+            parentRect = transform.parent.GetComponent<RectTransform>();
+        }
+
+        Vector2 boxPosition = new Vector2(0,0);
+        if (anchor != null) {
+            //anchor.localPosition = new Vector2(scrCenter.x, scrMax.y);
+            boxPosition = new Vector2(0, anchor.rect.height);
+        }
+
+        //Adjust by the parent reference center point
+        Vector2 parentReferenceCenter = new Vector2(parentRect.pivot.x* parentRect.rect.width, parentRect.pivot.x* parentRect.rect.height);
+
+        //Adjust by its own center
+        Vector2 referenceCenter = new Vector2(rectTransform.pivot.x * rectTransform.rect.width, rectTransform.pivot.x * rectTransform.rect.height);
+        Vector2 centerAdjust = new Vector2(referenceCenter.x - rectTransform.rect.width / 2, referenceCenter.y);
+
+        transform.localPosition = boxPosition + new Vector2(scrCenter.x - parentReferenceCenter.x + centerAdjust.x, 
+                                                            scrMax.y - parentReferenceCenter.y + centerAdjust.y);
+
+        renderFinished = false;
+        string[] words = textToRender.Split(' ');
+        StartCoroutine(RenderTextAnimate(words));
+    }
+
     public void StartRenderText(string textToRender) {
         if (renderFinished == false)
             return;

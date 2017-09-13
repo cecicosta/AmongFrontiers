@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
+[RequireComponent(typeof(Speecher))]
 public class DialogController : ToolKitEventListener {
 	enum State {STOP, PLAY, WAIT, QUERY ,SELECT, STANDBY, INACTIVE };
 
@@ -157,8 +158,9 @@ public class DialogController : ToolKitEventListener {
 			
 			case State.STOP:
 				speecher = register[current.characterIdentifier];
+                DialogBox.Instance.StartRenderText(speecher, "");
                 DialogBox.Instance.SetVisible(false);
-                DialogBox.Instance.StartRenderText("");
+                
 
                 //dialogbox.GetComponent<Renderer>().enabled = false;
 				//dialogbox.text.text = "";
@@ -174,7 +176,7 @@ public class DialogController : ToolKitEventListener {
                 //speecher.face.renderer.enabled = true;
                 //Display Dialogbox
                 DialogBox.Instance.SetVisible(true);
-                DialogBox.Instance.StartRenderText(current.text);
+                DialogBox.Instance.StartRenderText(speecher, current.text);
 
 				//dialogbox.GetComponent<Renderer>().enabled = true;
 				//dialogbox.text.text = current.text;	
