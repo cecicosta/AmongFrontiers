@@ -10,7 +10,7 @@ public class Dialog: ScriptableObject{
 	public int id;
 	public bool updateRoot = false;
 	public string characterIdentifier = "";
-	public string tag = "";
+	public string dialogTag = "";
 	public int selectedQuery = 0;
 	public string text = "";
 	public List<string> query = new List<string>();

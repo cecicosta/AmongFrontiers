@@ -41,9 +41,9 @@ public class ConditionDrawer : PropertyDrawer {
         //EditorGUI.BeginProperty(position, label, property);
         //DrawEnumProperty(new Rect(position.x, position.y, position.width, 15), "type", property);
         //EditorGUI.EndProperty();
-        EditorGUI.BeginProperty(position, label, property);
+            EditorGUI.BeginProperty(position, label, property);
         EditorGUI.indentLevel = 0;
-        EditorGUI.LabelField(new Rect(position.x, position.y, position.width, 15), new GUIContent("Condition"));
+        EditorGUI.LabelField(new Rect(position.x, position.y, position.width, 15), new GUIContent(label));
         EditorGUI.EndProperty();
 
         int inc = 15;        

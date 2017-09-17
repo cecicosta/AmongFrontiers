@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 public class DialogManager : Singleton<DialogManager> {
 
-	public List<Speecher> speechers = new List<Speecher>();
+	public List<Speaker> speechers = new List<Speaker>();
 	// Use this for initialization
 	void Start () {
 	

@@ -5,7 +5,7 @@ using System.Collections.Generic;
 [CustomEditor(typeof(Dialog))]
 public class DialogInspector : Editor {
 
-	private Dictionary<string, Speecher>  register = new Dictionary<string, Speecher>();
+	private Dictionary<string, Speaker>  register = new Dictionary<string, Speaker>();
 
 	void OnEnable(){
 		RegisterSpeechers();
@@ -15,7 +15,7 @@ public class DialogInspector : Editor {
 		Dialog dialog = (Dialog)target;
 	
 		//TEXT AREA FOR TRIGGER TAG
-		dialog.tag = EditorGUILayout.TextField("Activate Flag", dialog.tag);
+		dialog.dialogTag = EditorGUILayout.TextField("Activate Flag", dialog.dialogTag);
 
 		//
 		dialog.updateRoot = EditorGUILayout.Toggle("Update Root", dialog.updateRoot); 
@@ -61,8 +61,8 @@ public class DialogInspector : Editor {
 
 	public void RegisterSpeechers(){
 		register.Clear();
-		Speecher[] speechers = (Speecher[]) FindObjectsOfType( typeof(Speecher) );
-		foreach( Speecher s in speechers ){
+		Speaker[] speechers = (Speaker[]) FindObjectsOfType( typeof(Speaker) );
+		foreach( Speaker s in speechers ){
 			if( !register.ContainsKey(s.identifier) )
 				register.Add( s.identifier, s );
 		}

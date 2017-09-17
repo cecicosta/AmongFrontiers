@@ -14,7 +14,7 @@ public class DialogEditor : EditorWindow {
 	private DialogShelf dialogShelf;
     private DialogController diagControl;
 
-    private Dictionary<string, Speecher>  register = new Dictionary<string, Speecher>();
+    private Dictionary<string, Speaker>  register = new Dictionary<string, Speaker>();
 	
 	//Flags
 	private bool linking = false;
@@ -666,8 +666,8 @@ go.tag = tagStr;
 
 	public void RegisterSpeechers(){
 		register.Clear();
-		Speecher[] speechers = (Speecher[]) FindObjectsOfType( typeof(Speecher) );
-		foreach( Speecher s in speechers ){
+		Speaker[] speechers = (Speaker[]) FindObjectsOfType( typeof(Speaker) );
+		foreach( Speaker s in speechers ){
 			if( !register.ContainsKey(s.identifier) )
 				register.Add( s.identifier, s );
 		}

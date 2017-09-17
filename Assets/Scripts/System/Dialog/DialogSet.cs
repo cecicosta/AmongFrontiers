@@ -1,9 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-
-
-
+using System;
 
 [System.Serializable]
 public class DialogSet: ScriptableObject  {
@@ -182,24 +180,33 @@ public class DialogSet: ScriptableObject  {
 
 		return true;
 	}
-	/*
-	public bool Remove( int index ){
-		if( list[index].id == root ){
-			Debug.LogWarning( "The root cannot be removed from the set." );
-			return false;
-		}
-		if( ((Dialog)hash[identifiers[index]]).id == root ){
-			Debug.LogWarning( "The root cannot be removed from the set." );
-			return false;
-		}
-		
-		hash.Remove(identifiers[index]);
-		identifiers.Remove( identifiers[index] );
-		list.Remove(list[index]);
-		return true;
-	}
-	*/
-	public void Clear(){
+
+    public Dialog GetByTag(string dialogTag) {
+        foreach(Dialog d in list) {
+            if (d.dialogTag == dialogTag)
+                return d;
+        }
+        return null;
+    }
+
+    /*
+public bool Remove( int index ){
+    if( list[index].id == root ){
+        Debug.LogWarning( "The root cannot be removed from the set." );
+        return false;
+    }
+    if( ((Dialog)hash[identifiers[index]]).id == root ){
+        Debug.LogWarning( "The root cannot be removed from the set." );
+        return false;
+    }
+
+    hash.Remove(identifiers[index]);
+    identifiers.Remove( identifiers[index] );
+    list.Remove(list[index]);
+    return true;
+}
+*/
+    public void Clear(){
 		identifiers.Clear();
 		hash.Clear();
 		list.Clear();

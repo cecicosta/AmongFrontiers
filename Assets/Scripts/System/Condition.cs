@@ -90,6 +90,10 @@ public class Condition: PropertyAttribute{
 		return isSatisfied;
 	}
 
+    public bool CheckCondition(Condition condition) {
+        return checkConditionVariable() || checkConditionTrigger(condition.identifier) || checkConditionKey(condition);
+    }
+
     internal bool checkConditionKey(object skipDialogCondition) {
         throw new NotImplementedException();
     }

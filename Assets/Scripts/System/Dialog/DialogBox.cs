@@ -37,7 +37,7 @@ public class DialogBox : Singleton<DialogBox> {
         speedUpRendering = true;
     }
 
-    public void StartRenderText(Speecher speecher, string textToRender) {
+    public void StartRenderText(Speaker speecher, string textToRender) {
         if (renderFinished == false)
             return;
         //Conlider is mandatory for speecher

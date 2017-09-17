@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System;
 
-[RequireComponent(typeof(Speecher))]
 public class DialogController : ToolKitEventListener {
 	enum State {STOP, PLAY, WAIT, QUERY ,SELECT, STANDBY, INACTIVE };
 
@@ -10,7 +10,7 @@ public class DialogController : ToolKitEventListener {
 	private State controllerState = State.INACTIVE;
 
 	private static bool registerSpeachers = false;
-	private static Dictionary<string, Speecher> register = new Dictionary<string, Speecher>();
+	private static Dictionary<string, Speaker> register = new Dictionary<string, Speaker>();
 
 	//Controller atributes
 	public DialogShelf dialogShelf;
@@ -33,8 +33,8 @@ public class DialogController : ToolKitEventListener {
 		set{ skipped = value; }
 	}
 
-	// Event Handler: Used to notify conditions triggered by finished dialogs
-	public delegate void OnDialogStart(string tag);
+    // Event Handler: Used to notify conditions triggered by finished dialogs
+    public delegate void OnDialogStart(string tag);
 	public event OnDialogStart onDialogStartEvent;
 	
 	public delegate void OnDialogEnd(string tag);
@@ -43,8 +43,8 @@ public class DialogController : ToolKitEventListener {
 	void Start(){
 
 		if( !registerSpeachers ){
-			Speecher[] speechers = FindObjectsOfType<Speecher>();
-			foreach( Speecher s in speechers ){
+			Speaker[] speechers = FindObjectsOfType<Speaker>();
+			foreach( Speaker s in speechers ){
 				//print(s.identifier);
 				register.Add(s.identifier, s);
 			}
@@ -119,12 +119,12 @@ public class DialogController : ToolKitEventListener {
 		return false;
 	}
 
-	public bool TriggerDialog( string flag ){
+	public bool TriggerDialog( string layer ){
         if (controllerState != State.INACTIVE)
             return false;
 
         foreach ( DialogSet d in dialogShelf.layers ){
-			if( d.layer.CompareTo(flag) == 0 )
+			if( d.layer.CompareTo(layer) == 0 )
 			{
 				d.Load();
 				d.Reset();
@@ -136,7 +136,37 @@ public class DialogController : ToolKitEventListener {
 		Debug.Log ("TriggerDialog - Object does not have the specified Dialog");
 		return false;
 	}
-	/*
+
+    public bool TriggerDialog(Speaker speaker, string dialogLayer, string dialogTag) {
+        if (controllerState != State.INACTIVE)
+            return false;
+
+        foreach (DialogSet d in dialogShelf.layers) {
+            if (dialogLayer != "" && d.layer.CompareTo(dialogLayer) != 0)
+                continue;
+
+            Dialog current = d.Current;
+            if (dialogTag != "") {
+                current = d.GetByTag(dialogTag);
+            }
+
+            if (current == null)
+                continue;
+
+            if (current.characterIdentifier != speaker.identifier)
+                continue;
+
+            d.Load();
+            d.Reset();
+            currentDialogSet = d;
+            PlayDialog(current);
+            return true;
+        }
+        Debug.Log("TriggerDialog - Object does not have the specified Dialog");
+        return false;
+    }
+
+    /*
 	//Controller Method: Check for interactions the controller
 	void OnTriggerStay2D(Collider2D other) {
 		//buttons[0].text.text = "Entrou";
@@ -151,9 +181,9 @@ public class DialogController : ToolKitEventListener {
 		talk = true;
 	}
 */
-	//Controller Method
-	void ControllerUpdate(){
-		Speecher speecher = null;
+    //Controller Method
+    void ControllerUpdate(){
+		Speaker speecher = null;
 		switch( controllerState ){
 			
 			case State.STOP:
@@ -173,6 +203,7 @@ public class DialogController : ToolKitEventListener {
 				timer = Time.time;
 				//Diaplay faceset and dialogbox
 				speecher = register[current.characterIdentifier];
+                
                 //speecher.face.renderer.enabled = true;
                 //Display Dialogbox
                 DialogBox.Instance.SetVisible(true);
@@ -181,10 +212,10 @@ public class DialogController : ToolKitEventListener {
 				//dialogbox.GetComponent<Renderer>().enabled = true;
 				//dialogbox.text.text = current.text;	
 
-				speecher.OnDialogStartNotify(current.tag);
+				speecher.OnDialogStartNotify(current.dialogTag);
 
 				try{
-					onDialogStartEvent(current.tag);
+					onDialogStartEvent(current.dialogTag);
 				}catch( System.Exception e ){
 					Debug.Log(e);
 				}	
@@ -232,7 +263,7 @@ public class DialogController : ToolKitEventListener {
 					speecher = register[current.characterIdentifier];
 					//speecher.face.renderer.enabled = false;
 
-					speecher.OnDialogEndNotify(current.tag);
+					speecher.OnDialogEndNotify(current.dialogTag);
 					try{
 						onDialogEndEvent(tag);
 					}catch(System.Exception e){
@@ -248,7 +279,7 @@ public class DialogController : ToolKitEventListener {
 					speecher = register[current.characterIdentifier];
 					//speecher.face.renderer.enabled = false;
 
-					speecher.OnDialogEndNotify(current.tag);
+					speecher.OnDialogEndNotify(current.dialogTag);
 					try{
 						onDialogEndEvent(tag);
 					}catch(System.Exception e){
@@ -264,7 +295,7 @@ public class DialogController : ToolKitEventListener {
 					speecher = register[current.characterIdentifier];
 					//speecher.face.renderer.enabled = false;
 
-					speecher.OnDialogEndNotify(current.tag);
+					speecher.OnDialogEndNotify(current.dialogTag);
 					try{
 						onDialogEndEvent(tag);
 					}catch(System.Exception e){
