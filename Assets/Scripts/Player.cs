@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
+[RequireComponent(typeof(Speaker))]
 [RequireComponent (typeof (Controller2D))]
 public class Player : MonoBehaviour {
 
@@ -121,7 +123,7 @@ public class Player : MonoBehaviour {
 
 	}
 
-	void CalculateVelocity() {
+    void CalculateVelocity() {
 		float targetVelocityX = directionalInput.x * moveSpeed;
 		velocity.x = Mathf.SmoothDamp (velocity.x, targetVelocityX, ref velocityXSmoothing, (controller.collisions.below)?accelerationTimeGrounded:accelerationTimeAirborne);
 		velocity.y += gravity * Time.deltaTime;

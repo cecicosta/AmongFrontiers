@@ -109,6 +109,8 @@ public class InteractionContainerInspector : Editor {
         //	interaction.tkAction = actions[index];
         //      }
 
+        interaction.useInteractionArea = EditorGUILayout.Toggle(new GUIContent("Use Interaction Area"), interaction.useInteractionArea);
+
         EditorGUILayout.Separator();
         EditorGUILayout.Separator();
         style = new GUIStyle(GUI.skin.label);

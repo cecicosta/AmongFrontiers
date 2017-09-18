@@ -7,9 +7,10 @@ public class PlayerInput : MonoBehaviour {
     public Condition moveAnimationTrigger;
     public Condition standAnimationTrigger;
 
-    private ToolKitEventTrigger eventTrigger;
+    public bool stopped = false;
 
-    Player player;
+    private ToolKitEventTrigger eventTrigger;
+    private Player player;
 
     private float directionX = 0;
     private bool flip = false;
@@ -22,6 +23,9 @@ public class PlayerInput : MonoBehaviour {
     }
 
 	void Update () {
+
+        if (stopped)
+            return;
 
         Vector2 position = InterfaceManager.cursorWorldPosition;
 
@@ -88,6 +92,17 @@ public class PlayerInput : MonoBehaviour {
         }
     }
 
+    public void Stop() {
+        stopped = true;
+        player.SetDirectionalInput(new Vector2(0, 0));
+
+        ToolKitEvent tkevent = new ToolKitEvent(standAnimationTrigger);
+        eventTrigger.TriggerEvent(tkevent);
+    }
+
+    public void Resume() {
+        stopped = false;
+    }
 
     void Flip() {
         // Switch the way the player is labelled as facing.

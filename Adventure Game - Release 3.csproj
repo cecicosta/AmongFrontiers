@@ -92,6 +92,7 @@
     <Compile Include="Assets\Scripts\Actions\ChangeVariableAction.cs" />
     <Compile Include="Assets\Scripts\Actions\DialogAction.cs" />
     <Compile Include="Assets\Scripts\Actions\PathAction.cs" />
+    <Compile Include="Assets\Scripts\Actions\SwitchCharacter.cs" />
     <Compile Include="Assets\Scripts\Button.cs" />
     <Compile Include="Assets\Scripts\ButtonTrigger.cs" />
     <Compile Include="Assets\Scripts\CameraFollow.cs" />

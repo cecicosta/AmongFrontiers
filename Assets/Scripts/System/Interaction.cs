@@ -50,8 +50,8 @@ public class Interaction {
 
 	private float timeTicker = 0;
 	public float timeout = 0;
-	
-	public void ConnectTo(Interaction child){
+    public bool useInteractionArea = false;
+    public void ConnectTo(Interaction child){
 
 		int numberOfConnections = 0;
 		if( children.Find(x => x.To == child ) != null ){
@@ -122,7 +122,14 @@ public class Interaction {
 		}
 	}
 
-	public Interaction getNext(){
+    public void ExecuteAction(GameObject colliding) {
+        if (tkAction != null && TimeOut()) {
+            tkAction.Execute(colliding, interactionController.gameObject);
+            SetAsInactive();
+        }
+    }
+
+    public Interaction getNext(){
 		Interaction next = null;
 		foreach (Transition t in children) {
 			Interaction i = t.interactionController.getInteractionById (t.toId);
@@ -140,4 +147,5 @@ public class Interaction {
 
 	//Editor properties
 	public Rect EditorWindowRect = new Rect (100, 100, 200, 72);
+    
 }

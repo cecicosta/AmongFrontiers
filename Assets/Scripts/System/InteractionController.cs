@@ -3,6 +3,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
+[RequireComponent(typeof(BoxCollider2D))]
 public class InteractionController : ToolKitEventListener {
 
 	/*
@@ -17,7 +18,9 @@ public class InteractionController : ToolKitEventListener {
 	[SerializeField]
 	private List<Interaction> interactionsTrees = new List<Interaction>();
 	private List<Interaction> playInteractionTrees = new List<Interaction> ();
-	public List<Interaction> Interactions{
+    private GameObject colliding = null;
+
+    public List<Interaction> Interactions{
 		get{ return interactionsTrees; }
 	}
 
@@ -42,23 +45,30 @@ public class InteractionController : ToolKitEventListener {
 		foreach (Interaction i in playInteractionTrees.ToArray()) {
 			if (!i.IsActive ()) {
 
-				if (i.HasChild ()) {
-						Interaction next = i.getNext ();
-						//All conditions may not be satisfied
-						if (next != null) {
-								//playInteractionTrees.Remove (i);
-								toRemove.Add (i);
-								i.SetAsInactive ();
-								next.SetAsActive ();
-								//playInteractionTrees.Add (next);
-								toAdd.Add(next);
-						}
-				} else
-						//playInteractionTrees.Remove (i);
-						toRemove.Add(i);
-			}else {
-				i.ExecuteAction();
-			}
+                if (i.HasChild()) {
+                    Interaction next = i.getNext();
+                    //All conditions may not be satisfied
+                    if (next != null) {
+                        //playInteractionTrees.Remove (i);
+                        toRemove.Add(i);
+                        i.SetAsInactive();
+                        next.SetAsActive();
+                        //playInteractionTrees.Add (next);
+                        toAdd.Add(next);
+                    }
+                } else {
+                    //playInteractionTrees.Remove (i);
+                    toRemove.Add(i);
+                }
+			}else if((i.useInteractionArea && colliding != null)) {
+				i.ExecuteAction(colliding);
+			}else if (!i.useInteractionArea) {
+                i.ExecuteAction();
+            } else {
+                i.SetAsInactive();
+                toRemove.Add(i);
+            }
+
 		}
 		foreach (Interaction i in toAdd)
 						playInteractionTrees.Add (i);
@@ -66,7 +76,15 @@ public class InteractionController : ToolKitEventListener {
 						playInteractionTrees.Remove (i);
 	}
 
-	public override void onTKEvent(ToolKitEvent tkEvent){
+    private void OnTriggerEnter2D(Collider2D collision) {
+        colliding = collision.gameObject;
+    }
+
+    private void OnTriggerExit2D(Collider2D collision) {
+        colliding = null;
+    }
+
+    public override void onTKEvent(ToolKitEvent tkEvent){
 		foreach( Interaction i in interactionsTrees ){
 			//Is root
 			if( i.parents.Count == 0 ){
