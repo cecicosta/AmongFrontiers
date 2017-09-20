@@ -104,6 +104,7 @@ public class DialogBox : Singleton<DialogBox> {
         TextGenerationSettings settings = text.GetGenerationSettings(textArea.rect.size);
         TextGenerator generator = new TextGenerator();
         settings.horizontalOverflow = HorizontalWrapMode.Wrap;
+        settings.verticalOverflow = VerticalWrapMode.Truncate;
         settings.generateOutOfBounds = false;
 
         renderedText = "";
@@ -116,11 +117,11 @@ public class DialogBox : Singleton<DialogBox> {
             float secondsPerChar = 1 / renderVelocity;
 
             generator.Populate(renderedText + currentWord, settings);
-            float w = generator.GetPreferredWidth(renderedText + currentWord, settings);
-            float h = generator.GetPreferredHeight(renderedText + currentWord, settings);
+            float w = generator.GetPreferredWidth(renderedText + currentWord + " ", settings);
+            float h = generator.GetPreferredHeight(renderedText + currentWord + " ", settings);
 
             //check if the amount of text already reach the bounds limit of the text area
-            if (w * h > textArea.rect.width * textArea.rect.height) {
+            if (w > textArea.rect.width && h > textArea.rect.height) {
                 waitingInput = true;
                 speedUpRendering = false; //Stop "speed up" when text reach limit
                 yield return null;
