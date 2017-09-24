@@ -63,11 +63,14 @@ public class Controller2D : RaycastController {
 
 			if (hit) {
 
-				if (hit.distance == 0) {
+                if (hit.distance == 0) {
 					continue;
 				}
 
 				float slopeAngle = Vector2.Angle(hit.normal, Vector2.up);
+
+                if (i != 0 && hit.collider.tag == "Through")
+                    continue;
 
 				if (i == 0 && slopeAngle <= maxSlopeAngle) {
 					if (collisions.descendingSlope) {
@@ -82,8 +85,7 @@ public class Controller2D : RaycastController {
 					ClimbSlope(ref moveAmount, slopeAngle, hit.normal);
 					moveAmount.x += distanceToSlopeStart * directionX;
 				}
-
-				if (!collisions.climbingSlope || slopeAngle > maxSlopeAngle) {
+                if (!collisions.climbingSlope || slopeAngle > maxSlopeAngle) {
 					moveAmount.x = (hit.distance - skinWidth) * directionX;
 					rayLength = hit.distance;
 

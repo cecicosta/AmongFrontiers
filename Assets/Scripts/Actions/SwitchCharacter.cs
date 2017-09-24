@@ -13,16 +13,19 @@ using UnityEngine;
         if (cf == null)
             return;
 
-        Controller2D c2d = interactionController.GetComponent<Controller2D>();
-        if (c2d == null)
+        Controller2D c2dInter = interactionController.GetComponentInParent<Controller2D>();
+        Controller2D c2dCol = colliding.GetComponentInParent<Controller2D>();
+
+        if (c2dInter == null || c2dCol == null)
             return;
-        if (cf.target.gameObject == colliding)
-            c2d.StartCoroutine(SwitchCharacterDelayed(cf, colliding, interactionController));
+
+        if (cf.target == c2dCol)
+            c2dCol.StartCoroutine(SwitchCharacterDelayed(cf, c2dCol, c2dInter));
         else if (cf.target.gameObject == interactionController)
-            c2d.StartCoroutine(SwitchCharacterDelayed(cf, interactionController, colliding));
+            c2dInter.StartCoroutine(SwitchCharacterDelayed(cf, c2dInter, c2dCol));
     }
 
-    IEnumerator SwitchCharacterDelayed(CameraFollow cf, GameObject active, GameObject inactive) {
+    IEnumerator SwitchCharacterDelayed(CameraFollow cf, Controller2D active, Controller2D inactive) {
         yield return null;
         PlayerInput pActive = active.GetComponent<PlayerInput>();
         pActive.Stop();

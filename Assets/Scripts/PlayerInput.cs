@@ -6,7 +6,8 @@ public class PlayerInput : MonoBehaviour {
 
     public Condition moveAnimationTrigger;
     public Condition standAnimationTrigger;
-
+    public Condition jumpAnimationTrigger;
+    public GameObject graphics;
     public bool stopped = false;
 
     private ToolKitEventTrigger eventTrigger;
@@ -83,13 +84,19 @@ public class PlayerInput : MonoBehaviour {
 			player.OnJumpInputUp ();
 		}
 
-        if (directionX != 0) {
+
+        if (player.IsJumping()) {
+            ToolKitEvent tkevent = new ToolKitEvent(jumpAnimationTrigger);
+            eventTrigger.TriggerEvent(tkevent);
+        }else if (directionX != 0) {
             ToolKitEvent tkevent = new ToolKitEvent(moveAnimationTrigger);
             eventTrigger.TriggerEvent(tkevent);
         } else {
             ToolKitEvent tkevent = new ToolKitEvent(standAnimationTrigger);
             eventTrigger.TriggerEvent(tkevent);
         }
+
+        
     }
 
     public void Stop() {
@@ -109,8 +116,8 @@ public class PlayerInput : MonoBehaviour {
         flip = !flip;
 
         // Multiply the player's x local scale by -1.
-        Vector3 theScale = transform.localScale;
+        Vector3 theScale = graphics.transform.localScale;
         theScale.x *= -1;
-        transform.localScale = theScale;
+        graphics.transform.localScale = theScale;
     }
 }
