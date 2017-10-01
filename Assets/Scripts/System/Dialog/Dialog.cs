@@ -13,6 +13,9 @@ public class Dialog: ScriptableObject{
 	public string dialogTag = "";
 	public int selectedQuery = 0;
 	public string text = "";
+    public bool isTrigger = false;
+    [SerializeField]
+    public Condition toTrigger;
 	public List<string> query = new List<string>();
 	public List<int> parents = new List<int>();
 	public List<int> children = new List<int>();

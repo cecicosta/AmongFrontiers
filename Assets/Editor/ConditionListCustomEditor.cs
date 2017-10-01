@@ -9,6 +9,7 @@ public class ConditionListCustomEditor : Editor {
 
     string editingValue;
     string lastFocusedControl;
+    private int focusId;
 
     void OnEnable() {
         values = GameVariablesManager.Instance.GetSceneConditions();
@@ -61,11 +62,27 @@ public class ConditionListCustomEditor : Editor {
         EditorGUILayout.Space();
         EditorGUILayout.Space();
 
-        int id = editedValues.FindIndex(x => x.identifier == GUI.GetNameOfFocusedControl());
-        if (id > -1){
-            newValue = editedValues[id];
+        int tmpFocusId = editedValues.FindIndex(x => x.identifier == GUI.GetNameOfFocusedControl());
+        if (tmpFocusId > -1)
+            focusId = tmpFocusId;
+
+        if (focusId > -1){
+            newValue = editedValues[focusId];
+
+            //ConditionContainer container = ScriptableObject.CreateInstance<ConditionContainer>();
+            //container.condition = newValue;
+
+            //SerializedObject serializedObject = new SerializedObject(container);
+            //serializedObject.Update();
+            //EditorGUI.BeginChangeCheck();
+            //Editor.DrawPropertiesExcluding(serializedObject, new string[] { "m_Script"});
+            //serializedObject.ApplyModifiedProperties();
+
             ShowConditionEditing(newValue);
-            editedValues[id] = newValue;
+
+
+            //editedValues[id] = container.condition;
+            //editedValues[id].identifier = newValue.identifier;
         }
 
 
@@ -91,7 +108,7 @@ public class ConditionListCustomEditor : Editor {
             case Condition.VariableType.Float: {
                     int selected = 0;
                     selected = c.comparison == Condition.VariableCondition.Greater ? 0 : c.comparison == Condition.VariableCondition.Lower ? 1 : 2;
-                    selected = EditorGUILayout.Popup(selected, (new string[] { "greater", "less", "equal" }));
+                    //selected = EditorGUILayout.Popup(selected, (new string[] { "greater", "less", "equal" }));
                     c.comparison = selected == 0 ? Condition.VariableCondition.Greater : selected == 1 ? Condition.VariableCondition.Lower : Condition.VariableCondition.Equal;
                     c.FloatValue = EditorGUILayout.FloatField(c.FloatValue);
                 }
@@ -99,7 +116,7 @@ public class ConditionListCustomEditor : Editor {
             case Condition.VariableType.Int: {
                     int selected = 0;
                     selected = c.comparison == Condition.VariableCondition.Greater ? 0 : c.comparison == Condition.VariableCondition.Lower ? 1 : 2;
-                    selected = EditorGUILayout.Popup(selected, (new string[] { "greater", "less", "equal" }));
+                    //selected = EditorGUILayout.Popup(selected, (new string[] { "greater", "less", "equal" }));
                     c.comparison = selected == 0 ? Condition.VariableCondition.Greater : selected == 1 ? Condition.VariableCondition.Lower : Condition.VariableCondition.Equal;
                     c.IntValue = EditorGUILayout.IntField(c.IntValue);
                 }
@@ -113,7 +130,7 @@ public class ConditionListCustomEditor : Editor {
                 break;
         }
         EditorGUILayout.EndHorizontal();
-        GUI.FocusControl(c.identifier);
+        //GUI.FocusControl(c.identifier);
     }
 
 

@@ -4,11 +4,13 @@ using System.Collections;
 [System.Serializable]
 public class ChangeVariableAction : ToolKitAction {
     
-    public Condition variable;
+    [SerializeField]
+    public Condition changeTo;
 	
 	public override void Execute( GameObject gameobjct ){
+
 		ToolKitEventTrigger trigger = new ToolKitEventTrigger ();
-		ToolKitEvent tkevent = new ToolKitEvent (variable);
+		ToolKitEvent tkevent = new ToolKitEvent (changeTo);
 		trigger.TriggerEvent (tkevent);
 	}
 	public override bool isStarted(){

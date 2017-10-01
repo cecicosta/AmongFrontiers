@@ -29,6 +29,7 @@ public class DialogController : ToolKitEventListener {
 	private bool skipped = false;
     public Condition skipDialogCondition;
     private Speaker speakerTrigger;
+    private ToolKitEventTrigger onDialogTrigger;
 
     public  bool Skip{
 		set{ skipped = value; }
@@ -266,6 +267,8 @@ public class DialogController : ToolKitEventListener {
 					speecher.OnDialogEndNotify(current.dialogTag);
                     if (speakerTrigger != null)
                         speakerTrigger.OnDialogEndNotify(current.dialogTag);
+                    if (current.isTrigger)
+                        onDialogTrigger.TriggerEvent(new ToolKitEvent(current.toTrigger));
 
                     try {
 						onDialogEndEvent(tag);
@@ -285,6 +288,8 @@ public class DialogController : ToolKitEventListener {
 					speecher.OnDialogEndNotify(current.dialogTag);
                     if (speakerTrigger != null)
                         speakerTrigger.OnDialogEndNotify(current.dialogTag);
+                    if (current.isTrigger)
+                        onDialogTrigger.TriggerEvent(new ToolKitEvent(current.toTrigger));
 
                     try {
 						onDialogEndEvent(tag);
@@ -304,6 +309,8 @@ public class DialogController : ToolKitEventListener {
 					speecher.OnDialogEndNotify(current.dialogTag);
                     if (speakerTrigger != null)
                         speakerTrigger.OnDialogEndNotify(current.dialogTag);
+                    if (current.isTrigger)
+                        onDialogTrigger.TriggerEvent(new ToolKitEvent(current.toTrigger));
 
                     try {
 						onDialogEndEvent(tag);

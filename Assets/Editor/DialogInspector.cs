@@ -57,6 +57,16 @@ public class DialogInspector : Editor {
 		EditorGUILayout.LabelField("Dialog Text");
 		dialog.text = EditorGUILayout.TextArea(dialog.text );
 
+        //
+        dialog.isTrigger = EditorGUILayout.Toggle(new GUIContent("Is Trigger"), dialog.isTrigger);
+        if (dialog.isTrigger) {
+
+            SerializedObject serializedObject = new SerializedObject(dialog);
+            serializedObject.Update();
+            EditorGUI.BeginChangeCheck();
+            EditorGUILayout.PropertyField(serializedObject.FindProperty("toTrigger"));
+            serializedObject.ApplyModifiedProperties();           
+        }
 	}
 
 	public void RegisterSpeechers(){

@@ -155,6 +155,7 @@
     <Compile Include="Assets\Editor\InteractionContainerInspector.cs" />
     <Compile Include="Assets\Editor\InteractionControllerInspector.cs" />
     <Compile Include="Assets\Editor\InteractionNodesEditor.cs" />
+    <Compile Include="Assets\Editor\PropertyUtils.cs" />
     <Compile Include="Assets\Editor\SerializedPropertyExtensions.cs" />
     <Compile Include="Assets\Editor\SpeakerInspector.cs" />
     <Compile Include="Assets\Editor\TransitionContainerCustomInspector.cs" />
