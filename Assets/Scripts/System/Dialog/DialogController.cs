@@ -43,7 +43,7 @@ public class DialogController : ToolKitEventListener {
 	public event OnDialogEnd onDialogEndEvent;
 
 	void Start(){
-
+        onDialogTrigger = new ToolKitEventTrigger();
 		if( !registerSpeachers ){
 			Speaker[] speechers = FindObjectsOfType<Speaker>();
 			foreach( Speaker s in speechers ){

@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 [System.Serializable]
 public class ChangeVariableAction : ToolKitAction {
@@ -8,6 +9,9 @@ public class ChangeVariableAction : ToolKitAction {
     public Condition changeTo;
 	
 	public override void Execute( GameObject gameobjct ){
+        List<Condition> conditions = GameVariablesManager.Instance.getAllVariables();
+        int index = conditions.FindIndex(x => x.identifier == changeTo.identifier);
+        conditions[index].Copy(changeTo);
 
 		ToolKitEventTrigger trigger = new ToolKitEventTrigger ();
 		ToolKitEvent tkevent = new ToolKitEvent (changeTo);

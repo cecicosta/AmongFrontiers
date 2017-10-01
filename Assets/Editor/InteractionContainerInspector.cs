@@ -94,9 +94,8 @@ public class InteractionContainerInspector : Editor {
         //    EditorGUILayout.PropertyField(prop);
         //}
 
-        if (GUI.changed) {
-            serializedObject.ApplyModifiedProperties();
-        }
+        serializedObject.ApplyModifiedProperties();
+        
 
         //EditorGUILayout.PropertyField(serializedObject.FindProperty(""), new GUIContent("Action"), true, GUILayout.ExpandHeight(true));
         //serializedObject.ApplyModifiedProperties();

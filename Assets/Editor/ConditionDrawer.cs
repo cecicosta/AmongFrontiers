@@ -102,6 +102,7 @@ public class ConditionDrawer : PropertyDrawer {
             menu.DropDown(position);
         }
 
+
         if (newIdentifierSelected && this.position == position) {
             if (p.FindPropertyRelative("identifier").stringValue != currentSelectedIdentifier) {
                 Condition c = GameVariablesManager.Instance.getAllVariables().Find(x => x.identifier == currentSelectedIdentifier);

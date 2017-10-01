@@ -1,8 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-
-
+using System;
 
 [System.Serializable]
 public class Transition {	
@@ -144,8 +143,8 @@ public class Interaction {
 
 		return next;
 	}
-
-	//Editor properties
-	public Rect EditorWindowRect = new Rect (100, 100, 200, 72);
+    
+    //Editor properties
+    public Rect EditorWindowRect = new Rect (100, 100, 200, 72);
     
 }

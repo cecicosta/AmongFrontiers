@@ -23,6 +23,15 @@ public class Condition: PropertyAttribute{
         //type = VariableType.TRIGGER;
 	}
 
+    public void Copy(Condition from) {
+        IntValue = from.IntValue;
+        BoolValue = from.BoolValue;
+        FloatValue = from.FloatValue;
+        InputValue = from.InputValue;
+        type = from.type;
+        identifier = from.identifier;
+    }
+
     public void setIntValue( int value ){ IntValue = value; }
 	public void setBoolValue( bool value ){ BoolValue = value; }
 	public void setFloatValue( float value ){ FloatValue = value; }
