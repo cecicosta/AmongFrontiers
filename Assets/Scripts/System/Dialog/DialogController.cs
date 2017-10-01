@@ -28,6 +28,7 @@ public class DialogController : ToolKitEventListener {
 	private float timer;
 	private bool skipped = false;
     public Condition skipDialogCondition;
+    private Speaker speakerTrigger;
 
     public  bool Skip{
 		set{ skipped = value; }
@@ -141,25 +142,21 @@ public class DialogController : ToolKitEventListener {
         if (controllerState != State.INACTIVE)
             return false;
 
+        speakerTrigger = speaker;
+
         foreach (DialogSet d in dialogShelf.layers) {
             if (dialogLayer != "" && d.layer.CompareTo(dialogLayer) != 0)
                 continue;
 
-            Dialog current = d.Current;
-            if (dialogTag != "") {
-                current = d.GetByTag(dialogTag);
-            }
-
-            if (current == null)
-                continue;
-
-            if (current.characterIdentifier != speaker.identifier)
-                continue;
-
             d.Load();
             d.Reset();
+
+            if (dialogTag != "" && !d.SetCurrent(dialogTag)) {
+                continue;                
+            }
+
             currentDialogSet = d;
-            PlayDialog(current);
+            PlayDialog(d.Current);
             return true;
         }
         Debug.Log("TriggerDialog - Object does not have the specified Dialog");
@@ -214,6 +211,9 @@ public class DialogController : ToolKitEventListener {
 
 				speecher.OnDialogStartNotify(current.dialogTag);
 
+                if (speakerTrigger != null)
+                    speakerTrigger.OnDialogStartNotify(current.dialogTag);
+
 				try{
 					onDialogStartEvent(current.dialogTag);
 				}catch( System.Exception e ){
@@ -264,7 +264,10 @@ public class DialogController : ToolKitEventListener {
 					//speecher.face.renderer.enabled = false;
 
 					speecher.OnDialogEndNotify(current.dialogTag);
-					try{
+                    if (speakerTrigger != null)
+                        speakerTrigger.OnDialogEndNotify(current.dialogTag);
+
+                    try {
 						onDialogEndEvent(tag);
 					}catch(System.Exception e){
 						Debug.Log(e);
@@ -280,7 +283,10 @@ public class DialogController : ToolKitEventListener {
 					//speecher.face.renderer.enabled = false;
 
 					speecher.OnDialogEndNotify(current.dialogTag);
-					try{
+                    if (speakerTrigger != null)
+                        speakerTrigger.OnDialogEndNotify(current.dialogTag);
+
+                    try {
 						onDialogEndEvent(tag);
 					}catch(System.Exception e){
 						Debug.Log(e);
@@ -296,7 +302,10 @@ public class DialogController : ToolKitEventListener {
 					//speecher.face.renderer.enabled = false;
 
 					speecher.OnDialogEndNotify(current.dialogTag);
-					try{
+                    if (speakerTrigger != null)
+                        speakerTrigger.OnDialogEndNotify(current.dialogTag);
+
+                    try {
 						onDialogEndEvent(tag);
 					}catch(System.Exception e){
 						Debug.Log(e);

@@ -189,6 +189,15 @@ public class DialogSet: ScriptableObject  {
         return null;
     }
 
+    public bool SetCurrent(string dialogTag) {
+        Dialog candidate = list.Find(d => d.dialogTag == dialogTag);
+        if (candidate != null) {
+            current = ((Dialog)hash[candidate.id]).id;
+            return true;
+        }
+        return false;
+    }
+
     /*
 public bool Remove( int index ){
     if( list[index].id == root ){
