@@ -19,6 +19,7 @@ public class InteractionController : ToolKitEventListener {
 	private List<Interaction> interactionsTrees = new List<Interaction>();
 	private List<Interaction> playInteractionTrees = new List<Interaction> ();
     private GameObject colliding = null;
+    private bool suspend = false;
 
     public List<Interaction> Interactions{
 		get{ return interactionsTrees; }
@@ -84,7 +85,17 @@ public class InteractionController : ToolKitEventListener {
         colliding = null;
     }
 
+    public void Suspend() {
+        suspend = true;
+    }
+
+    public void Resume() {
+        suspend = false;
+    }
+
     public override void onTKEvent(ToolKitEvent tkEvent){
+        if (suspend)
+            return;
 		foreach( Interaction i in interactionsTrees ){
 			//Is root
 			if( i.parents.Count == 0 ){

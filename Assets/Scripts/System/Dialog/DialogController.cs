@@ -15,8 +15,10 @@ public class DialogController : ToolKitEventListener {
 	//Controller atributes
 	public DialogShelf dialogShelf;
 
-	//Costumizable buttons for dialog options
-	public List<Button> buttons;
+    public Speaker speakerTrigger;
+
+    //Costumizable buttons for dialog options
+    public List<Button> buttons;
 
 	private List<string> options = new List<string>();
 
@@ -28,7 +30,8 @@ public class DialogController : ToolKitEventListener {
 	private float timer;
 	private bool skipped = false;
     public Condition skipDialogCondition;
-    private Speaker speakerTrigger;
+    private Speaker speakerTarget;
+    
     private ToolKitEventTrigger onDialogTrigger;
 
     public  bool Skip{
@@ -44,6 +47,7 @@ public class DialogController : ToolKitEventListener {
 
 	void Start(){
         onDialogTrigger = new ToolKitEventTrigger();
+
 		if( !registerSpeachers ){
 			Speaker[] speechers = FindObjectsOfType<Speaker>();
 			foreach( Speaker s in speechers ){
@@ -115,7 +119,11 @@ public class DialogController : ToolKitEventListener {
 				d.Reset();
 				currentDialogSet = d;
 				PlayDialog( d.Current );
-				return true;
+
+                if (speakerTrigger != null)
+                    speakerTrigger.OnDialogStartNotify(current.dialogTag);
+
+                return true;
 			}
 		}
 		return false;
@@ -132,7 +140,11 @@ public class DialogController : ToolKitEventListener {
 				d.Reset();
 				currentDialogSet = d;
 				PlayDialog( d.Current );
-				return true;
+
+                if (speakerTrigger != null)
+                    speakerTrigger.OnDialogStartNotify(current.dialogTag);
+
+                return true;
 			}
 		}
 		Debug.Log ("TriggerDialog - Object does not have the specified Dialog");
@@ -143,7 +155,7 @@ public class DialogController : ToolKitEventListener {
         if (controllerState != State.INACTIVE)
             return false;
 
-        speakerTrigger = speaker;
+        speakerTarget = speaker;
 
         foreach (DialogSet d in dialogShelf.layers) {
             if (dialogLayer != "" && d.layer.CompareTo(dialogLayer) != 0)
@@ -158,6 +170,12 @@ public class DialogController : ToolKitEventListener {
 
             currentDialogSet = d;
             PlayDialog(d.Current);
+
+            if (speakerTarget != null)
+                speakerTarget.OnDialogStartNotify(current.dialogTag);
+            if (speakerTrigger != null)
+                speakerTrigger.OnDialogStartNotify(current.dialogTag);
+
             return true;
         }
         Debug.Log("TriggerDialog - Object does not have the specified Dialog");
@@ -181,39 +199,38 @@ public class DialogController : ToolKitEventListener {
 */
     //Controller Method
     void ControllerUpdate(){
-		Speaker speecher = null;
+		Speaker dialogSpeaker = null;
 		switch( controllerState ){
 			
 			case State.STOP:
-				speecher = register[current.characterIdentifier];
-                DialogBox.Instance.StartRenderText(speecher, "");
+				dialogSpeaker = register[current.characterIdentifier];
+                DialogBox.Instance.StartRenderText(dialogSpeaker, "");
                 DialogBox.Instance.SetVisible(false);
-                
 
+                if (speakerTarget != null)
+                    speakerTarget.OnDialogEndNotify(current.dialogTag);
+                if (speakerTrigger != null)
+                    speakerTrigger.OnDialogEndNotify(current.dialogTag);
                 //dialogbox.GetComponent<Renderer>().enabled = false;
-				//dialogbox.text.text = "";
-				//speecher.face.renderer.enabled = false;
-				controllerState = State.INACTIVE;
+                //dialogbox.text.text = "";
+                //speecher.face.renderer.enabled = false;
+                speakerTarget = null;
+                controllerState = State.INACTIVE;
 
 			break;
 			case State.PLAY:
 					
 				timer = Time.time;
 				//Diaplay faceset and dialogbox
-				speecher = register[current.characterIdentifier];
+				dialogSpeaker = register[current.characterIdentifier];
                 
                 //speecher.face.renderer.enabled = true;
                 //Display Dialogbox
                 DialogBox.Instance.SetVisible(true);
-                DialogBox.Instance.StartRenderText(speecher, current.text);
+                DialogBox.Instance.StartRenderText(dialogSpeaker, current.text);
 
 				//dialogbox.GetComponent<Renderer>().enabled = true;
 				//dialogbox.text.text = current.text;	
-
-				speecher.OnDialogStartNotify(current.dialogTag);
-
-                if (speakerTrigger != null)
-                    speakerTrigger.OnDialogStartNotify(current.dialogTag);
 
 				try{
 					onDialogStartEvent(current.dialogTag);
@@ -261,12 +278,9 @@ public class DialogController : ToolKitEventListener {
 						b.GetComponent<Renderer>().enabled = false;
 						b.text.text = "";
 					}
-					speecher = register[current.characterIdentifier];
+					//dialogSpeaker = register[current.characterIdentifier];
 					//speecher.face.renderer.enabled = false;
-
-					speecher.OnDialogEndNotify(current.dialogTag);
-                    if (speakerTrigger != null)
-                        speakerTrigger.OnDialogEndNotify(current.dialogTag);
+                    
                     if (current.isTrigger)
                         onDialogTrigger.TriggerEvent(new ToolKitEvent(current.toTrigger));
 
@@ -282,12 +296,9 @@ public class DialogController : ToolKitEventListener {
 						currentDialogSet.Root = current;
 					controllerState = State.PLAY;
 				}else if( current.query.Count == 1 ){
-					speecher = register[current.characterIdentifier];
+					//dialogSpeaker = register[current.characterIdentifier];
 					//speecher.face.renderer.enabled = false;
-
-					speecher.OnDialogEndNotify(current.dialogTag);
-                    if (speakerTrigger != null)
-                        speakerTrigger.OnDialogEndNotify(current.dialogTag);
+                    
                     if (current.isTrigger)
                         onDialogTrigger.TriggerEvent(new ToolKitEvent(current.toTrigger));
 
@@ -303,13 +314,10 @@ public class DialogController : ToolKitEventListener {
 						currentDialogSet.Root = current;
 					controllerState = State.PLAY;
 				}else{
-					speecher = register[current.characterIdentifier];
+					//dialogSpeaker = register[current.characterIdentifier];
 					//speecher.face.renderer.enabled = false;
 
-					speecher.OnDialogEndNotify(current.dialogTag);
-                    if (speakerTrigger != null)
-                        speakerTrigger.OnDialogEndNotify(current.dialogTag);
-                    if (current.isTrigger)
+					if (current.isTrigger)
                         onDialogTrigger.TriggerEvent(new ToolKitEvent(current.toTrigger));
 
                     try {
