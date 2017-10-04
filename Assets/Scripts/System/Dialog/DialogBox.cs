@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using System.Diagnostics;
 
 public class DialogBox : Singleton<DialogBox> {
     public Image dialogBox;
@@ -14,24 +13,57 @@ public class DialogBox : Singleton<DialogBox> {
     public float renderVelocity = 10;
     public RectTransform anchor;
     public string textToRender;
+    public GameObject container;
+
+    [Tooltip("The text of each button have to be its child.")]
+    public List<UnityEngine.UI.Button> buttons = new List<UnityEngine.UI.Button>();
+    private List<Text> buttonsText = new List<Text>();
     private bool renderFinished = true;
     private bool waitingInput;
     private string renderedText;
-    public GameObject container;
     private bool speedUpRendering;
     private RectTransform rectTransform;
     private RectTransform parentRect;
+
+    public delegate void OnOptionChoose(int id);
+    public OnOptionChoose onOptionChoose;
+    private int numberOfOptions;
 
     // Use this for initialization
     void Start () {
         rectTransform = GetComponent<RectTransform>();
         parentRect = transform.parent.GetComponent<RectTransform>();
+
+        foreach (UnityEngine.UI.Button b in buttons) {
+            buttonsText.Add(b.GetComponentInChildren<Text>());
+            b.onClick.AddListener(()=>{ ChooseOption(0); });
+        }
     }
 	
 	// Update is called once per frame
 	void Update () {
 		
 	}
+
+    public void SetNumberOfOptions(int numberOfOptions) {
+        this.numberOfOptions = numberOfOptions;
+        foreach (UnityEngine.UI.Button b in buttons) {
+            if(buttons.IndexOf(b) >= numberOfOptions) {
+                b.gameObject.SetActive(false);
+            } else {
+                b.gameObject.SetActive(true);
+            }
+        }
+    }
+
+    public void SetOption(int id, string text) {
+        buttonsText[id].text = text;
+    }
+
+    public void ChooseOption(int id) {
+        if (onOptionChoose != null)
+            onOptionChoose(id);
+    }
 
     public void RenderTextImmediatelly() {
         speedUpRendering = true;

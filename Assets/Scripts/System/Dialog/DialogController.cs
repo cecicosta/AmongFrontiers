@@ -17,9 +17,6 @@ public class DialogController : ToolKitEventListener {
 
     public Speaker speakerTrigger;
 
-    //Costumizable buttons for dialog options
-    public List<Button> buttons;
-
 	private List<string> options = new List<string>();
 
 	private int selected = 0;
@@ -56,10 +53,8 @@ public class DialogController : ToolKitEventListener {
 			}
 			registerSpeachers = true;
 		}
-		//Listen for the buttom click events
-		foreach( Button b in buttons ){
-			b.OnClickEvent += OnSelectedOption;
-		}
+        //Listen for the buttom click events
+        DialogBox.Instance.onOptionChoose += OnSelectedOption;
 	}
 	/*
 	//Player Method
@@ -72,17 +67,10 @@ public class DialogController : ToolKitEventListener {
 	*/
 
 	//Controller Method: Listen the buttons to choose one dialog option
-	void OnSelectedOption(string identifier){
+	void OnSelectedOption(int id){
 		if( controllerState != State.STANDBY )
 			return;
-		int selected = 0;
-		foreach(Button b in buttons){
-			if( identifier.CompareTo(b.identifier) == 0 ){
-				SelectOption(selected);
-				return;
-			}
-			selected++;
-		}
+        SelectOption(id);
 	}
 
 	//ControllerMethod
@@ -257,13 +245,12 @@ public class DialogController : ToolKitEventListener {
 			case State.STANDBY:
 			break;
 			case State.QUERY:
-				//Make the selection beetween dialog options 
-				//NOTE: Make sure the controller have enough buttons
+                //Make the selection beetween dialog options 
+                //NOTE: Make sure the controller have enough buttons
 				if( current.query.Count > 1 ){
-					for( int i=0; i< current.query.Count; i++ ){
-						Button b = buttons[i];
-						b.GetComponent<Renderer>().enabled = true;
-						b.text.text = current.query[i];
+                    DialogBox.Instance.SetNumberOfOptions(current.query.Count);
+                    for ( int i=0; i< current.query.Count; i++ ){
+                        DialogBox.Instance.SetOption(i, current.query[i]);
 					}
 					controllerState = State.STANDBY;
 				}else
@@ -273,14 +260,10 @@ public class DialogController : ToolKitEventListener {
 			case State.SELECT:
 				if( current.query.Count > 1 ){
 
-					for( int i=0; i< current.query.Count; i++ ){
-						Button b = buttons[i];
-						b.GetComponent<Renderer>().enabled = false;
-						b.text.text = "";
-					}
-					//dialogSpeaker = register[current.characterIdentifier];
-					//speecher.face.renderer.enabled = false;
-                    
+                    DialogBox.Instance.SetNumberOfOptions(0);
+                    //dialogSpeaker = register[current.characterIdentifier];
+                    //speecher.face.renderer.enabled = false;
+
                     if (current.isTrigger)
                         onDialogTrigger.TriggerEvent(new ToolKitEvent(current.toTrigger));
 
