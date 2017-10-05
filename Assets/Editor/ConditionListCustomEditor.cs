@@ -53,7 +53,9 @@ public class ConditionListCustomEditor : Editor {
             string name = GUI.GetNameOfFocusedControl();
             int index = editedValues.FindLastIndex(x => x.identifier == name);
             if(index >= 0) editedValues.RemoveAt(index);
-            GUI.FocusControl("");
+            if (index == editedValues.Count)
+                focusId--; 
+            GUI.FocusControl(focusId >= 0 ? editedValues[focusId].identifier : "");
         }
         EditorGUILayout.EndHorizontal();
 

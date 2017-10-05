@@ -45,14 +45,15 @@ public class DialogController : ToolKitEventListener {
 	void Start(){
         onDialogTrigger = new ToolKitEventTrigger();
 
-		if( !registerSpeachers ){
-			Speaker[] speechers = FindObjectsOfType<Speaker>();
-			foreach( Speaker s in speechers ){
-				//print(s.identifier);
-				register.Add(s.identifier, s);
-			}
-			registerSpeachers = true;
+        //TODO: Transfer this reference to an manager
+        register.Clear();
+		Speaker[] speechers = FindObjectsOfType<Speaker>();
+		foreach( Speaker s in speechers ){
+			//print(s.identifier);
+			register.Add(s.identifier, s);
 		}
+		registerSpeachers = true;
+		
         //Listen for the buttom click events
         DialogBox.Instance.onOptionChoose += OnSelectedOption;
 	}

@@ -7,11 +7,15 @@ public class ChangeVariableAction : ToolKitAction {
     
     [SerializeField]
     public Condition changeTo;
-	
+    public bool persists = false;
 	public override void Execute( GameObject gameobjct ){
-        List<Condition> conditions = GameVariablesManager.Instance.getAllVariables();
-        int index = conditions.FindIndex(x => x.identifier == changeTo.identifier);
-        conditions[index].Copy(changeTo);
+        if (persists)
+            GameVariablesManager.Instance.PersistsCondition(changeTo);
+        else {
+            List<Condition> conditions = GameVariablesManager.Instance.getAllVariables();
+            int index = conditions.FindIndex(x => x.identifier == changeTo.identifier);
+            conditions[index].Copy(changeTo);
+        }
 
 		ToolKitEventTrigger trigger = new ToolKitEventTrigger ();
 		ToolKitEvent tkevent = new ToolKitEvent (changeTo);

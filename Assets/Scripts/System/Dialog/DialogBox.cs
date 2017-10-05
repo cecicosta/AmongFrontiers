@@ -36,7 +36,7 @@ public class DialogBox : Singleton<DialogBox> {
 
         foreach (UnityEngine.UI.Button b in buttons) {
             buttonsText.Add(b.GetComponentInChildren<Text>());
-            b.onClick.AddListener(()=>{ ChooseOption(0); });
+            b.onClick.AddListener(()=>{ ChooseOption(buttons.IndexOf(b)); });
         }
     }
 	

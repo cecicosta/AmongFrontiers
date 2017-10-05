@@ -3,7 +3,7 @@ using System.Collections;
 using System;
 
 [System.Serializable]
-public class Condition: PropertyAttribute{
+public class Condition{
 
     public enum VariableType { Int, Bool, Float, Trigger, Input };
     public string identifier = "";

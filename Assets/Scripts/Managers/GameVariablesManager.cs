@@ -1,24 +1,47 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System;
 
 public class GameVariablesManager : Singleton<GameVariablesManager> {
-	public List<Condition> gameVariables = new List<Condition>();
 	public List<Condition> sceneVariables = new List<Condition>();
 	public Dictionary<string, Condition> variables = new Dictionary<string, Condition>();
     private List<Condition> inputConditions = new List<Condition>();
     // Use this for initialization
     void Start () {
 		foreach (Condition v in sceneVariables) {
-				variables.Add (v.identifier, v);
-		}
-		foreach (Condition v in gameVariables) {
-				variables.Add (v.identifier, v);
+            Condition c = v;
+            variables.Add(c.identifier, c);
+            RetrieveCondition(c);
 		}
 		ToolKitEventHandle.Instance.onEvent += onTKEvent;
         
         inputConditions.AddRange(sceneVariables.FindAll(x => x.type == Condition.VariableType.Input));
-        inputConditions.AddRange(gameVariables.FindAll(x => x.type == Condition.VariableType.Input));
+    }
+
+    public bool PersistsCondition(Condition c) {
+        if (!variables.ContainsKey(c.identifier))
+            return false;
+
+        byte[] data = DataManipulationUtils.ObjectToByteArray(c);
+        string stringData = Convert.ToBase64String(data);
+        PlayerPrefs.SetString(c.identifier, stringData);
+        variables[c.identifier].Copy(c);
+        return true;
+    }
+
+    public bool RetrieveCondition(Condition c) {
+        if (!variables.ContainsKey(c.identifier))
+            return false;
+        
+        if (PlayerPrefs.GetString(c.identifier) != "") {
+            string stringData = PlayerPrefs.GetString(c.identifier);
+            byte[] result = Convert.FromBase64String(stringData);
+            c = (Condition)DataManipulationUtils.ByteArrayToObject(result);
+            variables[c.identifier].Copy(c);
+            return true;
+        }
+        return false;
     }
 
     public Condition CreateSceneCondition(string identifier, 
@@ -49,7 +72,7 @@ public class GameVariablesManager : Singleton<GameVariablesManager> {
     }
 
 	public List<Condition> getAllVariables(){
-		List<Condition> variables = new List<Condition> (GameVariablesManager.Instance.gameVariables.ToArray());
+        List<Condition> variables = new List<Condition>();
 		variables.AddRange (GameVariablesManager.Instance.sceneVariables.ToArray());
 		return variables;
 	}
@@ -69,4 +92,6 @@ public class GameVariablesManager : Singleton<GameVariablesManager> {
 			}
 		}
 	}
+
+
 }
