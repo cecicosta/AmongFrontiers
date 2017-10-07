@@ -6,7 +6,7 @@ public class ToolKitEventHandle : Singleton<ToolKitEventHandle> {
 	public delegate void OnTKEvent(ToolKitEvent tkEvent);
 	public event OnTKEvent onEvent;
 	// Use this for initialization
-	void Start () {
+	void Awake () {
 		ToolKitEventListener[] eventListener = FindObjectsOfType<ToolKitEventListener>();
 		foreach (ToolKitEventListener tkEventListener in eventListener) {
 			onEvent += tkEventListener.onTKEvent;

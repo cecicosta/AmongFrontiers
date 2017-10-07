@@ -2,7 +2,7 @@ using UnityEditor;
 using UnityEngine;
 using System.Collections.Generic;
 using System.Collections.Specialized;
-
+using System;
 
 public class DialogEditor : EditorWindow {
 
@@ -103,9 +103,9 @@ public class DialogEditor : EditorWindow {
 		if( dialogs != null ){
 
 			BeginWindows();
-			//Create the window nodes for the dialogs
-
-			foreach ( KeyValuePair<int, Dialog> pair in dialogs ){
+            //Create the window nodes for the dialogs
+            Event eventHandle = Event.current;
+            foreach ( KeyValuePair<int, Dialog> pair in dialogs ){
 
 				Dialog dialog = pair.Value;
 				if( dialog.id == dialogShelf.layers[dialogShelf.selectedLayer].Root.id ){
@@ -141,10 +141,22 @@ public class DialogEditor : EditorWindow {
 					Handles.DrawSolidRectangleWithOutline(vector, new Color(255,255,255), new Color(0,0,0,0.0f));
 
 
-					Handles.EndGUI();
-					GUILayout.BeginArea(new Rect(aux.x+shift.x, aux.y+shift.y, 150, 20));
-					GUILayout.Label (dialog.query[i]);
-					GUILayout.EndArea();
+                    Vector3 mousePos = Event.current.mousePosition;
+                    if (eventHandle.type == EventType.ContextClick && isInsideTriangle(vector[0], vector[1], vector[2], mousePos)) {
+                        GenericMenu menu = new GenericMenu();
+                        KeyValuePair<Dialog, Dialog> selected = new KeyValuePair<Dialog, Dialog>(dialog, dialogs[dialog.children[i]]);
+                        menu.AddItem(new GUIContent("Delete Transition"), false, DeleteLink, selected);
+                        menu.ShowAsContext();
+                        eventHandle.Use();
+                    }
+
+
+                    Handles.EndGUI();
+                    if (dialog.children.Count > 1) {
+                        GUILayout.BeginArea(new Rect(aux.x + shift.x, aux.y + shift.y, 150, 20));
+                        GUILayout.Label(dialog.query[i]);
+                        GUILayout.EndArea();
+                    }
 				}
 
 			}
@@ -257,6 +269,14 @@ public class DialogEditor : EditorWindow {
 
 	}
 
+    private void DeleteLink(object dialogs) {
+        KeyValuePair<Dialog, Dialog> parentChild = (KeyValuePair<Dialog, Dialog>)dialogs;
+        parentChild.Key.query.RemoveAt(parentChild.Key.children.IndexOf(parentChild.Value.id));
+        parentChild.Key.children.Remove(parentChild.Value.id);
+        parentChild.Value.parents.Remove(parentChild.Key.id);
+
+    }
+
 
 
     /*int flags = 0;
@@ -314,17 +334,23 @@ go.tag = tagStr;
 			//if (contextRect.Contains (mousePos) && !linking)
 
 		}
-		//	
-		
-		//Create a parent->child link to this Dialog Window
-		if (eventHandle.type == EventType.mouseDown && linking)
-		{
-			Dialog parent = dialogs[activeNodeID];
-			Dialog child = dialogs[windowID];
-			child.parents.Add(parent.id);
-			parent.children.Add(child.id);
-			parent.query.Add("Option " + (parent.query.Count+1) );
-			linking = false;
+        //	
+
+        //Create a parent->child link to this Dialog Window
+        if (eventHandle.type == EventType.mouseDown && linking) {
+            Dialog parent = dialogs[activeNodeID];
+            Dialog child = dialogs[windowID];
+            child.parents.Add(parent.id);
+            parent.children.Add(child.id);
+
+            parent.query.Add(new Func<string>(() => {
+                int i = 1;
+                while (parent.query.Contains("Option " + i)) i++;
+                return "Option " + i;
+            })());
+
+
+            linking = false;
 		}
 
 
@@ -424,7 +450,7 @@ go.tag = tagStr;
 
 				string path = AssetDatabase.GetAssetPath( dialogShelf );
 				EditorUtility.SetDirty( dialogShelf.layers[dialogShelf.selectedLayer] );
-				Object.DestroyImmediate(dialog, true);
+				DestroyImmediate(dialog, true);
 				AssetDatabase.SaveAssets();
 				dialogShelf = (DialogShelf)AssetDatabase.LoadAssetAtPath( path, typeof(DialogShelf) );
 				Debug.Log(dialogShelf);
@@ -440,7 +466,7 @@ go.tag = tagStr;
 			dialogShelf.layers.RemoveAt(dialogShelf.selectedLayer);
 			string path = AssetDatabase.GetAssetPath( dialogShelf );
 			EditorUtility.SetDirty( dialogShelf );
-			Object.DestroyImmediate(dialogSet, true);
+			DestroyImmediate(dialogSet, true);
 			AssetDatabase.SaveAssets();
 			dialogShelf = (DialogShelf)AssetDatabase.LoadAssetAtPath( path, typeof(DialogShelf) );
 			dialogShelf.selectedLayer = dialogShelf.layers.Count-1;
@@ -673,6 +699,25 @@ go.tag = tagStr;
 		}
 	}
 
-		
-	
+
+    private bool isInsideTriangle(Vector3 v1, Vector3 v2, Vector3 v3, Vector3 intersection) {
+        double area = Vector3.Cross(v2 - v1, v3 - v1).magnitude * 0.5f; ;
+        Vector3 vet1 = intersection - v1;
+        Vector3 vet2 = v2 - v1;
+        double area1 = Vector3.Cross(vet1, vet2).magnitude * 0.5f / area;
+
+        vet1 = intersection - v1;
+        vet2 = v3 - v1;
+        double area2 = Vector3.Cross(vet1, vet2).magnitude * 0.5 / area;
+
+        vet1 = intersection - v3;
+        vet2 = v2 - v3;
+        double area3 = Vector3.Cross(vet1, vet2).magnitude * 0.5 / area;
+
+        //Condi??o para que o ponto esteja contido no triangulo
+        if (area1 + area2 + area3 <= 1.00001)
+            return true;
+
+        return false;
+    }
 }

@@ -230,17 +230,13 @@ public class DialogController : ToolKitEventListener {
 				controllerState = State.WAIT;
 			break;
 			case State.WAIT:
-				//Waiting for something happens and change the state
-				if(!DialogBox.Instance.IsWaitingInput() && skipped){
-                    DialogBox.Instance.RenderTextImmediatelly();
-				}
-
-                if(DialogBox.Instance.IsWaitingInput() && skipped) {
-                    DialogBox.Instance.ContinueRenderText();
-                }
-
-                if(DialogBox.Instance.IsRenderFinished() && skipped) {
+                //Waiting for something happens and change the state
+                if (DialogBox.Instance.IsRenderFinished() && skipped) {
                     controllerState = State.QUERY;
+                }else if (!DialogBox.Instance.IsWaitingInput() && skipped){
+                    DialogBox.Instance.RenderTextImmediatelly();
+				}else if(DialogBox.Instance.IsWaitingInput() && skipped) {
+                    DialogBox.Instance.ContinueRenderText();
                 }
 			break;
 			case State.STANDBY:

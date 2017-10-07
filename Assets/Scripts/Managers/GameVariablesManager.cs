@@ -8,7 +8,7 @@ public class GameVariablesManager : Singleton<GameVariablesManager> {
 	public Dictionary<string, Condition> variables = new Dictionary<string, Condition>();
     private List<Condition> inputConditions = new List<Condition>();
     // Use this for initialization
-    void Start () {
+    void Awake () {
 		foreach (Condition v in sceneVariables) {
             Condition c = v;
             variables.Add(c.identifier, c);
@@ -17,6 +17,13 @@ public class GameVariablesManager : Singleton<GameVariablesManager> {
 		ToolKitEventHandle.Instance.onEvent += onTKEvent;
         
         inputConditions.AddRange(sceneVariables.FindAll(x => x.type == Condition.VariableType.Input));
+    }
+
+    public bool ChangeConditionValue(Condition c) {
+        if (!variables.ContainsKey(c.identifier))
+            return false;
+        variables[c.identifier].Copy(c);
+        return true;
     }
 
     public bool PersistsCondition(Condition c) {

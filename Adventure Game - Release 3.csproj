@@ -118,6 +118,7 @@
     <Compile Include="Assets\Scripts\RaycastController.cs" />
     <Compile Include="Assets\Scripts\SceneCaller.cs" />
     <Compile Include="Assets\Scripts\SceneNode.cs" />
+    <Compile Include="Assets\Scripts\SetInitialConditionsAtStart.cs" />
     <Compile Include="Assets\Scripts\Singleton.cs" />
     <Compile Include="Assets\Scripts\StateMachine.cs" />
     <Compile Include="Assets\Scripts\System\Condition.cs" />

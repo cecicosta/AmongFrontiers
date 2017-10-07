@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class DialogBox : Singleton<DialogBox> {
     public Image dialogBox;
     public Text text;
-
+    public Text name;
     /// <summary>
     /// Characters per seccond
     /// </summary>
@@ -72,6 +72,10 @@ public class DialogBox : Singleton<DialogBox> {
     public void StartRenderText(Speaker speecher, string textToRender) {
         if (renderFinished == false)
             return;
+
+        if (name != null)
+            name.text = speecher.name;
+
         //Conlider is mandatory for speecher
         BoxCollider2D colider = speecher.GetComponent<BoxCollider2D>();
 
@@ -138,7 +142,7 @@ public class DialogBox : Singleton<DialogBox> {
         settings.horizontalOverflow = HorizontalWrapMode.Wrap;
         settings.verticalOverflow = VerticalWrapMode.Truncate;
         settings.generateOutOfBounds = false;
-
+        speedUpRendering = false;
         renderedText = "";
         
         float time = Time.time;

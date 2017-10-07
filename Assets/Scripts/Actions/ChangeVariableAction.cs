@@ -12,9 +12,7 @@ public class ChangeVariableAction : ToolKitAction {
         if (persists)
             GameVariablesManager.Instance.PersistsCondition(changeTo);
         else {
-            List<Condition> conditions = GameVariablesManager.Instance.getAllVariables();
-            int index = conditions.FindIndex(x => x.identifier == changeTo.identifier);
-            conditions[index].Copy(changeTo);
+            GameVariablesManager.Instance.ChangeConditionValue(changeTo);
         }
 
 		ToolKitEventTrigger trigger = new ToolKitEventTrigger ();
