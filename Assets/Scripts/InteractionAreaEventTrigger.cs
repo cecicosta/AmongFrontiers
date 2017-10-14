@@ -6,7 +6,7 @@ public class InteractionAreaEventTrigger : ToolKitEventListener {
 
 	public Condition listenTo;
 	public Condition trigger;
-	public GameObject interactWith;
+	public Speaker interactWith;
 	private ToolKitEventTrigger tkEventTrigger;
 	private bool colliding;
 	// Use this for initialization
@@ -20,13 +20,13 @@ public class InteractionAreaEventTrigger : ToolKitEventListener {
 	}
 
 	void OnTriggerEnter2D( Collider2D collider ){
-		if (collider.gameObject == interactWith) {
+		if (collider.gameObject == interactWith.gameObject) {
             colliding = true;
             //	Debug.Log ("collide");
 		}
 	}
 	void OnTriggerExit2D( Collider2D collider ){
-		if (collider.gameObject == interactWith)
+		if (collider.gameObject == interactWith.gameObject)
 			colliding = false;
 			
 	}
