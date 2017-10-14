@@ -6,10 +6,10 @@ public class PathAction : ToolKitAction {
 
 	public override void Execute( GameObject transform ){}
 	public override bool isStarted(){
-		return false;
+		return true;
 	}
 	public override bool isFinished(){
-		return false;
+		return true;
 	}
 
 }

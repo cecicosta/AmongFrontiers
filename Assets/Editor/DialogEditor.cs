@@ -104,7 +104,7 @@ public class DialogEditor : EditorWindow {
 
 			BeginWindows();
             //Create the window nodes for the dialogs
-            Event eventHandle = Event.current;
+            eventHandle = Event.current;
             foreach ( KeyValuePair<int, Dialog> pair in dialogs ){
 
 				Dialog dialog = pair.Value;
@@ -482,8 +482,7 @@ go.tag = tagStr;
 
 	//Context Menu callback Function
 	void CreateNode () {
-
-		if( dialogs == null ){
+        if ( dialogs == null ){
 			Debug.LogWarning( "Erro while creating new dialog: Dialog File was not loaded correctly" );
 			return;
 		}

@@ -93,13 +93,10 @@ public class InteractionContainerInspector : Editor {
         //while (prop.NextVisible(true)) {
         //    EditorGUILayout.PropertyField(prop);
         //}
-
         serializedObject.ApplyModifiedProperties();
-        
-
         //EditorGUILayout.PropertyField(serializedObject.FindProperty(""), new GUIContent("Action"), true, GUILayout.ExpandHeight(true));
         //serializedObject.ApplyModifiedProperties();
-
+        
 
 
         //if (interaction.tkAction == null && index > -1) {

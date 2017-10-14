@@ -7,7 +7,7 @@ public class Speaker: MonoBehaviour {
 
 	public string character;
 	public string identifier;
-	public SpriteRenderer face;
+	public UnityEngine.UI.Image face;
 
     public UnityEngine.Events.UnityEvent OnDialogStart;
     public UnityEngine.Events.UnityEvent OnDialogEnd;
@@ -32,4 +32,9 @@ public class Speaker: MonoBehaviour {
 	public void OnDialogEndNotify( string tag ){
         OnDialogEnd.Invoke();
 	}
+
+    public void SetFaceActive(bool active) {
+        if (face != null)
+            face.gameObject.SetActive(active);
+    }
 }

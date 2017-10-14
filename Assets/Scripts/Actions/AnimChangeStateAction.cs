@@ -14,10 +14,10 @@ public class AnimChangeStateAction : ToolKitAction {
 	public override void Execute( GameObject animator ){}
     
     public override bool isStarted(){
-		return false;
+		return true;
 	}
 	public override bool isFinished(){
-		return false;
+		return true;
 	}
 
 	//TODO: Exhibit dynamically on editor/inspector the value selector, according to the	

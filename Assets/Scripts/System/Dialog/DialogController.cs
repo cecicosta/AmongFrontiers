@@ -217,18 +217,21 @@ public class DialogController : ToolKitEventListener {
                 //Display Dialogbox
                 DialogBox.Instance.SetVisible(true);
                 DialogBox.Instance.StartRenderText(dialogSpeaker, current.text);
+                
+                //dialogbox.GetComponent<Renderer>().enabled = true;
+                //dialogbox.text.text = current.text;	
 
-				//dialogbox.GetComponent<Renderer>().enabled = true;
-				//dialogbox.text.text = current.text;	
-
-				try{
+                try {
 					onDialogStartEvent(current.dialogTag);
 				}catch( System.Exception e ){
 					Debug.Log(e);
 				}	
 
-				controllerState = State.WAIT;
-			break;
+                if(current.text != "")
+				    controllerState = State.WAIT;
+                else
+                    controllerState = State.QUERY;
+            break;
 			case State.WAIT:
                 //Waiting for something happens and change the state
                 if (DialogBox.Instance.IsRenderFinished() && skipped) {

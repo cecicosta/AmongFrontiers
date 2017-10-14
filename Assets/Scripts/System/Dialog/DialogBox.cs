@@ -28,6 +28,9 @@ public class DialogBox : Singleton<DialogBox> {
     public delegate void OnOptionChoose(int id);
     public OnOptionChoose onOptionChoose;
     private int numberOfOptions;
+    private bool phraseFinished = false;
+    public bool autoSeparatePonctuation = true;
+    private Speaker currentSpeaker;
 
     // Use this for initialization
     void Start () {
@@ -73,8 +76,16 @@ public class DialogBox : Singleton<DialogBox> {
         if (renderFinished == false)
             return;
 
+        if (currentSpeaker != null)
+            currentSpeaker.SetFaceActive(false);
+
+        this.currentSpeaker = speecher;
+
+        if (currentSpeaker != null)
+            currentSpeaker.SetFaceActive(true);
+
         if (name != null)
-            name.text = speecher.name;
+            name.text = currentSpeaker.character;
 
         //Conlider is mandatory for speecher
         BoxCollider2D colider = speecher.GetComponent<BoxCollider2D>();
@@ -107,16 +118,14 @@ public class DialogBox : Singleton<DialogBox> {
                                                             scrMax.y - parentReferenceCenter.y + centerAdjust.y);
 
         renderFinished = false;
-        string[] words = textToRender.Split(' ');
-        StartCoroutine(RenderTextAnimate(words));
+        StartCoroutine(RenderTextPerPhrases(textToRender));
     }
 
     public void StartRenderText(string textToRender) {
         if (renderFinished == false)
             return;
         renderFinished = false;
-        string[] words = textToRender.Split(' ');
-        StartCoroutine(RenderTextAnimate(words));
+        StartCoroutine(RenderTextPerPhrases(textToRender));
     }
 
     public void ContinueRenderText() {
@@ -133,6 +142,39 @@ public class DialogBox : Singleton<DialogBox> {
 
     public void SetVisible(bool visible) {
         container.SetActive(visible);
+    }
+
+    private IEnumerator RenderTextPerPhrases(string textToRender) {
+
+        waitingInput = false;
+        string[] phrases = new string[] { textToRender };
+        if (autoSeparatePonctuation) {
+            phrases = SeparateByPonctuation(ref textToRender);
+        }
+        foreach (string s in phrases) {
+            if (s == "")
+                continue;
+
+            string[] words = s.Split(' ');
+            phraseFinished = false;
+
+            while (waitingInput && renderedText != "") yield return null;
+
+            StartCoroutine(RenderTextAnimate(words));
+
+            yield return new WaitUntil(() => { return phraseFinished; });
+            waitingInput = true;
+        }
+        waitingInput = false;
+        renderFinished = true;
+
+    }
+
+    private static string[] SeparateByPonctuation(ref string textToRender) {
+        System.Text.RegularExpressions.Regex regex = new System.Text.RegularExpressions.Regex("\r|\n");
+        textToRender = regex.Replace(textToRender, "");
+        string[] phrases = System.Text.RegularExpressions.Regex.Split(textToRender, "(?<=[?!.]{1,} )");
+        return phrases;
     }
 
     private IEnumerator RenderTextAnimate(string[] words) {
@@ -187,6 +229,6 @@ public class DialogBox : Singleton<DialogBox> {
             yield return null;
         }
         speedUpRendering = false;
-        renderFinished = true;
+        phraseFinished = true;
     }
 }
