@@ -11,7 +11,7 @@ public class Player : MonoBehaviour {
 	public float timeToJumpApex = .4f;
 	float accelerationTimeAirborne = .2f;
 	float accelerationTimeGrounded = .1f;
-	float moveSpeed = 6;
+	public float moveSpeed = 6;
 
 	public Vector2 wallJumpClimb;
 	public Vector2 wallJumpOff;
@@ -24,7 +24,7 @@ public class Player : MonoBehaviour {
 	float gravity;
 	float maxJumpVelocity;
 	float minJumpVelocity;
-	Vector3 velocity;
+	internal Vector3 velocity;
 	float velocityXSmoothing;
 
 	internal Controller2D controller;
@@ -33,7 +33,12 @@ public class Player : MonoBehaviour {
 	bool wallSliding;
 	int wallDirX;
 
-	void Start() {
+    //Player parameters
+    public float locateDistance = 3;
+    public float attackDistance = 1;
+
+
+    void Start() {
 		controller = GetComponent<Controller2D> ();
 
 		gravity = -(2 * maxJumpHeight) / Mathf.Pow (timeToJumpApex, 2);
@@ -132,4 +137,5 @@ public class Player : MonoBehaviour {
 		velocity.x = Mathf.SmoothDamp (velocity.x, targetVelocityX, ref velocityXSmoothing, (controller.collisions.below)?accelerationTimeGrounded:accelerationTimeAirborne);
 		velocity.y += gravity * Time.deltaTime;
 	}
+
 }
