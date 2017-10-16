@@ -1,15 +1,16 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System;
+using System.Collections.Generic;
 
 [RequireComponent (typeof (Player))]
-public class AnimatedInput : MonoBehaviour {
+public class AnimatedInput : CharacterAttributes {
 
     public Condition moveAnimationTrigger;
     public Condition standAnimationTrigger;
     public Condition jumpAnimationTrigger;
     public GameObject graphics;
-    public GameObject attackParticleGraphic;
+    public ParticleSystem attackParticleGraphic;
 
     public Vector2 target;
     public float attackDuration = 1;
@@ -25,13 +26,12 @@ public class AnimatedInput : MonoBehaviour {
     private bool still = false;
     public bool chasing = false;
 
-    public float health = 30;
-
-    public UnityEngine.Events.UnityEvent onZeroHealth;
+    public float attackDamage = 5;
 
     void Start () {
 		player = GetComponent<Player> ();
         eventTrigger = new ToolKitEventTrigger();
+        attackParticleGraphic.Stop();
     }
 
 	void Update () {
@@ -85,16 +85,17 @@ public class AnimatedInput : MonoBehaviour {
     }
 
     public void DoAttack(Transform attackTarget) {
+        ParticleSystem.CollisionModule coll = attackParticleGraphic.collision;
         StartCoroutine(AttackDuringTime(attackTarget));
     }
 
     IEnumerator AttackDuringTime(Transform attackTarget) {
-        attackParticleGraphic.SetActive(true);
+        attackParticleGraphic.Play();
         float started = Time.time;
         yield return new WaitUntil(() => { return Time.time - started > attackDuration; });
-        attackParticleGraphic.SetActive(false);
+        attackParticleGraphic.Stop();
     }
-    
+
     public void SetTarget(Transform targetTransform) {
         target = targetTransform.position;
     }
@@ -121,12 +122,4 @@ public class AnimatedInput : MonoBehaviour {
         graphics.transform.localScale = theScale;
     }
 
-    void DoDamage(float damage) {
-        health -= damage;
-
-        if (health <= 0) {
-            health = 0;
-            onZeroHealth.Invoke();
-        }
-    }
 }

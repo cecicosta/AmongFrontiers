@@ -100,9 +100,11 @@
     <Compile Include="Assets\Scripts\Button.cs" />
     <Compile Include="Assets\Scripts\ButtonTrigger.cs" />
     <Compile Include="Assets\Scripts\CameraFollow.cs" />
+    <Compile Include="Assets\Scripts\CharacterAttributes.cs" />
     <Compile Include="Assets\Scripts\CharacterPlatformerController.cs" />
     <Compile Include="Assets\Scripts\ChasePoints.cs" />
     <Compile Include="Assets\Scripts\Controller2D.cs" />
+    <Compile Include="Assets\Scripts\DamageByTouch.cs" />
     <Compile Include="Assets\Scripts\FadeInOut.cs" />
     <Compile Include="Assets\Scripts\FollowingScript.cs" />
     <Compile Include="Assets\Scripts\GrabAction.cs" />
@@ -118,6 +120,7 @@
     <Compile Include="Assets\Scripts\Managers\GameVariablesManager.cs" />
     <Compile Include="Assets\Scripts\NPCController.cs" />
     <Compile Include="Assets\Scripts\ParticleSortingLayer.cs" />
+    <Compile Include="Assets\Scripts\ParticleSystemCollisionController.cs" />
     <Compile Include="Assets\Scripts\PlatformController.cs" />
     <Compile Include="Assets\Scripts\Player.cs" />
     <Compile Include="Assets\Scripts\PlayerInput.cs" />

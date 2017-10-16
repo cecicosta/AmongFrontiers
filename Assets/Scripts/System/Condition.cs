@@ -50,7 +50,7 @@ public class Condition{
 		bool isSatisfied = false;
         Condition condition = GameVariablesManager.Instance.GetVariable(identifier);
 		if(condition == null) {
-            Debug.Log("Condition identifier not found: " + identifier);
+            //Debug.Log("Condition identifier not found: " + identifier);
             return isSatisfied;
         }
 
