@@ -97,6 +97,7 @@
     <Compile Include="Assets\Scripts\Actions\SwitchCharacter.cs" />
     <Compile Include="Assets\Scripts\Actions\UnityEventAction.cs" />
     <Compile Include="Assets\Scripts\AnimatedInput.cs" />
+    <Compile Include="Assets\Scripts\AttackCharging.cs" />
     <Compile Include="Assets\Scripts\Button.cs" />
     <Compile Include="Assets\Scripts\ButtonTrigger.cs" />
     <Compile Include="Assets\Scripts\CameraFollow.cs" />
@@ -119,6 +120,7 @@
     <Compile Include="Assets\Scripts\Managers\DialogManager.cs" />
     <Compile Include="Assets\Scripts\Managers\GameVariablesManager.cs" />
     <Compile Include="Assets\Scripts\NPCController.cs" />
+    <Compile Include="Assets\Scripts\OnValueChangesFloat.cs" />
     <Compile Include="Assets\Scripts\ParticleSortingLayer.cs" />
     <Compile Include="Assets\Scripts\ParticleSystemCollisionController.cs" />
     <Compile Include="Assets\Scripts\PlatformController.cs" />

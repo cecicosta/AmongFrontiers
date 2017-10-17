@@ -1,13 +1,16 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.Events;
 
-[RequireComponent (typeof (Player))]
-public class PlayerInput : CharacterAttributes {
+[RequireComponent(typeof(Player))]
+public partial class PlayerInput : CharacterAttributes {
 
     public Condition moveAnimationTrigger;
     public Condition standAnimationTrigger;
     public Condition jumpAnimationTrigger;
+    public Condition attackAnimationTrigger;
     public GameObject graphics;
+    public ParticleSystem attackParticleGraphic;
     public bool stopped = false;
 
     private ToolKitEventTrigger eventTrigger;
@@ -18,6 +21,17 @@ public class PlayerInput : CharacterAttributes {
     private bool still = false;
     private bool chasing = false;
     private Vector2 target;
+
+    public float attackCoolDown = 3;
+    public KeyCode attackInput;
+    public UnityEvent attackStarted;
+    public UnityEvent attackEnd;
+
+    public OnValueChangesFloat onKeepAttackNotify;
+
+    private float lastAttack;
+    private bool attacking;
+
     void Start () {
 		player = GetComponent<Player> ();
         eventTrigger = new ToolKitEventTrigger();
@@ -74,8 +88,12 @@ public class PlayerInput : CharacterAttributes {
             }
         }
 
+        if(Input.GetKeyDown(attackInput) && (Time.time - lastAttack > attackCoolDown)) {
+            DoAttack();
+            lastAttack = Time.time;
+        }
 
-		player.SetDirectionalInput (new Vector2(directionX, 0));
+        player.SetDirectionalInput (new Vector2(directionX, 0));
 
 		if (Input.GetKeyDown (KeyCode.Space)) {
 			player.OnJumpInputDown ();
@@ -84,12 +102,14 @@ public class PlayerInput : CharacterAttributes {
 			player.OnJumpInputUp ();
 		}
 
-
-        if (player.IsJumping()) {
+        if (player.IsJumping() && !attacking) {
             ToolKitEvent tkevent = new ToolKitEvent(jumpAnimationTrigger);
             eventTrigger.TriggerEvent(tkevent);
-        }else if (directionX != 0) {
+        }else if (directionX != 0 && !player.IsJumping()) {
             ToolKitEvent tkevent = new ToolKitEvent(moveAnimationTrigger);
+            eventTrigger.TriggerEvent(tkevent);
+        }else if (attacking) {
+            ToolKitEvent tkevent = new ToolKitEvent(attackAnimationTrigger);
             eventTrigger.TriggerEvent(tkevent);
         } else {
             ToolKitEvent tkevent = new ToolKitEvent(standAnimationTrigger);
@@ -97,6 +117,23 @@ public class PlayerInput : CharacterAttributes {
         }
 
         
+    }
+
+    public override void DoAttack() {
+        ParticleSystem.CollisionModule coll = attackParticleGraphic.collision;
+        StartCoroutine(AttackDuringTime());
+    }
+
+    IEnumerator AttackDuringTime() {
+        attackStarted.Invoke();
+        attacking = true;
+        float started = Time.time;
+        while (Input.GetKey(attackInput)) {
+            onKeepAttackNotify.Invoke(Time.time - started);
+            yield return null;
+        }
+        attackEnd.Invoke();
+        attacking = false;
     }
 
     public void Stop() {
@@ -120,4 +157,5 @@ public class PlayerInput : CharacterAttributes {
         theScale.x *= -1;
         graphics.transform.localScale = theScale;
     }
+
 }

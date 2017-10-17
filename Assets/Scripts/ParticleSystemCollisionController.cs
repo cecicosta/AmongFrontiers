@@ -6,6 +6,7 @@ public class ParticleSystemCollisionController : MonoBehaviour {
 
     ParticleSystem particleSystem;
     public float amountOfDamage = 5;
+    public float force = 2;
 	// Use this for initialization
 	void Start () {
         particleSystem = GetComponent<ParticleSystem>();
@@ -25,18 +26,26 @@ public class ParticleSystemCollisionController : MonoBehaviour {
         if (characterAttributes == null)
             return;
 
+
+
+        Player player = other.GetComponent<Player>();
+        if (player == null)
+            return;
+
+
+
         characterAttributes.DoDamage(amountOfDamage);
 
-        //if (particleSystem.particleCount > 0) {
-        //    List<ParticleSystem.Particle> particles = new List<ParticleSystem.Particle>();
+        List<ParticleCollisionEvent> particles = new List<ParticleCollisionEvent>();
 
-        //    particleSystem.GetTriggerParticles(ParticleSystemTriggerEventType.Enter, particles);
-        //    Debug.Log(particles.Count);
-        //    if (particles.Count > 0) {
-        //        foreach (ParticleSystem.Particle p in particles) {
-        //            attackTarget.GetComponent<CharacterAttributes>().DoDamage(attackDamage);
-        //        }
-        //    }
-        //}
+        particleSystem.GetCollisionEvents(other, particles);
+        Debug.Log(particles.Count);
+        if (particles.Count > 0) {
+            foreach (ParticleCollisionEvent p in particles) {
+                player.SetDirectionalInput(Vector2.zero);
+                player.velocity = p.velocity.normalized * force;
+                //attackTarget.GetComponent<CharacterAttributes>().DoDamage(attackDamage);
+            }
+        }
     }
 }

@@ -84,12 +84,12 @@ public class AnimatedInput : CharacterAttributes {
         
     }
 
-    public void DoAttack(Transform attackTarget) {
+    public override void DoAttack() {
         ParticleSystem.CollisionModule coll = attackParticleGraphic.collision;
-        StartCoroutine(AttackDuringTime(attackTarget));
+        StartCoroutine(AttackDuringTime());
     }
 
-    IEnumerator AttackDuringTime(Transform attackTarget) {
+    IEnumerator AttackDuringTime() {
         attackParticleGraphic.Play();
         float started = Time.time;
         yield return new WaitUntil(() => { return Time.time - started > attackDuration; });

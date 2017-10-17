@@ -16,15 +16,13 @@ public class LocateTarget : MonoBehaviour {
     public OnTrackTarget onTrackTarget;
     public UnityEvent onTargetMissed;
     public OnTrackTarget onAttackTarget;
-
-    private ToolKitEventTrigger trigger;
+    
     private bool found;
     private bool previous;
     private float lastAttack;
 
     // Use this for initialization
     void Start () {
-        trigger = new ToolKitEventTrigger();
 	}
 	
 	// Update is called once per frame

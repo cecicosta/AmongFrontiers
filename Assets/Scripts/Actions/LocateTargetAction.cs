@@ -46,7 +46,7 @@ public class LocateTargetAction : ToolKitAction {
         if ((player.transform.position - gameObject.transform.position).magnitude > enemyPlayer.attackDistance)
             return;
 
-        animInput.DoAttack(player.transform);
+        animInput.DoAttack();
     }
 
     public override bool isStarted(){
