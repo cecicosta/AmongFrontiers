@@ -126,6 +126,7 @@
     <Compile Include="Assets\Scripts\PlatformController.cs" />
     <Compile Include="Assets\Scripts\Player.cs" />
     <Compile Include="Assets\Scripts\PlayerInput.cs" />
+    <Compile Include="Assets\Scripts\PullToDirection.cs" />
     <Compile Include="Assets\Scripts\RaycastController.cs" />
     <Compile Include="Assets\Scripts\SceneCaller.cs" />
     <Compile Include="Assets\Scripts\SceneNode.cs" />
@@ -155,6 +156,7 @@
     <Compile Include="Assets\Scripts\TalkAction.cs" />
     <Compile Include="Assets\Scripts\Trigger.cs" />
     <Compile Include="Assets\Scripts\Utils\BackgroundController.cs" />
+    <Compile Include="Assets\Scripts\Utils\DelayableSetActive.cs" />
     <Compile Include="Assets\Scripts\Utils\FaceTarget.cs" />
     <Compile Include="Assets\Scripts\Utils\FadeController.cs" />
     <Compile Include="Assets\Scripts\Utils\TransformMirror.cs" />
