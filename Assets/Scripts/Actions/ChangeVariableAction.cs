@@ -15,8 +15,10 @@ public class ChangeVariableAction : ToolKitAction {
             GameVariablesManager.Instance.ChangeConditionValue(changeTo);
         }
 
+        Condition copy = new Condition();
+        copy.Copy(copy);
 		ToolKitEventTrigger trigger = new ToolKitEventTrigger ();
-		ToolKitEvent tkevent = new ToolKitEvent (changeTo);
+		ToolKitEvent tkevent = new ToolKitEvent (copy);
 		trigger.TriggerEvent (tkevent);
 	}
 	public override bool isStarted(){
