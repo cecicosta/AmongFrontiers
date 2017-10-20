@@ -1,8 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.Events;
 
 public class PlatformController : RaycastController {
+    [System.Serializable]
+    public class OnValueChangeInt : UnityEvent<int> { }
 
 	public LayerMask passengerMask;
 
@@ -21,7 +24,9 @@ public class PlatformController : RaycastController {
 
 	List<PassengerMovement> passengerMovement;
 	Dictionary<Transform,Controller2D> passengerDictionary = new Dictionary<Transform, Controller2D>();
-	
+
+    public OnValueChangeInt onWayPointReach;
+
 	public override void Start () {
 		base.Start ();
 
@@ -66,7 +71,8 @@ public class PlatformController : RaycastController {
 
 		if (percentBetweenWaypoints >= 1) {
 			percentBetweenWaypoints = 0;
-			fromWaypointIndex ++;
+            onWayPointReach.Invoke(fromWaypointIndex++);
+			
 
 			if (!cyclic) {
 				if (fromWaypointIndex >= globalWaypoints.Length-1) {
@@ -188,5 +194,11 @@ public class PlatformController : RaycastController {
 			}
 		}
 	}
+
+    public void SetSpeed(float value) {
+        speed = value;
+    }
+
+
 	
 }

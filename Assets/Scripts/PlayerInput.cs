@@ -10,7 +10,6 @@ public partial class PlayerInput : CharacterAttributes {
     public Condition jumpAnimationTrigger;
     public Condition attackAnimationTrigger;
     public GameObject graphics;
-    public ParticleSystem attackParticleGraphic;
     public bool stopped = false;
 
     private ToolKitEventTrigger eventTrigger;
@@ -28,16 +27,26 @@ public partial class PlayerInput : CharacterAttributes {
     public UnityEvent attackEnd;
 
     public OnValueChangesFloat onKeepAttackNotify;
+    public OnValueChangesFloat onHealthChangeNotify;
 
-    private float lastAttack;
-    private bool attacking;
+    private float totalHealth;
+    private float previousHealth;
+    private float lastAttack = 0;
+    private bool attacking = false;
 
     void Start () {
 		player = GetComponent<Player> ();
         eventTrigger = new ToolKitEventTrigger();
+        totalHealth = previousHealth = health;
+        onHealthChangeNotify.Invoke(health/totalHealth);
     }
 
 	void Update () {
+
+        if(previousHealth != health) {
+            previousHealth = health;
+            onHealthChangeNotify.Invoke(health / totalHealth);
+        }
 
         if (stopped)
             return;
@@ -88,7 +97,7 @@ public partial class PlayerInput : CharacterAttributes {
             }
         }
 
-        if(Input.GetKeyDown(attackInput) && (Time.time - lastAttack > attackCoolDown)) {
+        if(Input.GetKeyDown(KeyCode.Z) && (Time.time - lastAttack > attackCoolDown)) {
             DoAttack();
             lastAttack = Time.time;
         }
@@ -120,7 +129,6 @@ public partial class PlayerInput : CharacterAttributes {
     }
 
     public override void DoAttack() {
-        ParticleSystem.CollisionModule coll = attackParticleGraphic.collision;
         StartCoroutine(AttackDuringTime());
     }
 
@@ -128,7 +136,7 @@ public partial class PlayerInput : CharacterAttributes {
         attackStarted.Invoke();
         attacking = true;
         float started = Time.time;
-        while (Input.GetKey(attackInput)) {
+        while (Input.GetKey(KeyCode.Z)) {
             onKeepAttackNotify.Invoke(Time.time - started);
             yield return null;
         }
