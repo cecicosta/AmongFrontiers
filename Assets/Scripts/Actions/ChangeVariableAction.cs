@@ -16,7 +16,7 @@ public class ChangeVariableAction : ToolKitAction {
         }
 
         Condition copy = new Condition();
-        copy.Copy(copy);
+        copy.Copy(changeTo);
 		ToolKitEventTrigger trigger = new ToolKitEventTrigger ();
 		ToolKitEvent tkevent = new ToolKitEvent (copy);
 		trigger.TriggerEvent (tkevent);
