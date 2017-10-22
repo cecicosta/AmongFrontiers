@@ -23,19 +23,32 @@ public class DialogBox : Singleton<DialogBox> {
     private string renderedText;
     private bool speedUpRendering;
     private RectTransform rectTransform;
-    private RectTransform parentRect;
+    private RectTransform canvasRect;
 
     public delegate void OnOptionChoose(int id);
     public OnOptionChoose onOptionChoose;
-    private int numberOfOptions;
     private bool phraseFinished = false;
     public bool autoSeparatePonctuation = true;
     private Speaker currentSpeaker;
+    public bool ignoreSpeakerPosition;
+    private Coroutine renderPerPhraseRoutine;
+    private Coroutine renderPerWordRoutine;
+    public bool useScreenPosition;
+    public bool copySpeakerRect;
+    public bool UseScreenPosition {
+        get {
+            return useScreenPosition;
+        }
+
+        set {
+            useScreenPosition = value;
+        }
+    }
 
     // Use this for initialization
     void Start () {
         rectTransform = GetComponent<RectTransform>();
-        parentRect = transform.parent.GetComponent<RectTransform>();
+        canvasRect = GetComponentInParent<Canvas>().GetComponent<RectTransform>();
 
         foreach (UnityEngine.UI.Button b in buttons) {
             buttonsText.Add(b.GetComponentInChildren<Text>());
@@ -48,18 +61,39 @@ public class DialogBox : Singleton<DialogBox> {
 		
 	}
 
-    public void SetNumberOfOptions(int numberOfOptions) {
-        this.numberOfOptions = numberOfOptions;
+    public void StopCurrentRendering() {
+        StopAllCoroutines();
+        waitingInput = false;
+        renderFinished = true;
+        HideAllOptions();
+    }
+
+    public void HideAllOptions() {
         foreach (UnityEngine.UI.Button b in buttons) {
-            if(buttons.IndexOf(b) >= numberOfOptions) {
                 b.gameObject.SetActive(false);
-            } else {
-                b.gameObject.SetActive(true);
-            }
         }
     }
 
-    public void SetOption(int id, string text) {
+    public void ShowOption(int id, string text) {
+        if (!container.activeSelf)
+            return;
+
+        if (id >= buttons.Count || buttons[id] == null)
+            return;
+        buttons[id].gameObject.SetActive(true);
+
+        if (id >= buttonsText.Count || buttonsText[id] == null)
+            return;
+        buttonsText[id].text = text;
+    }
+
+    public void HideOption(int id, string text = "") {
+        if (id >= buttons.Count || buttons[id] == null)
+            return;
+        buttons[id].gameObject.SetActive(false);
+
+        if (id >= buttonsText.Count || buttonsText[id] == null)
+            return;
         buttonsText[id].text = text;
     }
 
@@ -87,45 +121,67 @@ public class DialogBox : Singleton<DialogBox> {
         if (name != null)
             name.text = currentSpeaker.character;
 
-        //Conlider is mandatory for speecher
-        BoxCollider2D colider = speecher.GetComponent<BoxCollider2D>();
-
-        Vector2 scrCenter = Camera.main.WorldToScreenPoint(colider.bounds.center);
-        Vector2 scrMin = Camera.main.WorldToScreenPoint(colider.bounds.min);
-        Vector2 scrMax = Camera.main.WorldToScreenPoint(colider.bounds.max);
-
-        if (rectTransform == null) {
-            rectTransform = GetComponent<RectTransform>();
-        }
-        if (parentRect == null) {
-            parentRect = transform.parent.GetComponent<RectTransform>();
-        }
-
-        Vector2 boxPosition = new Vector2(0,0);
-        if (anchor != null) {
-            //anchor.localPosition = new Vector2(scrCenter.x, scrMax.y);
-            boxPosition = new Vector2(0, anchor.rect.height);
-        }
-
-        //Adjust by the parent reference center point
-        Vector2 parentReferenceCenter = new Vector2(parentRect.pivot.x* parentRect.rect.width, parentRect.pivot.x* parentRect.rect.height);
-
-        //Adjust by its own center
-        Vector2 referenceCenter = new Vector2(rectTransform.pivot.x * rectTransform.rect.width, rectTransform.pivot.x * rectTransform.rect.height);
-        Vector2 centerAdjust = new Vector2(referenceCenter.x - rectTransform.rect.width / 2, referenceCenter.y);
-
-        transform.localPosition = boxPosition + new Vector2(scrCenter.x - parentReferenceCenter.x + centerAdjust.x, 
-                                                            scrMax.y - parentReferenceCenter.y + centerAdjust.y);
+        if(!ignoreSpeakerPosition)
+            PositionDialogBox(speecher);
 
         renderFinished = false;
-        StartCoroutine(RenderTextPerPhrases(textToRender));
+        renderPerPhraseRoutine = StartCoroutine(RenderTextPerPhrases(textToRender));
     }
 
     public void StartRenderText(string textToRender) {
         if (renderFinished == false)
             return;
         renderFinished = false;
-        StartCoroutine(RenderTextPerPhrases(textToRender));
+        renderPerPhraseRoutine = StartCoroutine(RenderTextPerPhrases(textToRender));
+    }
+
+    private void PositionDialogBox(Speaker speecher) {
+        //Conlider is mandatory for speecher
+        BoxCollider2D collider = speecher.GetComponent<BoxCollider2D>();
+
+        Vector3 scrCenter, scrMin, scrMax;
+
+        if (rectTransform == null) {
+            rectTransform = GetComponent<RectTransform>();
+        }
+        if (canvasRect == null) {
+            canvasRect = GetComponentInParent<Canvas>().GetComponent<RectTransform>();
+        }
+
+        //TODO: Improve this code
+        if (copySpeakerRect) {
+            rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, collider.GetComponent<RectTransform>().rect.size.x);
+            rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, collider.GetComponent<RectTransform>().rect.size.y);
+            transform.position = collider.transform.position;
+            return;
+        } else if (useScreenPosition) {
+            Vector3 canvasScale = canvasRect.localScale;
+            Vector3 speakerHeightExtent = new Vector3(0, collider.GetComponent<RectTransform>().rect.size.y / 2 * canvasScale.y, 0);
+            Vector3 boxHeightExtent = new Vector3(0, rectTransform.rect.size.y / 2 * canvasScale.y, 0);
+            scrCenter = collider.transform.position + boxHeightExtent + speakerHeightExtent;
+            transform.position = scrCenter;
+            return;
+        } else {
+            scrCenter = Camera.main.WorldToScreenPoint(collider.bounds.center);
+            scrMin = Camera.main.WorldToScreenPoint(collider.bounds.min);
+            scrMax = Camera.main.WorldToScreenPoint(collider.bounds.max);
+        }
+
+        Vector2 boxPosition = new Vector2(0, 0);
+        if (anchor != null) {
+            //anchor.localPosition = new Vector2(scrCenter.x, scrMax.y);
+            boxPosition = new Vector2(0, anchor.rect.height);
+        }
+
+        //Adjust by the parent reference center point
+        Vector2 parentReferenceCenter = new Vector2(canvasRect.pivot.x * canvasRect.rect.width, canvasRect.pivot.x * canvasRect.rect.height);
+
+        //Adjust by its own center
+        Vector2 referenceCenter = new Vector2(rectTransform.pivot.x * rectTransform.rect.width, rectTransform.pivot.x * rectTransform.rect.height);
+        Vector2 centerAdjust = new Vector2(referenceCenter.x - rectTransform.rect.width / 2, referenceCenter.y);
+
+        transform.localPosition = boxPosition + new Vector2(scrCenter.x - parentReferenceCenter.x + centerAdjust.x,
+                                                            scrMax.y - parentReferenceCenter.y + centerAdjust.y);
     }
 
     public void ContinueRenderText() {
@@ -142,6 +198,8 @@ public class DialogBox : Singleton<DialogBox> {
 
     public void SetVisible(bool visible) {
         container.SetActive(visible);
+        if (!visible)
+            HideAllOptions();
     }
 
     private IEnumerator RenderTextPerPhrases(string textToRender) {
@@ -160,7 +218,7 @@ public class DialogBox : Singleton<DialogBox> {
 
             while (waitingInput && renderedText != "") yield return null;
 
-            StartCoroutine(RenderTextAnimate(words));
+            renderPerWordRoutine = StartCoroutine(RenderTextAnimate(words));
 
             yield return new WaitUntil(() => { return phraseFinished; });
             waitingInput = true;

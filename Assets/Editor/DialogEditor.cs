@@ -152,8 +152,8 @@ public class DialogEditor : EditorWindow {
 
 
                     Handles.EndGUI();
-                    if (dialog.children.Count > 1) {
-                        GUILayout.BeginArea(new Rect(aux.x + shift.x, aux.y + shift.y, 150, 20));
+                    if (dialog.children.Count > 1 || (dialog.children.Count == 1 && dialog.showSingleOption)) {
+                        GUILayout.BeginArea(new Rect(((p2.x < p3.x? p3.x :p2.x) + shift.x) / 2, ((p2.y < p3.y ? p3.y : p2.y) + shift.y) / 2, 150, 20));
                         GUILayout.Label(dialog.query[i]);
                         GUILayout.EndArea();
                     }
@@ -271,6 +271,7 @@ public class DialogEditor : EditorWindow {
 
     private void DeleteLink(object dialogs) {
         KeyValuePair<Dialog, Dialog> parentChild = (KeyValuePair<Dialog, Dialog>)dialogs;
+        parentChild.Key.buttonOrder.RemoveAt(parentChild.Key.children.IndexOf(parentChild.Value.id));
         parentChild.Key.query.RemoveAt(parentChild.Key.children.IndexOf(parentChild.Value.id));
         parentChild.Key.children.Remove(parentChild.Value.id);
         parentChild.Value.parents.Remove(parentChild.Key.id);
@@ -316,12 +317,13 @@ go.tag = tagStr;
 	//Window Function for the Dialog Node Windows
 	void WindowNodeFunction (int windowID) 
 	{
-		//Vector3[] vert ={new Vector3(0,0,0),new Vector3(DialogWindowRect.width, 0,0),  new Vector3(DialogWindowRect.width, DialogWindowRect.height,0), new Vector3(0, this.DialogWindowRect.height,0)} ;	
-		//Handles.DrawSolidRectangleWithOutline(vert,new Color(100,0,0,0.3f), new Color(1,1,1,0) );
-		//WINDOW EVENT HANDLER
 		eventHandle = Event.current;
-		
-		//if(eventHandle.type == EventType.mouseDown )
+	
+        //Temporary fix for compatibility of the button selection functionality
+        while(dialogs[activeNodeID].buttonOrder.Count < dialogs[activeNodeID].query.Count) {
+            dialogs[activeNodeID].buttonOrder.Add(dialogs[activeNodeID].buttonOrder.Count);
+        }
+
 		if ((Event.current.button == 0) && (Event.current.type == EventType.MouseDown)) {
 			m_focusingID = windowID;
 			if( Selection.activeObject != dialogs[windowID] ){
@@ -349,7 +351,7 @@ go.tag = tagStr;
                 return "Option " + i;
             })());
 
-
+            parent.buttonOrder.Add(parent.query.Count-1);
             linking = false;
 		}
 
@@ -444,6 +446,7 @@ go.tag = tagStr;
 				}
 				foreach( int parent in dialog.parents ){
 					int q_index =dialogs[parent].children.IndexOf(m_focusingID);
+                    dialogs[parent].buttonOrder.RemoveAt(q_index);
 					dialogs[parent].query.RemoveAt(q_index);
 					dialogs[parent].children.Remove(m_focusingID);
 				}

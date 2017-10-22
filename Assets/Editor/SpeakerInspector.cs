@@ -26,11 +26,11 @@ public class SpeakerInspector : PropertyDrawer {
         }
         //If find the reference, update if necessary. Otherwise, keep the old reference and show a empty option, but update if the reference value change
         if (find) {
-            index = EditorGUI.Popup(position, "Speaker", index, identifiers.ToArray());
+            index = EditorGUI.Popup(position, label.text, index, identifiers.ToArray());
             Supyrb.SerializedPropertyExtensions.SetValue<Speaker>(property, register[identifiers[index]]);
         } else {
             identifiers.Add("");
-            index = EditorGUI.Popup(position, "Speaker", identifiers.Count - 1, identifiers.ToArray());
+            index = EditorGUI.Popup(position, label.text, identifiers.Count - 1, identifiers.ToArray());
             if (identifiers[index].CompareTo("") != 0)
                 Supyrb.SerializedPropertyExtensions.SetValue<Speaker>(property, register[identifiers[index]]);
         }

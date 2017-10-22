@@ -1,6 +1,7 @@
 using UnityEditor;
 using UnityEngine;
 using System.Collections.Generic;
+using System.Linq;
 
 [CustomEditor(typeof(Dialog))]
 public class DialogInspector : Editor {
@@ -13,9 +14,14 @@ public class DialogInspector : Editor {
 
 	public override void OnInspectorGUI () {
 		Dialog dialog = (Dialog)target;
-	
-		//TEXT AREA FOR TRIGGER TAG
-		dialog.dialogTag = EditorGUILayout.TextField("Activate Flag", dialog.dialogTag);
+        //Temporary fix for compatibility of the button selection functionality
+
+        while (dialog.buttonOrder.Count < dialog.query.Count) {
+            dialog.buttonOrder.Add(dialog.buttonOrder.Count);
+        }
+
+        //TEXT AREA FOR TRIGGER TAG
+        dialog.dialogTag = EditorGUILayout.TextField("Activate Flag", dialog.dialogTag);
 
 		//
 		dialog.updateRoot = EditorGUILayout.Toggle("Update Root", dialog.updateRoot); 
@@ -45,13 +51,19 @@ public class DialogInspector : Editor {
 		}
 
 		//TEXT EDIT FIELD
-		if( dialog.query.Count > 1 ){
+		if( dialog.query.Count > 1 || (dialog.query.Count == 1 && dialog.showSingleOption)){
 			//EditorGUILayout.PropertyField( dialogs[windowID].query );
 			//EditorGUILayout.BeginArea(  new Rect(0, 90,140,160)  );
 			dialog.selectedQuery = EditorGUILayout.Popup("Query", dialog.selectedQuery, dialog.query.ToArray() );
 			dialog.query[dialog.selectedQuery] = EditorGUILayout.TextField(dialog.query[dialog.selectedQuery] );
-			//EditorGUILayout.EndArea();
-		}
+
+            int buttons = DialogBox.Instance.buttons.Count;
+            int[] bValues = Enumerable.Range(0, buttons).ToArray();
+            dialog.buttonOrder[dialog.selectedQuery] = EditorGUILayout.Popup("Button Order",
+                dialog.buttonOrder[dialog.selectedQuery], bValues.Select(x => x.ToString()).ToArray());
+
+            //EditorGUILayout.EndArea();
+        }
 
 		//TEXT AREA FOR THE DIALOG
 		EditorGUILayout.LabelField("Dialog Text");
@@ -67,7 +79,8 @@ public class DialogInspector : Editor {
             EditorGUILayout.PropertyField(serializedObject.FindProperty("toTrigger"));
             serializedObject.ApplyModifiedProperties();           
         }
-	}
+        dialog.showSingleOption= EditorGUILayout.Toggle(new GUIContent("Show Single Option"), dialog.showSingleOption);
+    }
 
 	public void RegisterSpeechers(){
 		register.Clear();

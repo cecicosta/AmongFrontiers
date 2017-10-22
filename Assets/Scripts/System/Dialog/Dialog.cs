@@ -14,9 +14,11 @@ public class Dialog: ScriptableObject{
 	public int selectedQuery = 0;
 	public string text = "";
     public bool isTrigger = false;
+    public bool showSingleOption;
     [SerializeField]
     public Condition toTrigger;
 	public List<string> query = new List<string>();
+    public List<int> buttonOrder = new List<int>();
 	public List<int> parents = new List<int>();
 	public List<int> children = new List<int>();
 	

@@ -30,48 +30,47 @@ public class DialogController : ToolKitEventListener {
     private Speaker speakerTarget;
     
     private ToolKitEventTrigger onDialogTrigger;
+    public bool overrideDialog;
 
     public  bool Skip{
 		set{ skipped = value; }
 	}
 
-    // Event Handler: Used to notify conditions triggered by finished dialogs
-    public delegate void OnDialogStart(string tag);
-	public event OnDialogStart onDialogStartEvent;
-	
-	public delegate void OnDialogEnd(string tag);
-	public event OnDialogEnd onDialogEndEvent;
+    public bool OverrideDialog {
+        get {
+            return overrideDialog;
+        }
 
-	void Start(){
+        set {
+            overrideDialog = value;
+        }
+    }
+
+    void Start(){
         onDialogTrigger = new ToolKitEventTrigger();
 
         //TODO: Transfer this reference to an manager
         register.Clear();
-		Speaker[] speechers = FindObjectsOfType<Speaker>();
+		Speaker[] speechers = Resources.FindObjectsOfTypeAll<Speaker>();
 		foreach( Speaker s in speechers ){
-			//print(s.identifier);
-			register.Add(s.identifier, s);
+            try {
+                register.Add(s.identifier, s);
+            }catch(System.Exception e) {
+                Debug.Log(e.Message + s.identifier);
+            }
+
 		}
 		registerSpeachers = true;
 		
         //Listen for the buttom click events
         DialogBox.Instance.onOptionChoose += OnSelectedOption;
 	}
-	/*
-	//Player Method
-	void OnPlayNotify(Dialog d){
-		//Capture mensage send by controller
-		if( d.characterIdentifier.CompareTo(identifier) == 0 ){
-			state = State.PLAY;
-		}
-	}
-	*/
 
 	//Controller Method: Listen the buttons to choose one dialog option
 	void OnSelectedOption(int id){
 		if( controllerState != State.STANDBY )
 			return;
-        SelectOption(id);
+        SelectOption(current.buttonOrder.IndexOf(id));
 	}
 
 	//ControllerMethod
@@ -93,8 +92,11 @@ public class DialogController : ToolKitEventListener {
 
 	//Controller Method: Trigger on direct interactions
 	public bool TriggerDialog(){
-        if (controllerState != State.INACTIVE)
+        if (controllerState != State.INACTIVE && !overrideDialog)
             return false;
+
+        if (overrideDialog)
+            DialogBox.Instance.StopCurrentRendering();
 
         Debug.Log ("Trigged!");
 		foreach( DialogSet d in dialogShelf.layers ){
@@ -119,8 +121,11 @@ public class DialogController : ToolKitEventListener {
 	}
 
 	public bool TriggerDialog( string layer ){
-        if (controllerState != State.INACTIVE)
+        if (controllerState != State.INACTIVE && !overrideDialog)
             return false;
+
+        if (overrideDialog)
+            DialogBox.Instance.StopCurrentRendering();
 
         foreach ( DialogSet d in dialogShelf.layers ){
 			if( d.layer.CompareTo(layer) == 0 )
@@ -141,8 +146,11 @@ public class DialogController : ToolKitEventListener {
 	}
 
     public bool TriggerDialog(Speaker speaker, string dialogLayer, string dialogTag) {
-        if (controllerState != State.INACTIVE)
+        if (controllerState != State.INACTIVE && !overrideDialog)
             return false;
+
+        if (overrideDialog)
+            DialogBox.Instance.StopCurrentRendering();
 
         speakerTarget = speaker;
 
@@ -171,21 +179,6 @@ public class DialogController : ToolKitEventListener {
         return false;
     }
 
-    /*
-	//Controller Method: Check for interactions the controller
-	void OnTriggerStay2D(Collider2D other) {
-		//buttons[0].text.text = "Entrou";
-		if( talk && other.GetComponent<CharacterPlatformerController>() != null ){
-			talk = false;
-			TriggerDialog();
-		}
-	}
-
-	void OnTriggerTalk(string identifier){
-		print(identifier);
-		talk = true;
-	}
-*/
     //Controller Method
     void ControllerUpdate(){
 		Speaker dialogSpeaker = null;
@@ -200,9 +193,7 @@ public class DialogController : ToolKitEventListener {
                     speakerTarget.OnDialogEndNotify(current.dialogTag);
                 if (speakerTrigger != null)
                     speakerTrigger.OnDialogEndNotify(current.dialogTag);
-                //dialogbox.GetComponent<Renderer>().enabled = false;
-                //dialogbox.text.text = "";
-                //speecher.face.renderer.enabled = false;
+
                 speakerTarget = null;
                 controllerState = State.INACTIVE;
 
@@ -213,19 +204,10 @@ public class DialogController : ToolKitEventListener {
 				//Diaplay faceset and dialogbox
 				dialogSpeaker = register[current.characterIdentifier];
                 
-                //speecher.face.renderer.enabled = true;
                 //Display Dialogbox
                 DialogBox.Instance.SetVisible(true);
                 DialogBox.Instance.StartRenderText(dialogSpeaker, current.text);
                 
-                //dialogbox.GetComponent<Renderer>().enabled = true;
-                //dialogbox.text.text = current.text;	
-
-                try {
-					onDialogStartEvent(current.dialogTag);
-				}catch( System.Exception e ){
-					Debug.Log(e);
-				}	
 
                 if(current.text != "")
 				    controllerState = State.WAIT;
@@ -234,7 +216,7 @@ public class DialogController : ToolKitEventListener {
             break;
 			case State.WAIT:
                 //Waiting for something happens and change the state
-                if (DialogBox.Instance.IsRenderFinished() && skipped) {
+                if (DialogBox.Instance.IsRenderFinished()) {
                     controllerState = State.QUERY;
                 }else if (!DialogBox.Instance.IsWaitingInput() && skipped){
                     DialogBox.Instance.RenderTextImmediatelly();
@@ -246,68 +228,51 @@ public class DialogController : ToolKitEventListener {
 			break;
 			case State.QUERY:
                 //Make the selection beetween dialog options 
-                //NOTE: Make sure the controller have enough buttons
-				if( current.query.Count > 1 ){
-                    DialogBox.Instance.SetNumberOfOptions(current.query.Count);
+				if( current.query.Count > 1 || (current.query.Count == 1 && current.showSingleOption)){
+                    
+                    //Temporary fix for compatibility of the button selection functionality
+                    while (current.buttonOrder.Count < current.query.Count) {
+                        current.buttonOrder.Add(current.buttonOrder.Count);
+                    }
+                    
                     for ( int i=0; i< current.query.Count; i++ ){
-                        DialogBox.Instance.SetOption(i, current.query[i]);
+                        DialogBox.Instance.ShowOption(current.buttonOrder[i], current.query[i]);
 					}
 					controllerState = State.STANDBY;
-				}else
+				}else if(skipped)
 					controllerState = State.SELECT;
 
 			break;
 			case State.SELECT:
-				if( current.query.Count > 1 ){
+				if( current.query.Count > 1 || (current.query.Count == 1 && current.showSingleOption)) {
 
-                    DialogBox.Instance.SetNumberOfOptions(0);
-                    //dialogSpeaker = register[current.characterIdentifier];
-                    //speecher.face.renderer.enabled = false;
+                    DialogBox.Instance.HideAllOptions();
 
                     if (current.isTrigger)
                         onDialogTrigger.TriggerEvent(new ToolKitEvent(current.toTrigger));
-
-                    try {
-						onDialogEndEvent(tag);
-					}catch(System.Exception e){
-						Debug.Log(e);
-					}
 
 					currentDialogSet.MoveNext(selected);
 					current = currentDialogSet.Current;
 					if(current.updateRoot)
 						currentDialogSet.Root = current;
 					controllerState = State.PLAY;
-				}else if( current.query.Count == 1 ){
-					//dialogSpeaker = register[current.characterIdentifier];
-					//speecher.face.renderer.enabled = false;
-                    
+				}else if(current.query.Count == 1) {
+
+                    DialogBox.Instance.HideAllOptions();
+
                     if (current.isTrigger)
                         onDialogTrigger.TriggerEvent(new ToolKitEvent(current.toTrigger));
 
-                    try {
-						onDialogEndEvent(tag);
-					}catch(System.Exception e){
-						Debug.Log(e);
-					}
-
-					currentDialogSet.MoveNext();
-					current = currentDialogSet.Current;
-					if(current.updateRoot)
-						currentDialogSet.Root = current;
-					controllerState = State.PLAY;
-				}else{
-					//dialogSpeaker = register[current.characterIdentifier];
-					//speecher.face.renderer.enabled = false;
+                    currentDialogSet.MoveNext();
+                    current = currentDialogSet.Current;
+                    if (current.updateRoot)
+                        currentDialogSet.Root = current;
+                    controllerState = State.PLAY;
+                }
+                else{
 
 					if (current.isTrigger)
                         onDialogTrigger.TriggerEvent(new ToolKitEvent(current.toTrigger));
-
-                    try {
-						onDialogEndEvent(tag);
-					}catch(System.Exception e){
-						Debug.Log(e);
-					}
 					
 					controllerState = State.STOP;
 				}

@@ -10,9 +10,30 @@ public class DialogTrigger : ToolKitEventListener {
     public Speaker speaker;
     public string dialogTag;
     public string dialogLayer;
+    public bool ignoreSpeaker = false;
 
     private DialogController dialogController;
     private bool colliding;
+
+    public string DialogTag {
+        get {
+            return dialogTag;
+        }
+
+        set {
+            dialogTag = value;
+        }
+    }
+
+    public string DialogLayer {
+        get {
+            return dialogLayer;
+        }
+
+        set {
+            dialogLayer = value;
+        }
+    }
 
     private void Start() {
         dialogController = GetComponent<DialogController>();
@@ -31,9 +52,9 @@ public class DialogTrigger : ToolKitEventListener {
     }
 
     public override void onTKEvent(ToolKitEvent tkEvent) {
-        if (!colliding)
+        if (!colliding && !ignoreSpeaker)
             return;
-
+        Debug.Log(tkEvent.condition.identifier);
         bool trigger = true;
         foreach(Condition c in conditions.conditions)
         if (!c.CheckCondition(tkEvent.condition)) {
@@ -41,6 +62,20 @@ public class DialogTrigger : ToolKitEventListener {
         }
         if(trigger)
             dialogController.TriggerDialog(speaker, dialogLayer, dialogTag);
+    }
+
+    public void TriggerDialog() {
+        if (!colliding && !ignoreSpeaker)
+            return;
+
+        dialogController.TriggerDialog(speaker, dialogLayer, dialogTag);
+    }
+
+    public void TriggerDialog(string dialogTag) {
+        if (!colliding && !ignoreSpeaker)
+            return;
+
+        dialogController.TriggerDialog(speaker, dialogLayer, dialogTag);
     }
 
 }
