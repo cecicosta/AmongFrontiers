@@ -162,9 +162,23 @@ public class DialogBox : Singleton<DialogBox> {
             transform.position = scrCenter;
             return;
         } else {
-            scrCenter = Camera.main.WorldToScreenPoint(collider.bounds.center);
-            scrMin = Camera.main.WorldToScreenPoint(collider.bounds.min);
-            scrMax = Camera.main.WorldToScreenPoint(collider.bounds.max);
+
+            Vector3 targetSize = collider.bounds.size;
+            targetSize.Scale(canvasRect.localScale);
+            Vector3 boxSize = rectTransform.rect.size;
+            boxSize.Scale(canvasRect.localScale);
+
+            Vector3 targetHeightExtent = new Vector3(0, targetSize.y/2, 0);
+            Vector3 boxHeightExtent = new Vector3(0, boxSize.y/2, 0);
+
+            Vector3 targetPosition = Camera.main.WorldToScreenPoint( collider.bounds.center);
+            targetPosition.Scale(canvasRect.localScale);
+
+            Vector3 arrowHeight = new Vector2(0, anchor.rect.height);
+            arrowHeight.Scale(canvasRect.localScale);
+
+            transform.position = canvasRect.position + targetPosition;// + targetHeightExtent + boxHeightExtent + arrowHeight;
+            return;
         }
 
         Vector2 boxPosition = new Vector2(0, 0);
@@ -180,7 +194,7 @@ public class DialogBox : Singleton<DialogBox> {
         Vector2 referenceCenter = new Vector2(rectTransform.pivot.x * rectTransform.rect.width, rectTransform.pivot.x * rectTransform.rect.height);
         Vector2 centerAdjust = new Vector2(referenceCenter.x - rectTransform.rect.width / 2, referenceCenter.y);
 
-        transform.localPosition = boxPosition + new Vector2(scrCenter.x - parentReferenceCenter.x + centerAdjust.x,
+        transform.position = boxPosition + new Vector2(scrCenter.x - parentReferenceCenter.x + centerAdjust.x,
                                                             scrMax.y - parentReferenceCenter.y + centerAdjust.y);
     }
 
