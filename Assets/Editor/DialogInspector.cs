@@ -56,11 +56,11 @@ public class DialogInspector : Editor {
 			//EditorGUILayout.BeginArea(  new Rect(0, 90,140,160)  );
 			dialog.selectedQuery = EditorGUILayout.Popup("Query", dialog.selectedQuery, dialog.query.ToArray() );
 			dialog.query[dialog.selectedQuery] = EditorGUILayout.TextField(dialog.query[dialog.selectedQuery] );
-
-            int buttons = DialogBox.Instance.buttons.Count;
-            int[] bValues = Enumerable.Range(0, buttons).ToArray();
+            
+            //int buttons = DialogBox.Instance.buttons.Count;
+            //int[] bValues = Enumerable.Range(0, buttons).ToArray();
             dialog.buttonOrder[dialog.selectedQuery] = EditorGUILayout.Popup("Button Order",
-                dialog.buttonOrder[dialog.selectedQuery], bValues.Select(x => x.ToString()).ToArray());
+                dialog.buttonOrder[dialog.selectedQuery], DialogBox.Instance.buttons.Select(x => x.name).ToArray());
 
             //EditorGUILayout.EndArea();
         }

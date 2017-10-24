@@ -115,9 +115,17 @@ public class DialogEditor : EditorWindow {
 
 				//Create conections between parents and children
 				for( int i=0; i<dialog.children.Count; i++ ){
-					
-					Dialog child = dialogs[dialog.children[i]];
-					//Draw conections between parent and child
+
+                    Dialog child = null;
+                    try {
+                        child = dialogs[dialog.children[i]];
+                    }catch(Exception e) {
+
+                        Debug.Log(dialog.children[i]);
+                        dialog.children.RemoveAt(i);
+                        continue;
+                    }
+                        //Draw conections between parent and child
 
 					Handles.BeginGUI();
 					Handles.DrawLine(dialog.EditorWindowRect.center, child.EditorWindowRect.center );
