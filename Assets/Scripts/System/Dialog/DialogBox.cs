@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class DialogBox : Singleton<DialogBox> {
+    public Camera mainCamera;
     public Image dialogBox;
     public Text text;
     public Text name;
@@ -14,7 +15,7 @@ public class DialogBox : Singleton<DialogBox> {
     public RectTransform anchor;
     public string textToRender;
     public GameObject container;
-
+    
     [Tooltip("The text of each button have to be its child.")]
     public List<UnityEngine.UI.Button> buttons = new List<UnityEngine.UI.Button>();
     private List<Text> buttonsText = new List<Text>();
@@ -22,7 +23,7 @@ public class DialogBox : Singleton<DialogBox> {
     private bool waitingInput;
     private string renderedText;
     private bool speedUpRendering;
-    private RectTransform rectTransform;
+    private RectTransform boxRectTransform;
     private RectTransform canvasRect;
 
     public delegate void OnOptionChoose(int id);
@@ -47,7 +48,7 @@ public class DialogBox : Singleton<DialogBox> {
 
     // Use this for initialization
     void Start () {
-        rectTransform = GetComponent<RectTransform>();
+        boxRectTransform = GetComponent<RectTransform>();
         canvasRect = GetComponentInParent<Canvas>().GetComponent<RectTransform>();
 
         foreach (UnityEngine.UI.Button b in buttons) {
@@ -139,10 +140,8 @@ public class DialogBox : Singleton<DialogBox> {
         //Conlider is mandatory for speecher
         BoxCollider2D collider = speecher.GetComponent<BoxCollider2D>();
 
-        Vector3 scrCenter, scrMin, scrMax;
-
-        if (rectTransform == null) {
-            rectTransform = GetComponent<RectTransform>();
+        if (boxRectTransform == null) {
+            boxRectTransform = GetComponent<RectTransform>();
         }
         if (canvasRect == null) {
             canvasRect = GetComponentInParent<Canvas>().GetComponent<RectTransform>();
@@ -150,52 +149,41 @@ public class DialogBox : Singleton<DialogBox> {
 
         //TODO: Improve this code
         if (copySpeakerRect) {
-            rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, collider.GetComponent<RectTransform>().rect.size.x);
-            rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, collider.GetComponent<RectTransform>().rect.size.y);
+            boxRectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, collider.GetComponent<RectTransform>().rect.size.x);
+            boxRectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, collider.GetComponent<RectTransform>().rect.size.y);
             transform.position = collider.transform.position;
             return;
+
         } else if (useScreenPosition) {
             Vector3 canvasScale = canvasRect.localScale;
             Vector3 speakerHeightExtent = new Vector3(0, collider.GetComponent<RectTransform>().rect.size.y / 2 * canvasScale.y, 0);
-            Vector3 boxHeightExtent = new Vector3(0, rectTransform.rect.size.y / 2 * canvasScale.y, 0);
-            scrCenter = collider.transform.position + boxHeightExtent + speakerHeightExtent;
+            Vector3 boxHeightExtent = new Vector3(0, boxRectTransform.rect.size.y / 2 * canvasScale.y, 0);
+            Vector3 scrCenter = collider.transform.position + boxHeightExtent + speakerHeightExtent;
             transform.position = scrCenter;
             return;
+
         } else {
 
-            Vector3 targetSize = collider.bounds.size;
-            targetSize.Scale(canvasRect.localScale);
-            Vector3 boxSize = rectTransform.rect.size;
-            boxSize.Scale(canvasRect.localScale);
-
-            Vector3 targetHeightExtent = new Vector3(0, targetSize.y/2, 0);
-            Vector3 boxHeightExtent = new Vector3(0, boxSize.y/2, 0);
-
-            Vector3 targetPosition = Camera.main.WorldToScreenPoint( collider.bounds.center);
+            Vector3 targetPosition = mainCamera.WorldToScreenPoint(collider.bounds.center);
             targetPosition.Scale(canvasRect.localScale);
 
-            Vector3 arrowHeight = new Vector2(0, anchor.rect.height);
-            arrowHeight.Scale(canvasRect.localScale);
+            Vector3 targetExtents = (mainCamera.WorldToScreenPoint(collider.bounds.max) - mainCamera.WorldToScreenPoint(collider.bounds.min)) / 2;
+            targetExtents.Scale(canvasRect.localScale);
 
-            transform.position = canvasRect.position + targetPosition;// + targetHeightExtent + boxHeightExtent + arrowHeight;
+            Vector3 boxExtents = boxRectTransform.rect.size/2;
+            boxExtents.Scale(canvasRect.localScale);
+            Vector3 canvasExtents = canvasRect.rect.size / 2;
+            canvasExtents.Scale(canvasRect.localScale);
+
+            Vector2 arrowSize = new Vector2(0, 0);
+            if (anchor != null) {
+                arrowSize = anchor.rect.size;
+                arrowSize.Scale(canvasRect.localScale);
+            }
+
+            transform.position = canvasRect.position + targetPosition - canvasExtents + new Vector3(0, targetExtents.y, 0) + new Vector3(0, boxExtents.y, 0) + new Vector3(0, arrowSize.y, 0);
             return;
         }
-
-        Vector2 boxPosition = new Vector2(0, 0);
-        if (anchor != null) {
-            //anchor.localPosition = new Vector2(scrCenter.x, scrMax.y);
-            boxPosition = new Vector2(0, anchor.rect.height);
-        }
-
-        //Adjust by the parent reference center point
-        Vector2 parentReferenceCenter = new Vector2(canvasRect.pivot.x * canvasRect.rect.width, canvasRect.pivot.x * canvasRect.rect.height);
-
-        //Adjust by its own center
-        Vector2 referenceCenter = new Vector2(rectTransform.pivot.x * rectTransform.rect.width, rectTransform.pivot.x * rectTransform.rect.height);
-        Vector2 centerAdjust = new Vector2(referenceCenter.x - rectTransform.rect.width / 2, referenceCenter.y);
-
-        transform.position = boxPosition + new Vector2(scrCenter.x - parentReferenceCenter.x + centerAdjust.x,
-                                                            scrMax.y - parentReferenceCenter.y + centerAdjust.y);
     }
 
     public void ContinueRenderText() {
