@@ -19,7 +19,7 @@ public class InteractionController : ToolKitEventListener {
 	private List<Interaction> interactionsTrees = new List<Interaction>();
 	private List<Interaction> playInteractionTrees = new List<Interaction> ();
     private GameObject colliding = null;
-    private bool suspend = false;
+    private bool suspend = true;
     private Coroutine routine;
 
     List<Interaction> toRemove = new List<Interaction>();
@@ -39,8 +39,12 @@ public class InteractionController : ToolKitEventListener {
 		return null;
 	}
 
-	// Use this for initialization
-	void Start () {
+    private void Awake() {
+        suspend = false;
+    }
+
+    // Use this for initialization
+    void Start () {
         routine = StartCoroutine(UpdateController());
 	}
 
@@ -79,6 +83,8 @@ public class InteractionController : ToolKitEventListener {
                 } else if ((i.useInteractionArea && colliding != null)) {
                     i.ExecuteAction(colliding);
                 } else if (!i.useInteractionArea) {
+                    //if(i.tkAction.GetType() == typeof(AnimAction))
+                    //Debug.Log(((AnimAction)(i.tkAction)).animationState);
                     i.ExecuteAction();
                 } else {
                     i.SetAsInactive();
@@ -86,10 +92,16 @@ public class InteractionController : ToolKitEventListener {
                 }
 
             }
+            Debug.Log(name + " num inter: " + playInteractionTrees.Count);
+            Debug.Log(name + " num remove: " + toRemove.Count);
+            Debug.Log(name + " num add: " + toAdd.Count);
             foreach (Interaction i in toAdd)
                 playInteractionTrees.Add(i);
             foreach (Interaction i in toRemove)
                 playInteractionTrees.Remove(i);
+            
+            toRemove.Clear();
+            toAdd.Clear();
 
             yield return null;
         }
@@ -124,7 +136,7 @@ public class InteractionController : ToolKitEventListener {
 					}
 				}
 
-				if(allConditionsSatisfied) {
+				if(allConditionsSatisfied && !playInteractionTrees.Contains(i)) {
                     i.SetAsActive();	
 					playInteractionTrees.Add(i);
 				}

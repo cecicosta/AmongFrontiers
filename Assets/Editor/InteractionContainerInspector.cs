@@ -96,7 +96,7 @@ public class InteractionContainerInspector : Editor {
         serializedObject.ApplyModifiedProperties();
         //EditorGUILayout.PropertyField(serializedObject.FindProperty(""), new GUIContent("Action"), true, GUILayout.ExpandHeight(true));
         //serializedObject.ApplyModifiedProperties();
-        
+
 
 
         //if (interaction.tkAction == null && index > -1) {
@@ -104,6 +104,8 @@ public class InteractionContainerInspector : Editor {
         //}else if ( interaction.tkAction != null && !interaction.tkAction.action.Equals (action_names [index])) {
         //	interaction.tkAction = actions[index];
         //      }
+
+        interaction.timeout = EditorGUILayout.FloatField(new GUIContent("Timeout"), interaction.timeout);
 
         interaction.useInteractionArea = EditorGUILayout.Toggle(new GUIContent("Use Interaction Area"), interaction.useInteractionArea);
 
