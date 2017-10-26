@@ -41,7 +41,11 @@ public partial class PlayerInput : CharacterAttributes {
         onHealthChangeNotify.Invoke(health/totalHealth);
     }
 
-	void Update () {
+    private void OnEnable() {
+        onHealthChangeNotify.Invoke(health / totalHealth);
+    }
+
+    void Update () {
 
         if(previousHealth != health) {
             previousHealth = health;

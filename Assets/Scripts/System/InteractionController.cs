@@ -68,15 +68,12 @@ public class InteractionController : ToolKitEventListener {
                         Interaction next = i.getNext();
                         //All conditions may not be satisfied
                         if (next != null) {
-                            //playInteractionTrees.Remove (i);
                             toRemove.Add(i);
                             i.SetAsInactive();
                             next.SetAsActive();
-                            //playInteractionTrees.Add (next);
                             toAdd.Add(next);
                         }
                     } else {
-                        //playInteractionTrees.Remove (i);
                         toRemove.Add(i);
                     }
                 } else if ((i.useInteractionArea && colliding != null)) {
@@ -127,9 +124,8 @@ public class InteractionController : ToolKitEventListener {
 					}
 				}
 
-				if(allConditionsSatisfied)
-				{
-					i.SetAsActive();	
+				if(allConditionsSatisfied) {
+                    i.SetAsActive();	
 					playInteractionTrees.Add(i);
 				}
 			}
