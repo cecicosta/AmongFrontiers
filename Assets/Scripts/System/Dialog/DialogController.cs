@@ -10,7 +10,7 @@ public class DialogController : ToolKitEventListener {
 	private State controllerState = State.INACTIVE;
 
 	private static bool registerSpeachers = false;
-	private static Dictionary<string, Speaker> register = new Dictionary<string, Speaker>();
+	public static Dictionary<string, Speaker> register = new Dictionary<string, Speaker>();
 
 	//Controller atributes
 	public DialogShelf dialogShelf;
