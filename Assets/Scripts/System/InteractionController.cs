@@ -22,6 +22,9 @@ public class InteractionController : ToolKitEventListener {
     private bool suspend = false;
     private Coroutine routine;
 
+    List<Interaction> toRemove = new List<Interaction>();
+    List<Interaction> toAdd = new List<Interaction>();
+
     public List<Interaction> Interactions{
 		get{ return interactionsTrees; }
 	}
@@ -44,23 +47,21 @@ public class InteractionController : ToolKitEventListener {
     private void OnEnable() {
         if (routine == null)
             routine = StartCoroutine(UpdateController());
+        suspend = false;
     }
 
     private void OnDisable() {
         if (routine != null)
             StopCoroutine(routine);
         routine = null;
+        suspend = true;
     }
 
     // Update is called once per frame
     IEnumerator UpdateController () {
         while (true) {
-            List<Interaction> toRemove = new List<Interaction>();
-            List<Interaction> toAdd = new List<Interaction>();
             foreach (Interaction i in playInteractionTrees.ToArray()) {
                 if (!i.IsActive()) {
-
-
                     yield return new WaitUntil(() => { return i.tkAction.isFinished(); });
                     if (i.HasChild()) {
 

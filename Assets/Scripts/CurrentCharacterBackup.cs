@@ -15,6 +15,7 @@ public class CurrentCharacterBackup : Singleton<CurrentCharacterBackup> {
         DontDestroyOnLoad(gameObject);
 
         PlayerInput[] playerInputs = FindObjectsOfType<PlayerInput>();
+        characters.Clear();
         foreach (PlayerInput p in playerInputs) {
             characters.Add(p.GetComponent<Speaker>().identifier, p.transform.position);
         }

@@ -146,10 +146,10 @@ public partial class PlayerInput : CharacterAttributes {
 
     public void Stop() {
         stopped = true;
-        player.SetDirectionalInput(new Vector2(0, 0));
+        GetComponent<Player>().SetDirectionalInput(new Vector2(0, 0));
 
         ToolKitEvent tkevent = new ToolKitEvent(standAnimationTrigger);
-        eventTrigger.TriggerEvent(tkevent);
+        new ToolKitEventTrigger().TriggerEvent(tkevent);
     }
 
     public void Resume() {
