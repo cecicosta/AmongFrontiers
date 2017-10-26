@@ -51,7 +51,7 @@ public class DialogController : ToolKitEventListener {
 
         //TODO: Transfer this reference to an manager
         register.Clear();
-		Speaker[] speechers = Resources.FindObjectsOfTypeAll<Speaker>();
+		Speaker[] speechers = FindObjectsOfType<Speaker>();
 		foreach( Speaker s in speechers ){
             try {
                 register.Add(s.identifier, s);
@@ -211,9 +211,11 @@ public class DialogController : ToolKitEventListener {
 
                 if(current.text != "")
 				    controllerState = State.WAIT;
-                else
+                else if(current.query.Count > 1 || (current.query.Count == 1 && current.showSingleOption))
                     controllerState = State.QUERY;
-            break;
+                else
+                    controllerState = State.SELECT;
+                break;
 			case State.WAIT:
                 //Waiting for something happens and change the state
                 if (DialogBox.Instance.IsRenderFinished()) {
