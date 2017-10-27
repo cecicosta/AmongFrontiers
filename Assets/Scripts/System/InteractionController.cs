@@ -84,8 +84,6 @@ public class InteractionController : ToolKitEventListener {
                 } else if ((i.useInteractionArea && colliding != null)) {
                     i.ExecuteAction(colliding);
                 } else if (!i.useInteractionArea) {
-                    //if(i.tkAction.GetType() == typeof(AnimAction))
-                    //Debug.Log(((AnimAction)(i.tkAction)).animationState);
                     i.ExecuteAction();
                 } else {
                     i.SetAsInactive();

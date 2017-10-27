@@ -157,7 +157,7 @@ public partial class PlayerInput : CharacterAttributes {
         attackStarted.Invoke();
         attacking = true;
         float started = Time.time;
-        while (Input.GetKey(KeyCode.Z)) {
+        while (Input.GetKey(KeyCode.Z) && stamina != 0) {
             onKeepAttackNotify.Invoke(Time.time - started);
             yield return null;
         }
