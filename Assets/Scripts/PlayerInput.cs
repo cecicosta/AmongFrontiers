@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.Events;
+using System;
 
 [RequireComponent(typeof(Player))]
 public partial class PlayerInput : CharacterAttributes {
@@ -10,6 +11,8 @@ public partial class PlayerInput : CharacterAttributes {
     public Condition jumpAnimationTrigger;
     public Condition attackAnimationTrigger;
     public Condition attackAndWalkTrigger;
+    public Condition jumpAndAttackingTrigger;
+
     public GameObject graphics;
     public bool stopped = false;
 
@@ -29,16 +32,16 @@ public partial class PlayerInput : CharacterAttributes {
 
     public OnValueChangesFloat onKeepAttackNotify;
     public OnValueChangesFloat onHealthChangeNotify;
+    public OnValueChangesFloat onStaminaChangeNotify;
+    public OnValueChangesFloat onRamChangeNotify;
 
-    private float totalHealth;
-    private float previousHealth;
+
     private float lastAttack = 0;
     private bool attacking = false;
-
+    
     void Start () {
 		player = GetComponent<Player> ();
         eventTrigger = new ToolKitEventTrigger();
-        totalHealth = previousHealth = health;
         onHealthChangeNotify.Invoke(health/totalHealth);
     }
 
@@ -48,13 +51,19 @@ public partial class PlayerInput : CharacterAttributes {
 
     void Update () {
 
-        if(previousHealth != health) {
-            previousHealth = health;
-            onHealthChangeNotify.Invoke(health / totalHealth);
-        }
-
         if (stopped)
             return;
+        Debug.Log("stamina: " + stamina);
+        if (stamina == 0) {
+            ToolKitEvent tkevent = new ToolKitEvent(standAnimationTrigger);
+            eventTrigger.TriggerEvent(tkevent);
+            player.SetDirectionalInput(Vector2.zero);
+
+            if (Input.GetKeyUp(KeyCode.Space)) {
+                player.OnJumpInputUp();
+            }
+            return;
+        }
 
         Vector2 position = InterfaceManager.cursorWorldPosition;
 
@@ -120,10 +129,13 @@ public partial class PlayerInput : CharacterAttributes {
         if (player.IsJumping() && !attacking) {
             ToolKitEvent tkevent = new ToolKitEvent(jumpAnimationTrigger);
             eventTrigger.TriggerEvent(tkevent);
+        }else if (player.IsJumping() && attacking) {
+            ToolKitEvent tkevent = new ToolKitEvent(jumpAndAttackingTrigger);
+            eventTrigger.TriggerEvent(tkevent);
         } else if (directionX != 0 && !player.IsJumping() && !attacking) {
             ToolKitEvent tkevent = new ToolKitEvent(moveAnimationTrigger);
             eventTrigger.TriggerEvent(tkevent);
-        }else if (directionX != 0 && !player.IsJumping() && attacking) {
+        } else if (directionX != 0 && !player.IsJumping() && attacking) {
             ToolKitEvent tkevent = new ToolKitEvent(attackAndWalkTrigger);
             eventTrigger.TriggerEvent(tkevent);
         } else if (attacking) {
@@ -175,4 +187,15 @@ public partial class PlayerInput : CharacterAttributes {
         graphics.transform.localScale = theScale;
     }
 
+    public override void HealthUpdate() {
+        onHealthChangeNotify.Invoke(health / totalHealth);
+    }
+
+    public override void StaminaUpdate() {
+        onStaminaChangeNotify.Invoke(stamina / totalStamina);
+    }
+
+    public override void RamUpdate() {
+        onRamChangeNotify.Invoke(ram / totalRam);
+    }
 }

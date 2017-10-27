@@ -66,7 +66,8 @@ public class InteractionController : ToolKitEventListener {
         while (true) {
             foreach (Interaction i in playInteractionTrees.ToArray()) {
                 if (!i.IsActive()) {
-                    yield return new WaitUntil(() => { return i.tkAction.isFinished(); });
+                    if (!i.tkAction.isFinished())
+                        continue;
                     if (i.HasChild()) {
 
                         Interaction next = i.getNext();

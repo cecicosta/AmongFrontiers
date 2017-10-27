@@ -28,6 +28,8 @@ public class AnimatedInput : CharacterAttributes {
 
     public float attackDamage = 5;
 
+    public OnValueChangesFloat onHealthChangeNotify;
+
     void Start () {
 		player = GetComponent<Player> ();
         eventTrigger = new ToolKitEventTrigger();
@@ -122,4 +124,14 @@ public class AnimatedInput : CharacterAttributes {
         graphics.transform.localScale = theScale;
     }
 
+    public override void HealthUpdate() {
+        onHealthChangeNotify.Invoke(health / totalHealth);
+    }
+
+    public override void StaminaUpdate() {
+        
+    }
+
+    public override void RamUpdate() {
+    }
 }
