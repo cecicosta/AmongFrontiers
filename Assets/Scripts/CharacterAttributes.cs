@@ -5,7 +5,7 @@ using UnityEngine;
 public class CharacterAttributes : MonoBehaviour {
 
     public float health = 30;
-
+    public float defense = 0;
     public Condition onZeroHealthTrigger;
     public UnityEngine.Events.UnityEvent onZeroHealth;
 
@@ -13,7 +13,7 @@ public class CharacterAttributes : MonoBehaviour {
         if (health == 0)
             return;
 
-        health -= damage;
+        health = health - (damage - defense);
 
         if (health <= 0) {
             health = 0;
