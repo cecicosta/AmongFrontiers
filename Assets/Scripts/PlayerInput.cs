@@ -53,7 +53,7 @@ public partial class PlayerInput : CharacterAttributes {
 
         if (stopped)
             return;
-        Debug.Log("stamina: " + stamina);
+
         if (stamina == 0) {
             ToolKitEvent tkevent = new ToolKitEvent(standAnimationTrigger);
             eventTrigger.TriggerEvent(tkevent);
