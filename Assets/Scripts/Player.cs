@@ -30,6 +30,7 @@ public class Player : MonoBehaviour {
 	internal Controller2D controller;
 
 	Vector2 directionalInput;
+    Vector2 currentDirection = new Vector2(1,0);
 	bool wallSliding;
 	int wallDirX;
 
@@ -63,7 +64,12 @@ public class Player : MonoBehaviour {
 
 	public void SetDirectionalInput (Vector2 input) {
 		directionalInput = input;
+        currentDirection = input.x != 0? directionalInput.normalized : currentDirection;
 	}
+
+    public Vector3 GetDirection() {
+        return currentDirection;
+    }
 
     public bool IsJumping() {
         return velocity.y != 0;

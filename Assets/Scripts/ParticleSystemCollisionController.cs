@@ -7,8 +7,11 @@ public class ParticleSystemCollisionController : MonoBehaviour {
     ParticleSystem particleSystem;
     public float amountOfDamage = 5;
     public float force = 2;
-	// Use this for initialization
-	void Start () {
+    public float damageInterval = 1;
+    private float lastDamage = 0;
+
+    // Use this for initialization
+    void Start () {
         particleSystem = GetComponent<ParticleSystem>();
 	}
 	
@@ -18,23 +21,21 @@ public class ParticleSystemCollisionController : MonoBehaviour {
 	}
 
     void OnParticleCollision(GameObject other) {
-        Debug.Log("This shit collided");
-
-        //ParticleSystem.Particle[] m_Particles = new ParticleSystem.Particle[255];
+        if (Time.time - lastDamage < damageInterval)
+            return;
 
         CharacterAttributes characterAttributes = other.GetComponent<CharacterAttributes>();
         if (characterAttributes == null)
             return;
 
 
-
         Player player = other.GetComponent<Player>();
         if (player == null)
             return;
 
-
-
         characterAttributes.DoDamage(amountOfDamage);
+
+        lastDamage = Time.time;
 
         List<ParticleCollisionEvent> particles = new List<ParticleCollisionEvent>();
 

@@ -9,6 +9,7 @@ public partial class PlayerInput : CharacterAttributes {
     public Condition standAnimationTrigger;
     public Condition jumpAnimationTrigger;
     public Condition attackAnimationTrigger;
+    public Condition attackAndWalkTrigger;
     public GameObject graphics;
     public bool stopped = false;
 
@@ -104,6 +105,7 @@ public partial class PlayerInput : CharacterAttributes {
         if(Input.GetKeyDown(KeyCode.Z) && (Time.time - lastAttack > attackCoolDown)) {
             DoAttack();
             lastAttack = Time.time;
+            attacking = true;
         }
 
         player.SetDirectionalInput (new Vector2(directionX, 0));
@@ -118,10 +120,13 @@ public partial class PlayerInput : CharacterAttributes {
         if (player.IsJumping() && !attacking) {
             ToolKitEvent tkevent = new ToolKitEvent(jumpAnimationTrigger);
             eventTrigger.TriggerEvent(tkevent);
-        }else if (directionX != 0 && !player.IsJumping()) {
+        } else if (directionX != 0 && !player.IsJumping() && !attacking) {
             ToolKitEvent tkevent = new ToolKitEvent(moveAnimationTrigger);
             eventTrigger.TriggerEvent(tkevent);
-        }else if (attacking) {
+        }else if (directionX != 0 && !player.IsJumping() && attacking) {
+            ToolKitEvent tkevent = new ToolKitEvent(attackAndWalkTrigger);
+            eventTrigger.TriggerEvent(tkevent);
+        } else if (attacking) {
             ToolKitEvent tkevent = new ToolKitEvent(attackAnimationTrigger);
             eventTrigger.TriggerEvent(tkevent);
         } else {

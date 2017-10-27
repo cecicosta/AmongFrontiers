@@ -92,9 +92,7 @@ public class InteractionController : ToolKitEventListener {
                 }
 
             }
-            Debug.Log(name + " num inter: " + playInteractionTrees.Count);
-            Debug.Log(name + " num remove: " + toRemove.Count);
-            Debug.Log(name + " num add: " + toAdd.Count);
+
             foreach (Interaction i in toAdd)
                 playInteractionTrees.Add(i);
             foreach (Interaction i in toRemove)
