@@ -68,19 +68,17 @@ public class InteractionController : ToolKitEventListener {
                 if (!i.IsActive()) {
                     if (!i.tkAction.isFinished())
                         continue;
-                    if (i.HasChild()) {
 
-                        Interaction next = i.getNext();
-                        //All conditions may not be satisfied
-                        if (next != null) {
-                            toRemove.Add(i);
-                            i.SetAsInactive();
+                    toRemove.Add(i);
+                    i.SetAsInactive();
+                    
+                    foreach (Interaction next in i.GetNext()) {
+                        if (next.IsReady()) {
                             next.SetAsActive();
                             toAdd.Add(next);
                         }
-                    } else {
-                        toRemove.Add(i);
                     }
+                    
                 } else if ((i.useInteractionArea && colliding != null)) {
                     i.ExecuteAction(colliding);
                 } else if (!i.useInteractionArea) {

@@ -73,6 +73,10 @@ public class Interaction {
 		children.Add(toChild);
 	}
 
+    public Interaction() {
+        iteractionEnumerator = GetNext().GetEnumerator();
+    }
+
 	public bool HasChild(){
 		return children.Count > 0;
 	}
@@ -128,22 +132,15 @@ public class Interaction {
         }
     }
 
-    public Interaction getNext(){
-		Interaction next = null;
-		foreach (Transition t in children) {
-			Interaction i = t.interactionController.getInteractionById (t.toId);
-			
-			if( i.IsReady() ){
-				if( next == null)
-				   	next  = i;
-				if( next.timeout > i.timeout )
-					next = i;
-			}
-		}
-
-		return next;
+    public IEnumerable<Interaction> GetNext(){
+        foreach (Transition t in children) {
+            Interaction i = t.interactionController.getInteractionById(t.toId);
+            yield return i;
+        }
 	}
-    
+
+    IEnumerator<Interaction> iteractionEnumerator;
+
     //Editor properties
     public Rect EditorWindowRect = new Rect (100, 100, 200, 72);
     
