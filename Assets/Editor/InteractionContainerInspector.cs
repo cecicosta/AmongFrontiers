@@ -108,6 +108,9 @@ public class InteractionContainerInspector : Editor {
         interaction.timeout = EditorGUILayout.FloatField(new GUIContent("Timeout"), interaction.timeout);
 
         interaction.useInteractionArea = EditorGUILayout.Toggle(new GUIContent("Use Interaction Area"), interaction.useInteractionArea);
+        if (interaction.useInteractionArea) {
+            interaction.interactWith = (Collider2D)EditorGUILayout.ObjectField(new GUIContent("Interact With"), interaction.interactWith, typeof(Collider2D), true);
+        }
 
         EditorGUILayout.Separator();
         EditorGUILayout.Separator();

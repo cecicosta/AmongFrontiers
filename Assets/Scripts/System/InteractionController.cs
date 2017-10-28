@@ -24,6 +24,8 @@ public class InteractionController : ToolKitEventListener {
 
     List<Interaction> toRemove = new List<Interaction>();
     List<Interaction> toAdd = new List<Interaction>();
+    private List<Collider2D> collisions = new List<Collider2D>();
+    
 
     public List<Interaction> Interactions{
 		get{ return interactionsTrees; }
@@ -71,16 +73,19 @@ public class InteractionController : ToolKitEventListener {
 
                     toRemove.Add(i);
                     i.SetAsInactive();
-                    
+
                     foreach (Interaction next in i.GetNext()) {
                         if (next.IsReady()) {
                             next.SetAsActive();
                             toAdd.Add(next);
                         }
                     }
-                    
-                } else if ((i.useInteractionArea && colliding != null)) {
-                    i.ExecuteAction(colliding);
+
+                } else if ((i.useInteractionArea && collisions.Contains(i.interactWith))) {
+                        i.ExecuteAction(i.interactWith.gameObject);
+                } else if ((i.useInteractionArea && collisions.Count > 0) && i.interactWith ==  null) {
+                    for (int k = 0; k < collisions.Count; k++)
+                        i.ExecuteAction(collisions[k].gameObject);
                 } else if (!i.useInteractionArea) {
                     i.ExecuteAction();
                 } else {
@@ -89,7 +94,6 @@ public class InteractionController : ToolKitEventListener {
                 }
 
             }
-
             foreach (Interaction i in toAdd)
                 playInteractionTrees.Add(i);
             foreach (Interaction i in toRemove)
@@ -103,11 +107,13 @@ public class InteractionController : ToolKitEventListener {
 	}
 
     private void OnTriggerEnter2D(Collider2D collision) {
-        colliding = collision.gameObject;
+        if(!collisions.Contains(collision))
+            collisions.Add(collision);
     }
 
     private void OnTriggerExit2D(Collider2D collision) {
-        colliding = null;
+        if (collisions.Contains(collision))
+            collisions.Remove(collision);
     }
 
     public void Suspend() {

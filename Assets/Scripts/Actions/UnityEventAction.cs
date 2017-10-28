@@ -16,7 +16,7 @@ public class UnityEventAction : ToolKitAction {
         
     }
     public override void Execute(GameObject colliding, GameObject gameObject) {
-        if(interactWith.gameObject == colliding) {
+        if(interactWith == null || interactWith.gameObject == colliding) {
             started = Time.time;
             onInteractionTrigged.Invoke();
         }

@@ -143,5 +143,5 @@ public class Interaction {
 
     //Editor properties
     public Rect EditorWindowRect = new Rect (100, 100, 200, 72);
-    
+    public Collider2D interactWith;
 }

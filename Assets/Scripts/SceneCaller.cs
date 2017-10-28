@@ -15,4 +15,8 @@ public class SceneCaller : MonoBehaviour {
     public void ResumeScene() {
         Time.timeScale = 1;
     }
+
+    public void Exit() {
+        Application.Quit();
+    }
 }

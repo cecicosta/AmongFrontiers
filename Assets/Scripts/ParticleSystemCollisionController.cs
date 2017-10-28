@@ -40,7 +40,6 @@ public class ParticleSystemCollisionController : MonoBehaviour {
         List<ParticleCollisionEvent> particles = new List<ParticleCollisionEvent>();
 
         particleSystem.GetCollisionEvents(other, particles);
-        Debug.Log(particles.Count);
         if (particles.Count > 0) {
             foreach (ParticleCollisionEvent p in particles) {
                 player.SetDirectionalInput(Vector2.zero);

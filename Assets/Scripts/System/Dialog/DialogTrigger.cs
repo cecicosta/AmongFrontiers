@@ -54,7 +54,7 @@ public class DialogTrigger : ToolKitEventListener {
     public override void onTKEvent(ToolKitEvent tkEvent) {
         if (!colliding && !ignoreSpeaker)
             return;
-        Debug.Log(tkEvent.condition.identifier);
+
         bool trigger = true;
         foreach(Condition c in conditions.conditions)
         if (!c.CheckCondition(tkEvent.condition)) {
