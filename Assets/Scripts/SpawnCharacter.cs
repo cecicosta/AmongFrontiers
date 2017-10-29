@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SpawnCharacter : MonoBehaviour {
     public CameraFollow cameraFollow;
-
+    public Transform spawmPoint;
 
 	public void SwitchCurrentCharacter(Controller2D switchTo) {
 
@@ -18,5 +18,8 @@ public class SpawnCharacter : MonoBehaviour {
         switchTo.transform.position = cameraFollow.target.transform.position;
 
         cameraFollow.target = switchTo;
+
+        if (spawmPoint != null)
+            current.transform.position = spawmPoint.position;
     }
 }

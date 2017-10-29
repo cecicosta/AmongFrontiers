@@ -21,7 +21,7 @@ public class GenericListDrawer :  PropertyDrawer{
         GUIStyle style = new GUIStyle(GUI.skin.label);
         EditorGUI.LabelField(position, new GUIContent("Conditions"), style);
         //EditorGUILayout.Separator();
-        position.y += 10;
+        //position.y += 15;
 
         foreach (Condition c in list.conditions) {
 
@@ -41,11 +41,12 @@ public class GenericListDrawer :  PropertyDrawer{
             //EditorHelper.DrawPropertyExclusing(serializedObject, new string[] { "m_Script" });
             serializedObject.ApplyModifiedProperties();
 
-
-            size += 15 * (countChildren - 2); //magic number
-            position.y += 15 * (countChildren - 3); //magic number
+            position.y += 75;
+            size += 75; //magic number
+            //position.y += 15 * (countChildren - 3); //magic number
 
         }
+        size += list.conditions.Count * 15;
 
         position.y += 15;
         size += 15;
@@ -68,7 +69,7 @@ public class GenericListDrawer :  PropertyDrawer{
 
 
     public override float GetPropertyHeight(SerializedProperty prop, GUIContent label) {
-        float extraHeight = size + 30;
+        float extraHeight = size + 15;
         return base.GetPropertyHeight(prop, label) + extraHeight;
     }
 

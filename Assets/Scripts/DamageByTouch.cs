@@ -39,7 +39,9 @@ public class DamageByTouch : MonoBehaviour {
             return;
 
         player.SetDirectionalInput(Vector2.zero);
-        player.velocity = -player.velocity.normalized*force;
+        Vector2 velocity = -player.velocity.normalized;
+        velocity.y = 0;
+        player.velocity = velocity.normalized*force;
 
         characterAttributes.DoDamage(amountOfDamage);
     }
