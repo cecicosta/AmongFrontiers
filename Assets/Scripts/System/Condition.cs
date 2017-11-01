@@ -13,8 +13,10 @@ public class Condition{
     public bool BoolValue;
     public float FloatValue;
     public KeyCode InputValue;
+    public InputState inputState;
 
     public enum VariableCondition{ Greater, Lower, Equal };
+    public enum InputState { Down, Up, Press };
 
 	public VariableCondition comparison = VariableCondition.Equal;
 
@@ -30,6 +32,7 @@ public class Condition{
         InputValue = from.InputValue;
         type = from.type;
         identifier = from.identifier;
+        inputState = from.inputState;
     }
 
     public void setIntValue( int value ){ IntValue = value; }
@@ -91,7 +94,7 @@ public class Condition{
 
 	public bool checkConditionKey(Condition condition ){
 		bool isSatisfied = false;
-		if (type == VariableType.Input && condition.identifier.CompareTo (identifier) == 0) {
+		if (type == VariableType.Input && condition.identifier.CompareTo (identifier) == 0 && condition.inputState == inputState) {
 			KeyCode value = condition.InputValue;
 			isSatisfied = this.InputValue == value ;
 		}

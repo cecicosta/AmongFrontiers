@@ -127,6 +127,7 @@ public class ConditionListCustomEditor : Editor {
                 break;
             case Condition.VariableType.Input:
                 c.InputValue = (KeyCode)EditorGUILayout.EnumPopup(c.InputValue);
+                //c.inputState = (Condition.InputState)EditorGUILayout.EnumPopup(c.inputState);
                 break;
             default:
                 break;

@@ -185,6 +185,8 @@ public class ConditionDrawer : PropertyDrawer {
                 break;
             case Condition.VariableType.Input:
                 EditorGUI.PropertyField(position, p.FindPropertyRelative("InputValue"));
+                position.y += 15;
+                EditorGUI.PropertyField(position, p.FindPropertyRelative("inputState"));
                 break;
             default:
                 break;

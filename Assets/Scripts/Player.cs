@@ -11,9 +11,9 @@ public class Player : MonoBehaviour {
 	public float timeToJumpApex = .4f;
 	float accelerationTimeAirborne = .2f;
 	float accelerationTimeGrounded = .1f;
-	public float moveSpeed = 6;
+    public float moveSpeed = 6;
 
-	public Vector2 wallJumpClimb;
+    public Vector2 wallJumpClimb;
 	public Vector2 wallJumpOff;
 	public Vector2 wallLeap;
 
@@ -38,6 +38,15 @@ public class Player : MonoBehaviour {
     public float locateDistance = 3;
     public float attackDistance = 1;
 
+    public float MoveSpeed {
+        get {
+            return moveSpeed;
+        }
+
+        set {
+            moveSpeed = value;
+        }
+    }
 
     void Start() {
 		controller = GetComponent<Controller2D> ();

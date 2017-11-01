@@ -6,12 +6,14 @@ using System;
 [RequireComponent(typeof(Player))]
 public partial class PlayerInput : CharacterAttributes {
 
+    public Condition RunTrigger;
     public Condition moveAnimationTrigger;
     public Condition standAnimationTrigger;
     public Condition jumpAnimationTrigger;
     public Condition attackAnimationTrigger;
     public Condition attackAndWalkTrigger;
     public Condition jumpAndAttackingTrigger;
+    public Condition recoveryRam;
 
     public GameObject graphics;
     public bool stopped = false;
@@ -25,8 +27,11 @@ public partial class PlayerInput : CharacterAttributes {
     private bool chasing = false;
     private Vector2 target;
 
+    public float runSpeed;
+    public float walkSpeed;
     public float attackCoolDown = 3;
     public KeyCode attackInput;
+    public KeyCode runInput;
     public UnityEvent attackStarted;
     public UnityEvent attackEnd;
 
@@ -35,9 +40,9 @@ public partial class PlayerInput : CharacterAttributes {
     public OnValueChangesFloat onStaminaChangeNotify;
     public OnValueChangesFloat onRamChangeNotify;
 
-
     private float lastAttack = 0;
     private bool attacking = false;
+    private bool running;
     
     void Start () {
 		player = GetComponent<Player> ();
@@ -111,7 +116,7 @@ public partial class PlayerInput : CharacterAttributes {
             }
         }
 
-        if(Input.GetKeyDown(KeyCode.Z) && (Time.time - lastAttack > attackCoolDown)) {
+        if(Input.GetKeyDown(attackInput) && (Time.time - lastAttack > attackCoolDown)) {
             DoAttack();
             lastAttack = Time.time;
             attacking = true;
@@ -126,27 +131,59 @@ public partial class PlayerInput : CharacterAttributes {
 			player.OnJumpInputUp ();
 		}
 
+        if (Input.GetKey(runInput)) {
+            running = true;
+            player.moveSpeed = runSpeed;
+        } else {
+            running = false;
+            player.moveSpeed = walkSpeed;
+        }
+
+
+        RunTrigger.BoolValue = false;
+        jumpAnimationTrigger.BoolValue = false;
+        jumpAndAttackingTrigger.BoolValue = false;
+        moveAnimationTrigger.BoolValue = false;
+        attackAndWalkTrigger.BoolValue = false;
+        attackAnimationTrigger.BoolValue = false;
+        standAnimationTrigger.BoolValue = false;
+
         if (player.IsJumping() && !attacking) {
+            jumpAnimationTrigger.BoolValue = true;
+            GameVariablesManager.Instance.ChangeConditionValue(jumpAnimationTrigger);
             ToolKitEvent tkevent = new ToolKitEvent(jumpAnimationTrigger);
             eventTrigger.TriggerEvent(tkevent);
-        }else if (player.IsJumping() && attacking) {
+        } else if (player.IsJumping() && attacking) {
+            jumpAndAttackingTrigger.BoolValue = true;
+            GameVariablesManager.Instance.ChangeConditionValue(jumpAndAttackingTrigger);
             ToolKitEvent tkevent = new ToolKitEvent(jumpAndAttackingTrigger);
             eventTrigger.TriggerEvent(tkevent);
+        } else if (directionX != 0 && running) {
+            RunTrigger.BoolValue = true;
+            GameVariablesManager.Instance.ChangeConditionValue(RunTrigger);
+            ToolKitEvent tkevent = new ToolKitEvent(RunTrigger);
+            eventTrigger.TriggerEvent(tkevent);
         } else if (directionX != 0 && !player.IsJumping() && !attacking) {
+            moveAnimationTrigger.BoolValue = true;
+            GameVariablesManager.Instance.ChangeConditionValue(moveAnimationTrigger);
             ToolKitEvent tkevent = new ToolKitEvent(moveAnimationTrigger);
             eventTrigger.TriggerEvent(tkevent);
         } else if (directionX != 0 && !player.IsJumping() && attacking) {
+            attackAndWalkTrigger.BoolValue = true;
+            GameVariablesManager.Instance.ChangeConditionValue(attackAndWalkTrigger);
             ToolKitEvent tkevent = new ToolKitEvent(attackAndWalkTrigger);
             eventTrigger.TriggerEvent(tkevent);
         } else if (attacking) {
+            attackAnimationTrigger.BoolValue = true;
+            GameVariablesManager.Instance.ChangeConditionValue(attackAnimationTrigger);
             ToolKitEvent tkevent = new ToolKitEvent(attackAnimationTrigger);
             eventTrigger.TriggerEvent(tkevent);
         } else {
+            standAnimationTrigger.BoolValue = true;
+            GameVariablesManager.Instance.ChangeConditionValue(standAnimationTrigger);
             ToolKitEvent tkevent = new ToolKitEvent(standAnimationTrigger);
             eventTrigger.TriggerEvent(tkevent);
         }
-
-        
     }
 
     public override void DoAttack() {
@@ -157,7 +194,7 @@ public partial class PlayerInput : CharacterAttributes {
         attackStarted.Invoke();
         attacking = true;
         float started = Time.time;
-        while (Input.GetKey(KeyCode.Z) && stamina != 0) {
+        while (Input.GetKey(attackInput) && stamina != 0) {
             onKeepAttackNotify.Invoke(Time.time - started);
             yield return null;
         }
