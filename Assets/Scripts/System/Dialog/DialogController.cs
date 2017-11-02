@@ -31,6 +31,7 @@ public class DialogController : ToolKitEventListener {
     
     private ToolKitEventTrigger onDialogTrigger;
     public bool overrideDialog;
+    public bool loadFromInactivesAndPrefabs;
 
     public  bool Skip{
 		set{ skipped = value; }
@@ -46,25 +47,31 @@ public class DialogController : ToolKitEventListener {
         }
     }
 
-    void Start(){
+    void Start() {
         onDialogTrigger = new ToolKitEventTrigger();
 
         //TODO: Transfer this reference to an manager
         register.Clear();
-		Speaker[] speechers = FindObjectsOfType<Speaker>();
-		foreach( Speaker s in speechers ){
+        Speaker[] speechers = null;
+        if (loadFromInactivesAndPrefabs) {
+            speechers = Resources.FindObjectsOfTypeAll<Speaker>();
+        } else {
+            speechers = FindObjectsOfType<Speaker>();
+        }
+        foreach (Speaker s in speechers) {
             try {
                 register.Add(s.identifier, s);
-            }catch(System.Exception e) {
+            }
+            catch (System.Exception e) {
                 Debug.Log(e.Message + s.identifier);
             }
 
-		}
-		registerSpeachers = true;
-		
+        }
+        registerSpeachers = true;
+
         //Listen for the buttom click events
         DialogBox.Instance.onOptionChoose += OnSelectedOption;
-	}
+    }
 
 	//Controller Method: Listen the buttons to choose one dialog option
 	void OnSelectedOption(int id){
