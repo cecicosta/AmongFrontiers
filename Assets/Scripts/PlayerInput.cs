@@ -72,7 +72,7 @@ public partial class PlayerInput : CharacterAttributes {
 
         Vector2 position = InterfaceManager.cursorWorldPosition;
 
-        if (InterfaceManager.worldPressed) {
+        if (false && InterfaceManager.worldPressed) {
             //Correct character flickering direction when the cursor moves right-left or vice-versa
             if (still) {
                 if (directionX > 0 && transform.position.x - 0.2 < position.x)
