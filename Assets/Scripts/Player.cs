@@ -80,7 +80,7 @@ public class Player : MonoBehaviour {
         return currentDirection;
     }
 
-    public bool IsJumping() {
+    public bool IsAirbone() {
         return velocity.y != 0;
     }
 

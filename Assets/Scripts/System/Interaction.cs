@@ -5,9 +5,12 @@ using System;
 
 [System.Serializable]
 public class Transition {	
+    [HideInInspector]
 	public InteractionController interactionController;
-	public int toId;
-	public int fromId;
+    [HideInInspector]
+    public int toId;
+    [HideInInspector]
+    public int fromId;
 
 	public Interaction To{
 		get{ return interactionController.getInteractionById(toId); }
@@ -38,18 +41,29 @@ public class Interaction {
 	private enum State{ ACTIVE, INACTIVE }; 
 	private State state = State.INACTIVE;
 
-	public int interactionId;
+    public UnityEngine.Events.UnityEvent eventTest;
+
+    [HideInInspector]
+    public int interactionId;
     [SerializeField]
 	public ToolKitAction tkAction;
-	public InteractionController interactionController;
-	public List<Transition> parents = new List<Transition>();
-	public List<Transition> children = new List<Transition>();
+    [HideInInspector]
+    public InteractionController interactionController;
+    [HideInInspector]
+    public List<Transition> parents = new List<Transition>();
+    [HideInInspector]
+    public List<Transition> children = new List<Transition>();
 	[SerializeField]
-	public List<Condition> conditions = new List<Condition>();
+    [HideInInspector]
+    public List<Condition> conditions = new List<Condition>();
+
 
 	private float timeTicker = 0;
-	public float timeout = 0;
+    [HideInInspector]
+    public float timeout = 0;
+    [HideInInspector]
     public bool useInteractionArea = false;
+
     public void ConnectTo(Interaction child){
 
 		int numberOfConnections = 0;
@@ -142,6 +156,7 @@ public class Interaction {
     IEnumerator<Interaction> iteractionEnumerator;
 
     //Editor properties
+    [HideInInspector]
     public Rect EditorWindowRect = new Rect (100, 100, 200, 72);
     public Collider2D interactWith;
 }

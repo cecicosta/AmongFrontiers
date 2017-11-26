@@ -72,6 +72,11 @@ public class InteractionContainerInspector : Editor {
         //3. create a list with the actions name 4. create the popup controller 
         //5. do the necessary changes in case the selected action change
 
+        //SerializedObject interactionContainerSO = new UnityEditor.SerializedObject((InteractionContainer)target);
+        //interactionContainerSO.Update();
+        //EditorGUILayout.PropertyField(interactionContainerSO.FindProperty("interaction.eventTest"), true);
+        //interactionContainerSO.ApplyModifiedProperties();
+
         GUIStyle style = new GUIStyle(GUI.skin.label);
         EditorGUILayout.LabelField(new GUIContent("[Action]"), style);
 
@@ -85,17 +90,37 @@ public class InteractionContainerInspector : Editor {
             interaction.tkAction = CreateActionAsset(avaiableActions[index]);
         }
 
-        SerializedObject serializedObject = new UnityEditor.SerializedObject(interaction.tkAction);
-        serializedObject.Update();
-        Editor.DrawPropertiesExcluding(serializedObject, new string[] { "m_Script" });
-        //EditorGUILayout.PropertyField(serializedObject.FindProperty("interaction.tkAction"), new GUIContent("Action"), true, GUILayout.ExpandHeight(false));
-        //SerializedProperty prop = serializedObject .GetIterator();
+
+        if (GUILayout.Button("Edit Action", GUILayout.Width(80) )) {
+            AssetDatabase.OpenAsset(interaction.tkAction);
+        }
+
+        //DrawDefaultInspector();
+        //base.OnInspectorGUI();
+        //return;
+        //AssetDatabase.StartAssetEditing();
+
+        //SerializedObject actionObj = new UnityEditor.SerializedObject(interaction.tkAction);
+        ////AssetDatabase.OpenAsset(interaction.tkAction);
+
+        //actionObj.Update();
+        //Editor.DrawPropertiesExcluding(actionObj, new string[] { "m_Script" });
+        //EditorUtility.SetDirty(interaction.tkAction);
+        //AssetDatabase.SaveAssets();
+        //actionObj.ApplyModifiedProperties();
+
+        //AssetDatabase.StopAssetEditing();
+        //EditorGUILayout.PropertyField(serializedObject.FindProperty("interaction.tkAction"), true);
+
+        //SerializedProperty prop = actionObj.GetIterator();
         //while (prop.NextVisible(true)) {
-        //    EditorGUILayout.PropertyField(prop);
+        //    EditorGUILayout.PropertyField(prop, true);
         //}
-        serializedObject.ApplyModifiedProperties();
+
+
+
         //EditorGUILayout.PropertyField(serializedObject.FindProperty(""), new GUIContent("Action"), true, GUILayout.ExpandHeight(true));
-        //serializedObject.ApplyModifiedProperties();
+        serializedObject.ApplyModifiedProperties();
 
 
 
@@ -104,6 +129,8 @@ public class InteractionContainerInspector : Editor {
         //}else if ( interaction.tkAction != null && !interaction.tkAction.action.Equals (action_names [index])) {
         //	interaction.tkAction = actions[index];
         //      }
+
+
 
         interaction.timeout = EditorGUILayout.FloatField(new GUIContent("Timeout"), interaction.timeout);
 
@@ -117,17 +144,19 @@ public class InteractionContainerInspector : Editor {
         style = new GUIStyle(GUI.skin.label);
         EditorGUILayout.LabelField(new GUIContent("[Conditions]"), style);
         //EditorGUILayout.Separator();
-
+        
         foreach (Condition c in interaction.conditions) {
 
             int i = interaction.conditions.IndexOf(c);
             conditionContainer.condition = c;
 
-            serializedObject = new UnityEditor.SerializedObject(conditionContainer);
-            serializedObject.Update();
-            EditorGUI.BeginChangeCheck();
-            Editor.DrawPropertiesExcluding(serializedObject, new string[] { "m_Script" });
-            serializedObject.ApplyModifiedProperties();
+            SerializedObject tmp = new UnityEditor.SerializedObject(conditionContainer);
+            tmp.Update();
+            //EditorGUI.BeginChangeCheck();
+            Editor.DrawPropertiesExcluding(tmp, new string[] { "m_Script" });
+
+            //if(EditorGUI.EndChangeCheck())
+                tmp.ApplyModifiedProperties();
             //EditorGUILayout.PropertyField(serializedObject.FindProperty("condition"), new GUIContent("Condition"), true, GUILayout.ExpandHeight(false));
 
             //interaction.conditions[i] = conditionContainer.condition;
@@ -145,16 +174,17 @@ public class InteractionContainerInspector : Editor {
         //    newIdentifierSelected = false;
         //}
 
-        if (GUILayout.Button("Add Condition")) {
+        if (GUILayout.Button("Add Condition", GUILayout.Width(100))) {
             interaction.conditions.Add(new Condition());
         }
 
-        if (GUILayout.Button("Remove Last Condition") && interaction.conditions.Count > 0) {
+        if (GUILayout.Button("Remove Last Condition", GUILayout.Width(150)) && interaction.conditions.Count > 0) {
             interaction.conditions.RemoveAt(interaction.conditions.Count - 1);
         }
 
         if (GUI.changed) {
-            serializedObject.ApplyModifiedProperties();
+            EditorUtility.SetDirty(target);
+            this.serializedObject.ApplyModifiedProperties();
         }
     }
 

@@ -37,17 +37,33 @@ public class GameVariablesManager : Singleton<GameVariablesManager> {
         return true;
     }
 
+    public bool PersistConsitionInSession(Condition c) {
+        if (!variables.ContainsKey(c.identifier))
+            return false;
+
+        variables[c.identifier].Copy(c);
+        SaveGameVariablesSession.Instance.SaveVariable(c);
+        return true;
+    }
+
     public bool RetrieveCondition(Condition c) {
         if (!variables.ContainsKey(c.identifier))
             return false;
-        
-        if (PlayerPrefs.GetString(c.identifier) != "") {
-            string stringData = PlayerPrefs.GetString(c.identifier);
-            byte[] result = Convert.FromBase64String(stringData);
-            c = (Condition)DataManipulationUtils.ByteArrayToObject(result);
+
+        if (SaveGameVariablesSession.Instance.LoadGameVariable(c.identifier) != null) {
+            c = SaveGameVariablesSession.Instance.LoadGameVariable(c.identifier);
             variables[c.identifier].Copy(c);
             return true;
         }
+
+        //if (PlayerPrefs.GetString(c.identifier) != "") {
+        //    string stringData = PlayerPrefs.GetString(c.identifier);
+        //    byte[] result = Convert.FromBase64String(stringData);
+        //    c = (Condition)DataManipulationUtils.ByteArrayToObject(result);
+        //    variables[c.identifier].Copy(c);
+        //    return true;
+        //}
+
         return false;
     }
 

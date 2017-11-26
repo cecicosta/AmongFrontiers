@@ -7,11 +7,11 @@ public class ChangeVariableAction : ToolKitAction {
     
     [SerializeField]
     public Condition changeTo;
-    public bool persists = false;
+    public bool persistInSession = false;
 	public override void Execute( GameObject gameobjct ){
-        if (persists)
-            GameVariablesManager.Instance.PersistsCondition(changeTo);
-        else {
+        if (persistInSession) {
+            GameVariablesManager.Instance.PersistConsitionInSession(changeTo);
+        }else {
             GameVariablesManager.Instance.ChangeConditionValue(changeTo);
         }
 
@@ -24,9 +24,9 @@ public class ChangeVariableAction : ToolKitAction {
 
 
     public override void Execute(GameObject colliding, GameObject gameobjct) {
-        if (persists)
-            GameVariablesManager.Instance.PersistsCondition(changeTo);
-        else {
+        if (persistInSession) {
+            GameVariablesManager.Instance.PersistConsitionInSession(changeTo);
+        }else {
             GameVariablesManager.Instance.ChangeConditionValue(changeTo);
         }
 

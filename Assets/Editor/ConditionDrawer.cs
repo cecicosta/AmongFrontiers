@@ -9,6 +9,7 @@ public class ConditionDrawer : PropertyDrawer {
     private bool newIdentifierSelected = false;
     private Rect position;
     private string currentSelectedIdentifier;
+    private int indent;
 
     struct DataContainer {
         public SerializedProperty p;
@@ -41,25 +42,27 @@ public class ConditionDrawer : PropertyDrawer {
         //EditorGUI.BeginProperty(position, label, property);
         //DrawEnumProperty(new Rect(position.x, position.y, position.width, 15), "type", property);
         //EditorGUI.EndProperty();
-            EditorGUI.BeginProperty(position, label, property);
-        EditorGUI.indentLevel = 0;
+        EditorGUI.BeginProperty(position, label, property);
+
+        indent = EditorGUI.indentLevel;
         EditorGUI.LabelField(new Rect(position.x, position.y, position.width, 15), new GUIContent(label));
         EditorGUI.EndProperty();
 
-        int inc = 15;        
+        float w = position.width / NumOfField(property);
+        float h = 15;
+
         EditorGUI.BeginProperty(position, label, property);
-        DrawConditionIdentifierProperty(new Rect(position.x, position.y + inc, position.width, 15), "identifier", property);
+        DrawConditionIdentifierProperty(new Rect(position.x, position.y + h, w, h), "identifier", property);
         EditorGUI.EndProperty();
 
-        inc += 15;
         EditorGUI.BeginProperty(position, label, property);
-        ShowConditionEditing(new Rect(position.x, position.y + inc, position.width, 15), property);
+        ShowConditionEditing(new Rect(position.x + w, position.y + h, w, h), property);
         EditorGUI.EndProperty();
 
     }
 
     public override float GetPropertyHeight(SerializedProperty prop, GUIContent label) {
-        float extraHeight = 60.0f;
+        float extraHeight = 20.0f;
         return base.GetPropertyHeight(prop, label) + extraHeight;
     }
 
@@ -76,14 +79,13 @@ public class ConditionDrawer : PropertyDrawer {
 
         //Get Title Case Lable
         string title = new System.Globalization.CultureInfo("en-US", false).TextInfo.ToTitleCase(label.ToLower());
-        EditorGUI.indentLevel = 2;
+        EditorGUI.indentLevel++;
         //Create label and update the available space for the dropdown menu
-        position = EditorGUI.PrefixLabel(position, new GUIContent(title));
+        //position = EditorGUI.PrefixLabel(position, new GUIContent(title));
 
         //Add the identifiers to the menu
         foreach(string name in identifiers) {
             //AddMenuItem(menu, name, new DataContainer(name, p));
-
             menu.AddItem(new GUIContent(name), p.FindPropertyRelative(label).Equals(name), () => {
                 currentSelectedIdentifier = name;
                 this.position = position;
@@ -117,6 +119,7 @@ public class ConditionDrawer : PropertyDrawer {
             newIdentifierSelected = false;
         }
 
+        EditorGUI.indentLevel--;
     }
 
     public void DrawEnumProperty(Rect position, string label, SerializedProperty p) {
@@ -158,40 +161,59 @@ public class ConditionDrawer : PropertyDrawer {
     void ShowConditionEditing(Rect position, SerializedProperty p) {
         //EditorGUI.LabelField(position, "Condition");
      
-
-        //c.type = (Condition.VariableType)EditorGUI.EnumPopup(position, c.type);
-        EditorGUI.PropertyField(position, p.FindPropertyRelative("type"));
-
-        position.y += 15;
+        
+        EditorGUI.PropertyField(position, p.FindPropertyRelative("type"), new GUIContent(""));
+        //position.y += position.height;
+        position.x += position.width;
         int type = p.FindPropertyRelative("type").intValue;
         switch ((Condition.VariableType)type) {
             case Condition.VariableType.Bool: {
-                    EditorGUI.PropertyField(position, p.FindPropertyRelative("BoolValue"));
+                    EditorGUI.PropertyField(position, p.FindPropertyRelative("BoolValue"), new GUIContent(""));
                 }
                 break;
             case Condition.VariableType.Float: {
-                    EditorGUI.PropertyField(position, p.FindPropertyRelative("comparison"));
-                    position.y += 15;
-                    EditorGUI.PropertyField(position, p.FindPropertyRelative("IntValue"));
+                    EditorGUI.PropertyField(position, p.FindPropertyRelative("comparison"), new GUIContent(""));
+                    //position.y += position.height;
+                    position.x += position.width;
+                    EditorGUI.PropertyField(position, p.FindPropertyRelative("IntValue"), new GUIContent(""));
                 }
                 break;
             case Condition.VariableType.Int: {
-                    EditorGUI.PropertyField(position, p.FindPropertyRelative("comparison"));
-                    position.y += 15;
-                    EditorGUI.PropertyField(position, p.FindPropertyRelative("IntValue"));
+                    EditorGUI.PropertyField(position, p.FindPropertyRelative("comparison"), new GUIContent(""));
+                    //position.y += position.height;
+                    position.x += position.width;
+                    EditorGUI.PropertyField(position, p.FindPropertyRelative("IntValue"), new GUIContent(""));
                 }
                 break;
             case Condition.VariableType.Trigger:
                 break;
             case Condition.VariableType.Input:
-                EditorGUI.PropertyField(position, p.FindPropertyRelative("InputValue"));
-                position.y += 15;
-                EditorGUI.PropertyField(position, p.FindPropertyRelative("inputState"));
+                EditorGUI.PropertyField(position, p.FindPropertyRelative("InputValue"), new GUIContent(""));
+                //position.y += position.height;
+                position.x += position.width;
+                EditorGUI.PropertyField(position, p.FindPropertyRelative("inputState"), new GUIContent(""));
                 break;
             default:
                 break;
         }
         //GUI.FocusControl(c.identifier);
+    }
+
+    int NumOfField(SerializedProperty p) {
+        int type = p.FindPropertyRelative("type").intValue;
+        switch ((Condition.VariableType)type) {
+            case Condition.VariableType.Bool:
+                return 3;
+            case Condition.VariableType.Float:
+                return 4;
+            case Condition.VariableType.Int:
+                return 4;
+            case Condition.VariableType.Trigger:
+                return 2;
+            case Condition.VariableType.Input:
+                return 4;
+        }
+        return 1;
     }
 
 }

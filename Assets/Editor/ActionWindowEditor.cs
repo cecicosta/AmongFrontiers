@@ -4,8 +4,8 @@ using System.Collections;
 
 public class ActionWindowEditor : EditorWindow {
 
-	public ToolKitAction selected;
-	public static void Init ( ToolKitAction action) 
+	public InteractionContainer selected;
+	public static void Init ( InteractionContainer action) 
 	{
 		// Get existing open window or if none, make a new one:
 		ActionWindowEditor window = (ActionWindowEditor)EditorWindow.GetWindow (typeof (ActionWindowEditor));
@@ -14,14 +14,22 @@ public class ActionWindowEditor : EditorWindow {
 	
 	void OnGUI () {
 		
-		if (selected != null)
-		{
-			//var editor = Editor.CreateEditor(selected);
-			//editor.OnInspectorGUI();     
-			//if (GUILayout.Button ("Save")) {
-			//	ActionManager.Instance.SaveActionAsset(selected);
-			//}
-		}
+		if (selected != null) { 
 		
-	}
+
+            //AssetDatabase.OpenAsset(selected);
+			var editor = Editor.CreateEditor(selected);
+			editor.OnInspectorGUI();
+
+            SerializedObject actionObj = new UnityEditor.SerializedObject(selected);
+            SerializedProperty prop = actionObj.GetIterator();
+            while (prop.NextVisible(true)) {
+                EditorGUILayout.PropertyField(prop, true);
+            }
+
+            actionObj.ApplyModifiedProperties();
+            
+        }
+
+    }
 }

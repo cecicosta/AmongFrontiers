@@ -154,7 +154,7 @@ public class ConditionListCustomEditor : Editor {
             return false;
         }
 
-        Debug.Log("Focusing " + GUI.GetNameOfFocusedControl());   // Uncomment to show which control has focus.
+
 
         if (lastFocusedControl != name) {
             lastFocusedControl = name;

@@ -72,7 +72,7 @@ public class AnimatedInput : CharacterAttributes {
 		}
 
 
-        if (player.IsJumping()) {
+        if (player.IsAirbone()) {
             ToolKitEvent tkevent = new ToolKitEvent(jumpAnimationTrigger);
             eventTrigger.TriggerEvent(tkevent);
         }else if (directionX != 0) {
@@ -125,6 +125,7 @@ public class AnimatedInput : CharacterAttributes {
     }
 
     public override void HealthUpdate() {
+        health = health < 0 ? 0 : health;
         onHealthChangeNotify.Invoke(health / totalHealth);
     }
 

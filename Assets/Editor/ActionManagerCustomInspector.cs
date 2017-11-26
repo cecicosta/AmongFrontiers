@@ -15,7 +15,7 @@ public class ActionManagerCustomInspector : Editor {
 
 		if (GUILayout.Button ("Create Action")) {
 			ToolKitAction action = actManager.CreateActionAsset(actManager.AvaiableActions[index]);
-			ActionWindowEditor.Init(action);
+			//ActionWindowEditor.Init(action);
 		}
 
 	}
