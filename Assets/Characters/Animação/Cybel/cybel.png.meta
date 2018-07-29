@@ -1,0 +1,295 @@
+fileFormatVersion: 2
+guid: 37a1db422f234488d95bd5976052cb80
+timeCreated: 1531100068
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: head
+    21300002: cape
+    21300004: body
+    21300006: uparmL
+    21300008: upArmR
+    21300010: lowLegR
+    21300012: lowLegL
+    21300014: upLegR
+    21300016: upLegL
+    21300018: lowArmL
+    21300020: lowArmR
+  externalObjects: {}
+  serializedVersion: 4
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -1
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: iPhone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Tizen
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Samsung TV
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: head
+      rect:
+        serializedVersion: 2
+        x: 45
+        y: 766
+        width: 148
+        height: 167
+      alignment: 9
+      pivot: {x: 0.40601313, y: 0.14600195}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: cape
+      rect:
+        serializedVersion: 2
+        x: 176.08789
+        y: 452.22473
+        width: 232.0491
+        height: 438.95453
+      alignment: 9
+      pivot: {x: 0.8699558, y: 0.95038384}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: body
+      rect:
+        serializedVersion: 2
+        x: 466.98404
+        y: 491
+        width: 262.2596
+        height: 425.5404
+      alignment: 9
+      pivot: {x: 0.46642402, y: 0.19777343}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: uparmL
+      rect:
+        serializedVersion: 2
+        x: 737
+        y: 707
+        width: 68
+        height: 170
+      alignment: 9
+      pivot: {x: 0.5511394, y: 0.8409331}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: upArmR
+      rect:
+        serializedVersion: 2
+        x: 885
+        y: 659
+        width: 80
+        height: 209
+      alignment: 9
+      pivot: {x: 0.5000008, y: 0.86605436}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: lowLegR
+      rect:
+        serializedVersion: 2
+        x: 41.84365
+        y: 197
+        width: 136.76996
+        height: 188
+      alignment: 9
+      pivot: {x: 0.2827893, y: 0.8082902}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: lowLegL
+      rect:
+        serializedVersion: 2
+        x: 236.65793
+        y: 181
+        width: 135.34207
+        height: 211
+      alignment: 9
+      pivot: {x: 0.3104869, y: 0.8241284}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: upLegR
+      rect:
+        serializedVersion: 2
+        x: 434.59537
+        y: 148.25035
+        width: 114.40463
+        height: 268.74963
+      alignment: 9
+      pivot: {x: 0.4960066, y: 0.85330063}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: upLegL
+      rect:
+        serializedVersion: 2
+        x: 576.05457
+        y: 155
+        width: 127.97711
+        height: 253.56741
+      alignment: 9
+      pivot: {x: 0.5023262, y: 0.79593694}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: lowArmL
+      rect:
+        serializedVersion: 2
+        x: 750
+        y: 220
+        width: 71
+        height: 422
+      alignment: 9
+      pivot: {x: 0.4183685, y: 0.6016336}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: lowArmR
+      rect:
+        serializedVersion: 2
+        x: 891
+        y: 202
+        width: 82
+        height: 421
+      alignment: 9
+      pivot: {x: 0.58481723, y: 0.5605745}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    outline: []
+    physicsShape: []
+  spritePackingTag: 
+  userData: 100342151774208
+  assetBundleName: 
+  assetBundleVariant: 

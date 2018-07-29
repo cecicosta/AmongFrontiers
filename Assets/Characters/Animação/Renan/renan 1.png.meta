@@ -1,0 +1,325 @@
+fileFormatVersion: 2
+guid: 6731114996911064b8e311137fa912d9
+timeCreated: 1532312688
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: headRenan
+    21300002: weaponFire001Renan
+    21300004: pelvisRenan
+    21300006: bodyRenan
+    21300008: renan 1_4
+    21300010: upLegRRenan
+    21300012: upLegLRenan
+    21300014: upArmRRenan
+    21300016: ArmLRenan
+    21300018: weaponFire002Renan
+    21300020: lowLegRRenan
+    21300022: lowLegLRenan
+    21300024: lowArmRRenan
+    21300026: weaponFire003Renan
+    21300028: renan 1_0
+    21300030: waeponRestRenan
+  externalObjects: {}
+  serializedVersion: 4
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -1
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: headRenan
+      rect:
+        serializedVersion: 2
+        x: 507
+        y: 790
+        width: 110
+        height: 103
+      alignment: 9
+      pivot: {x: 0.49999997, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: weaponFire001Renan
+      rect:
+        serializedVersion: 2
+        x: 748
+        y: 547
+        width: 220
+        height: 153
+      alignment: 9
+      pivot: {x: 0.49999997, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: pelvisRenan
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 646
+        width: 143
+        height: 87
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: bodyRenan
+      rect:
+        serializedVersion: 2
+        x: 466.02762
+        y: 494
+        width: 176.97238
+        height: 255.95221
+      alignment: 9
+      pivot: {x: 0.5253497, y: 0.49813986}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: renan 1_4
+      rect:
+        serializedVersion: 2
+        x: 753
+        y: 520
+        width: 210
+        height: 144
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: upLegRRenan
+      rect:
+        serializedVersion: 2
+        x: 91
+        y: 359
+        width: 102
+        height: 185
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: upLegLRenan
+      rect:
+        serializedVersion: 2
+        x: 266
+        y: 361
+        width: 83.266815
+        height: 156
+      alignment: 9
+      pivot: {x: 0.46236905, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: upArmRRenan
+      rect:
+        serializedVersion: 2
+        x: 454
+        y: 358
+        width: 92
+        height: 103
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: ArmLRenan
+      rect:
+        serializedVersion: 2
+        x: 676
+        y: 447
+        width: 67
+        height: 191
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: weaponFire002Renan
+      rect:
+        serializedVersion: 2
+        x: 748
+        y: 368
+        width: 221
+        height: 157
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: lowLegRRenan
+      rect:
+        serializedVersion: 2
+        x: 45.130066
+        y: 66
+        width: 99.33943
+        height: 177
+      alignment: 9
+      pivot: {x: 0.49698225, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: lowLegLRenan
+      rect:
+        serializedVersion: 2
+        x: 248.27403
+        y: 71
+        width: 122.72597
+        height: 167
+      alignment: 9
+      pivot: {x: 0.51110595, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: lowArmRRenan
+      rect:
+        serializedVersion: 2
+        x: 425
+        y: 198
+        width: 171
+        height: 91.00003
+      alignment: 9
+      pivot: {x: 0.5, y: 0.49999985}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: weaponFire003Renan
+      rect:
+        serializedVersion: 2
+        x: 749
+        y: 195
+        width: 218
+        height: 154
+      alignment: 9
+      pivot: {x: 0.49999997, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: renan 1_0
+      rect:
+        serializedVersion: 2
+        x: 730
+        y: 543
+        width: 271
+        height: 163
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: waeponRestRenan
+      rect:
+        serializedVersion: 2
+        x: 748
+        y: 718
+        width: 221
+        height: 157
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    outline: []
+    physicsShape: []
+  spritePackingTag: 
+  userData: 100421643996787
+  assetBundleName: 
+  assetBundleVariant: 

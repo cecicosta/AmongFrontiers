@@ -98,7 +98,7 @@ public class InteractionNodesEditor : EditorWindow {
 		
 		GUI.EndScrollView ();
 		
-		if (Event.current.button == 2 && eventHandle.type == EventType.mouseDrag) {
+		if (Event.current.button == 2 && eventHandle.type == EventType.MouseDrag) {
 			//drag_offset_x -= eventHandle.delta.x;
 			//drag_offset_y -= eventHandle.delta.y;	
 			Repaint();
@@ -191,7 +191,7 @@ public class InteractionNodesEditor : EditorWindow {
 			}
 			Event eventHandle = Event.current;
 			
-			if (eventHandle.type == EventType.mouseDown && IsLinking())
+			if (eventHandle.type == EventType.MouseDown && IsLinking())
 				CreateLink(selectedNodeId, windowId);
 			
 			if ((Event.current.button == 0) && (Event.current.type == EventType.MouseDown)) {
@@ -321,7 +321,7 @@ public class InteractionNodesEditor : EditorWindow {
 				Handles.DrawSolidRectangleWithOutline(vector, new Color(255,255,255), new Color(0,0,0,0.0f));
 				//Test if there was a context click event on the triangle representing the transition
 				if( isInsideTriangle( vector[0], vector[1], vector[2], mousePos ) ){
-					if( eventHandle.type == EventType.mouseUp ){
+					if( eventHandle.type == EventType.MouseUp ){
 						Handles.DrawSolidRectangleWithOutline(vector, new Color(0,55,155), new Color(0,0,0,0.0f));
 						TransitionContainer tr = ScriptableObject.CreateInstance<TransitionContainer>();
 						tr.transition = interaction.children[i];

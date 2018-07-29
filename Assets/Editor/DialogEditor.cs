@@ -347,7 +347,7 @@ go.tag = tagStr;
         //	
 
         //Create a parent->child link to this Dialog Window
-        if (eventHandle.type == EventType.mouseDown && linking) {
+        if (eventHandle.type == EventType.MouseDown && linking) {
             Dialog parent = dialogs[activeNodeID];
             Dialog child = dialogs[windowID];
             child.parents.Add(parent.id);
