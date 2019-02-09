@@ -19,7 +19,4 @@ After bulding the game, you can run the unity executable create.
 * **Thamyres Lucas** - *Artist and Writer* -
 * **Cecília Costa** - *Developer* - [cecicosta](https://github.com/cecicosta/)
 
-## License
-
-See the [LICENSE.md](LICENSE.md) file for details
 
